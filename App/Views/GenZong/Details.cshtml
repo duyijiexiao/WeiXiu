@@ -1,0 +1,73 @@
+﻿@model Langben.DAL.GenZong
+
+@{
+    Layout = "~/Views/Shared/Details.cshtml";
+}
+@using Common
+ @section CurentPlace {
+    详细  
+}
+ 
+    <fieldset>
+        <legend>
+            <input class="a2 f2" type="button" onclick="window.location.href = 'javascript:history.go(-1)';" value="返回" />
+        </legend>
+        <div class="bigdiv">
+            
+                <br style="clear: both;" />
+                <div class="display-label">
+                    @Html.LabelFor(model => model.JiLu) :
+                </div>
+                <div class="textarea-box">
+                    @Html.TextAreaFor(model => model.JiLu, new {  @readonly=true})                   
+                </div>      
+                <div class="display-label">
+                      @Html.LabelFor(model => model.LeiXing) :
+                </div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.LeiXing) 
+                </div>      
+                <div class="display-label">
+                      @Html.LabelFor(model => model.CreateTime) :
+                </div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.CreateTime) 
+                </div>      
+                <div class="display-label">
+                      @Html.LabelFor(model => model.CreatePerson) :
+                </div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.CreatePerson) 
+                </div>
+                <br style="clear: both;" />
+                <div class="display-label">
+                    @Html.LabelFor(model => model.Remark) :
+                </div>
+                <div class="textarea-box">
+                    @Html.TextAreaFor(model => model.Remark, new {  @readonly=true})                   
+                </div>      
+                <div class="display-label">
+                      @Html.LabelFor(model => model.ChuLiId) :
+                </div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.ChuLiId) 
+                </div>        
+                <div class="display-label">
+                      @Html.LabelFor(model => model.ShenQingId) :
+                </div>
+                <div class="display-field">
+                    @if (Model.ShenQing != null)
+                       {
+                    @Model.ShenQing.XueXiao
+                    } 
+                </div>      
+                <div class="display-label">
+                      @Html.LabelFor(model => model.BiaoShi) :
+                </div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.BiaoShi) 
+                </div>
+        </div>
+    </fieldset>
+
+

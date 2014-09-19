@@ -1,0 +1,301 @@
+﻿
+@model Langben.DAL.ChuLi 
+@{ Layout = "~/Views/Shared/Index.cshtml"; }
+@using Common 
+@using Models
+<div id="divQuery">
+     
+            <div class="input_search">
+            <div class="input_search-label">
+                    @Html.LabelFor(model => model.XueXiao):
+             </div>
+                <div class="input_search-field">
+                    <input type='text' id='XueXiao'/>
+               </div>
+            </div> 
+            <div class="input_search">
+            <div class="input_search-label">
+                    @Html.LabelFor(model => model.BaoXiuRen):
+             </div>
+                <div class="input_search-field">
+                    <input type='text' id='BaoXiuRen'/>
+               </div>
+            </div> 
+            <div class="input_search">
+            <div class="input_search-label">
+                    @Html.LabelFor(model => model.LianXiDianHua):
+             </div>
+                <div class="input_search-field">
+                    <input type='text' id='LianXiDianHua'/>
+               </div>
+            </div>
+            <div class="input_search">
+             <div class="input_search-label">
+                    @Html.LabelFor(model => model.State):
+                </div>
+                <div class="input_search-field">
+                    @Html.DropDownList("StateDDL_String", Models.SysFieldModels.GetSysField("ChuLi","State"),"请选择",new { id = "StateDDL_String" })
+                </div>
+            </div> 
+            <div class='input_search'>
+              <div class='input_search-label'>
+                    @Html.LabelFor(model => model.FanKuiShiJian):
+                </div>
+                <div class='input_search-field-time'>
+                    <input type="text" id="FanKuiShiJianStart_Time" onclick="WdatePicker({maxDate:'#F{$dp.$D(\'FanKuiShiJianEnd_Time\');}'})"  />
+                    <span>到</span>
+                    <input type="text" id="FanKuiShiJianEnd_Time" onclick="WdatePicker({minDate:'#F{$dp.$D(\'FanKuiShiJianStart_Time\');}'})" />
+               </div>
+            </div>
+    <div class='input_search' style="padding-top:10px;">
+        <a href="#" onclick="flexiQuery()" class="easyui-linkbutton" data-options="iconCls:'icon-search'">
+            查 询
+        </a>
+    </div>
+</div>
+ <br style="clear: both;" />
+
+<script type="text/javascript" language="javascript">
+        $(function () {
+
+            $('#flexigridData').datagrid({
+                title: '维修处理', //列表的标题
+                iconCls: 'icon-site',
+                width: 'auto',
+                height: 'auto',
+                //nowrap: false,
+                striped: true,
+                collapsible: true,
+                url: '../ChuLi/GetData', //获取数据的url
+                sortName: 'Id',
+                sortOrder: 'desc',
+                idField: 'Id',
+
+                toolbar: [
+                 
+                     {
+                        text: '详细',
+                        iconCls: 'icon-search',
+                        handler: function () {
+                            return getView();
+                        }
+                    }, {
+                        text: '创建',
+                        iconCls: 'icon-add',
+                        handler: function () {
+                            return flexiCreate();
+                        }
+                    },  {
+                        text: '删除',
+                        iconCls: 'icon-remove',
+                        handler: function () {
+                            return flexiDelete();
+                        }
+                    }, {
+                        text: '修改',
+                        iconCls: 'icon-edit',
+                        handler: function () {
+                            return flexiModify();
+                        }
+                    }, {
+                        text: '导出',
+                        iconCls: 'icon-excel',
+                        handler: function () {
+                            return flexiExport();
+                        }
+                    } ],
+                columns: [[
+                   
+                    
+					{ field: 'XueXiao', title: '@Html.DisplayNameFor(model => model.XueXiao)', width: 45 }
+					,{ field: 'BaoXiuRen', title:  '@Html.DisplayNameFor(model => model.BaoXiuRen)', width: 45 }
+					,{ field: 'LianXiDianHua', title:  '@Html.DisplayNameFor(model => model.LianXiDianHua)', width: 45 }
+					,{ field: 'MiaoShu', title:  '@Html.DisplayNameFor(model => model.MiaoShu)', width: 45 }
+					,{ field: 'TuPian', title:  '@Html.DisplayNameFor(model => model.TuPian)', width: 45 }
+					,{ field: 'PaiXu', title:  '@Html.DisplayNameFor(model => model.PaiXu)', width: 45 }
+					,{ field: 'Remark', title:  '@Html.DisplayNameFor(model => model.Remark)', width: 45 }
+					,{ field: 'State', title:  '@Html.DisplayNameFor(model => model.State)', width: 45 }
+					,{ field: 'HuiYuanId', title:  '@Html.DisplayNameFor(model => model.HuiYuanId)', width: 45 }
+					,{ field: 'JuJueLiYou', title:  '@Html.DisplayNameFor(model => model.JuJueLiYou)', width: 45 }
+					,{ field: 'JuJueShiJian', title:  '@Html.DisplayNameFor(model => model.JuJueShiJian)', width: 45
+                    , formatter: function (value, rec) {
+                        if (value) {
+                            return dateConvert(value);
+                        } 
+                    } 
+}
+					,{ field: 'Anpai', title:  '@Html.DisplayNameFor(model => model.Anpai)', width: 45 }
+					,{ field: 'AnPaiShiJian', title:  '@Html.DisplayNameFor(model => model.AnPaiShiJian)', width: 45
+                    , formatter: function (value, rec) {
+                        if (value) {
+                            return dateConvert(value);
+                        } 
+                    } 
+}
+					,{ field: 'FanKui', title:  '@Html.DisplayNameFor(model => model.FanKui)', width: 45 }
+					,{ field: 'FanKuiTuPian', title:  '@Html.DisplayNameFor(model => model.FanKuiTuPian)', width: 45 }
+					,{ field: 'FanKuiShiJian', title:  '@Html.DisplayNameFor(model => model.FanKuiShiJian)', width: 45
+                    , formatter: function (value, rec) {
+                        if (value) {
+                            return dateConvert(value);
+                        } 
+                    } 
+}
+					,{ field: 'ShenQingId', title:  '@Html.DisplayNameFor(model => model.ShenQingId)', width: 45 }
+					,{ field: 'BiaoShi', title:  '@Html.DisplayNameFor(model => model.BiaoShi)', width: 45 }
+                ]],
+                pagination: true,
+                rownumbers: true
+
+            });
+
+             var parent = window.dialogArguments; //获取父页面
+            if (parent == "undefined" || parent == null) {
+                //    不是在iframe中打开的
+            } else {
+                //隐藏所有的按钮和分隔符
+                $(".l-btn.l-btn-plain").hide();
+                $(".datagrid-btn-separator").hide();
+                //添加选择按钮
+                $('#flexigridData').datagrid("addToolbarItem", [{ "text": "选择", "iconCls": "icon-ok", handler: function () { flexiSelect(); } }]);
+            }
+        });
+
+        //“查询”按钮，弹出查询框
+        function flexiQuery() {
+
+            //将查询条件按照分隔符拼接成字符串
+            var search = "";
+            $('#divQuery').find(":text,:selected,select,textarea,:hidden,:checked,:password").each(function () {
+                if (this.id)
+                    search = search + this.id + "&" + this.value + "^";
+                else
+                    search = search + this.name + "&" + this.value + "^";
+            });
+            //执行查询
+            $('#flexigridData').datagrid('load', { search: search });
+        };
+        //“导出”按钮     在6.0版本中修改
+        function flexiExport() {
+
+            //将查询条件按照分隔符拼接成字符串
+            var search = "";
+            $('#divQuery').find(":text,:selected,select,textarea,:hidden,:checked,:password").each(function () {
+                search = search + this.id + "&" + this.value + "^";
+            });
+          
+            var p = $('#flexigridData').datagrid('options').columns[0];
+            var field = [];//所有的列名
+            var title = [];//所有的标题名称
+            $(p).each(function () {
+                field.push(this.field);
+                title.push(this.title);              
+            });
+           
+            $.post("../ChuLi/Export",
+                {
+                    title: title.join(","),
+                    field: field.join(","),
+                    sortName: $('#flexigridData').datagrid('options').sortName,
+                    sortOrder: $('#flexigridData').datagrid('options').sortOrder,
+                    search: search
+                }, function (res) {
+                    window.location.href = res;
+
+                });
+        };
+        //“选择”按钮，在其他（与此页面有关联）的页面中，此页面以弹出框的形式出现，选择页面中的数据
+        function flexiSelect() {
+
+            var rows = $('#flexigridData').datagrid('getSelections');
+            if (rows.length == 0) {
+                $.messager.alert('操作提示', '请选择数据!', 'warning');
+                return false;
+            }
+
+            var arr = [];
+            for (var i = 0; i < rows.length; i++) {
+                arr.push(rows[i].Id);
+            }
+            arr.push("^");
+            for (var i = 0; i < rows.length; i++) {
+                arr.push(rows[i].XueXiao);
+            }
+            //主键列和显示列之间用 ^ 分割   每一项用 , 分割
+            if (arr.length > 0) {//一条数据和多于一条
+                returnParent(arr.join("&")); //每一项用 & 分割
+            }
+        }
+        //导航到查看详细的按钮
+        function getView() {
+
+            var arr = $('#flexigridData').datagrid('getSelections');
+
+            if (arr.length == 1) {
+                window.location.href = "../ChuLi/Details/" + arr[0].Id;
+               
+            } else {
+                $.messager.alert('操作提示', '请选择一条数据!', 'warning');
+            }
+            return false;
+        }
+        //导航到创建的按钮
+        function flexiCreate() {
+
+            window.location.href = "../ChuLi/Create";
+            return false;
+        }
+        //导航到修改的按钮
+        function flexiModify() {
+
+            var arr = $('#flexigridData').datagrid('getSelections');
+
+            if (arr.length == 1) {
+                window.location.href = "../ChuLi/Edit/" + arr[0].Id;
+
+            } else {
+                $.messager.alert('操作提示', '请选择一条数据!', 'warning');
+            }
+            return false;
+
+        };
+        //删除的按钮
+        function flexiDelete() {
+
+            var rows = $('#flexigridData').datagrid('getSelections');
+            if (rows.length == 0) {
+                $.messager.alert('操作提示', '请选择数据!', 'warning');
+                return false;
+            }
+
+            var arr = [];
+            for (var i = 0; i < rows.length; i++) {
+                arr.push(rows[i].Id);
+            }
+
+            $.messager.confirm('操作提示', "确认删除这 " + arr.length + " 项吗？", function (r) {
+                if (r) {
+                    $.post("../ChuLi/Delete", { query: arr.join(",") }, function (res) {
+                        if (res == "OK") {
+                           //移除删除的数据
+
+                            $.messager.alert('操作提示', '删除成功!', 'info');
+                            $("#flexigridData").datagrid("reload");
+                            $("#flexigridData").datagrid("clearSelections");
+                        }
+                        else {
+                            if (res == "") {
+                                $.messager.alert('操作提示', '删除失败!请查看该数据与其他模块下的信息的关联，或联系管理员。', 'info');
+                            }
+                            else {
+                               $.messager.alert('操作提示', res, 'info');
+                            }
+                        }
+                    });
+                }
+            });
+
+        };
+
+</script>
+

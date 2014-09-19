@@ -1,0 +1,91 @@
+﻿@model Langben.DAL.HuiYuan
+
+@{
+    Layout = "~/Views/Shared/Edit.cshtml";
+}
+@using Common
+@using Models
+ @section CurentPlace {
+    修改  
+}
+
+    <fieldset>
+        <legend>
+            <input class="a2 f2" type="submit" value="修改" />
+            <input class="a2 f2" type="button" onclick="BackList('HuiYuan')" value="返回列表" />
+        </legend>
+        <div class="bigdiv">
+            @Html.HiddenFor(model => model.Id )      
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Name)：
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>     
+            <div class="editor-label">
+                @Html.LabelFor(model => model.MyName)：
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.MyName)
+                @Html.ValidationMessageFor(model => model.MyName)
+            </div>     
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Password)：
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Password)
+                @Html.ValidationMessageFor(model => model.Password)
+            </div>     
+            <div class="editor-label">
+                @Html.LabelFor(model => model.PhoneNumber)：
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.PhoneNumber)
+                @Html.ValidationMessageFor(model => model.PhoneNumber)
+            </div>     
+            <div class="editor-label">
+                @Html.LabelFor(model => model.MyEmail)：
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.MyEmail)
+                @Html.ValidationMessageFor(model => model.MyEmail)
+            </div>@Html.HiddenFor(model => model.CreateTime )      
+            <div class="editor-label">
+                @Html.LabelFor(model => model.LogonIP)：
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.LogonIP)
+                @Html.ValidationMessageFor(model => model.LogonIP)
+            </div>        
+            <div class="editor-label">
+                @Html.LabelFor(model => model.State)：
+            </div>
+            <div class="editor-field">
+             @Html.RadioButtonListFor(model => model.State,Models.SysFieldModels.GetSysField("HuiYuan","State"),false) 
+            </div>     
+            <div class="editor-label">
+                @Html.LabelFor(model => model.BiaoShi)：
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.BiaoShi)
+                @Html.ValidationMessageFor(model => model.BiaoShi)
+            </div>
+        </div>
+    </fieldset>
+
+
+
+
+    <script type="text/javascript">
+
+        $(function () {
+            
+
+        });
+        
+
+    </script>
+
+
+
