@@ -1,0 +1,54 @@
+﻿@model Langben.DAL.ChuLi
+@{
+    Layout = "~/Views/Shared/Chulifankui.cshtml";
+}
+@using Common
+@using Models
+@section CurentPlace {
+      创建维修处理反馈  
+ }
+    <fieldset>
+        <legend>
+            <input class="a2 f2" type="submit" value="创建" />
+            <input class="a2 f2" type="button" onclick="BackList('ChuLi')" value="返回" />
+        </legend>
+        <div class="bigdiv">
+            <br style="clear: both;" />
+            <div class="editor-label">
+                @Html.LabelFor(model => model.MiaoShu)：
+            </div>
+            <div class="textarea-box">
+                @Html.TextAreaFor(model => model.MiaoShu) 
+                @Html.ValidationMessageFor(model => model.MiaoShu) 
+            </div>     
+            <br style="clear: both;" />
+            <div class="editor-label">
+                @Html.LabelFor(model => model.FanKui)：
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.FanKui)
+                @Html.ValidationMessageFor(model => model.FanKui)
+            </div>     
+            <div class="editor-label">
+                @Html.LabelFor(model => model.FanKuiTuPian)：
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.FanKuiTuPian)
+                @Html.ValidationMessageFor(model => model.FanKuiTuPian)
+            </div>     
+            <div class="editor-label">
+                @Html.LabelFor(model => model.FanKuiShiJian)：
+            </div>
+            <div class="editor-field">
+                @Html.TextBox("FanKuiShiJian", ((Model != null && Model.FanKuiShiJian != null) ? Model.FanKuiShiJian.ToString().AsDateTime().ToString("yyyy-MM-dd") : ""), new { style = "width: 244px;", @class="easyui-datebox" })
+                @Html.ValidationMessageFor(model => model.FanKuiShiJian)
+            </div>     
+        </div>
+    </fieldset>
+    
+    <script type="text/javascript">
+        $(function () {
+        });
+    </script>
+
+
