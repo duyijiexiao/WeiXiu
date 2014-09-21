@@ -33,7 +33,7 @@
     $(function () {
 
         $('#flexigridData').datagrid({
-            title: '维修处理', //列表的标题
+            title: '维修处理反馈', //列表的标题
             iconCls: 'icon-site',
             width: 'auto',
             height: 'auto',
@@ -192,7 +192,7 @@
         var arr = $('#flexigridData').datagrid('getSelections');
 
         if (arr.length == 1) {
-            window.location.href = "../ChuLi/Details/" + arr[0].Id;
+            window.location.href = "../ChuLi/FKDetails/" + arr[0].Id;
 
         } else {
             $.messager.alert('操作提示', '请选择一条数据!', 'warning');
@@ -202,7 +202,7 @@
     //导航到创建的按钮
     function flexiCreate() {
 
-        window.location.href = "../ChuLi/Create";
+        window.location.href = "../ChuLi/FKCreate";
         return false;
     }
     //导航到修改的按钮
@@ -211,7 +211,7 @@
         var arr = $('#flexigridData').datagrid('getSelections');
 
         if (arr.length == 1) {
-            window.location.href = "../ChuLi/Edit/" + arr[0].Id;
+            window.location.href = "../ChuLi/FKEdit/" + arr[0].Id;
 
         } else {
             $.messager.alert('操作提示', '请选择一条数据!', 'warning');
