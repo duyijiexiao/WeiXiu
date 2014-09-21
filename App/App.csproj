@@ -46,22 +46,21 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\packages\NPOI.2.0.6\lib\net40\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="NPOI, Version=2.0.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\NPOI.dll</HintPath>
+    <Reference Include="NPOI">
+      <HintPath>..\packages\NPOI.2.0.6\lib\net40\NPOI.dll</HintPath>
     </Reference>
-    <Reference Include="NPOI.OOXML, Version=2.0.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\NPOI.OOXML.dll</HintPath>
+    <Reference Include="NPOI.OOXML">
+      <HintPath>..\packages\NPOI.2.0.6\lib\net40\NPOI.OOXML.dll</HintPath>
     </Reference>
-    <Reference Include="NPOI.OpenXml4Net, Version=2.0.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\NPOI.OpenXml4Net.dll</HintPath>
+    <Reference Include="NPOI.OpenXml4Net">
+      <HintPath>..\packages\NPOI.2.0.6\lib\net40\NPOI.OpenXml4Net.dll</HintPath>
     </Reference>
-    <Reference Include="NPOI.OpenXmlFormats, Version=2.0.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\NPOI.OpenXmlFormats.dll</HintPath>
+    <Reference Include="NPOI.OpenXmlFormats">
+      <HintPath>..\packages\NPOI.2.0.6\lib\net40\NPOI.OpenXmlFormats.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -548,6 +547,11 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="up\b.xls" />
+    <Content Include="Views\ChuLi\TongjiIndex.cshtml" />
+    <Content Include="Views\ChuLi\FKDetails.cshtml" />
+    <Content Include="Views\ChuLi\FKEdit.cshtml" />
+    <Content Include="Views\ChuLi\FKIndex.cshtml" />
+    <Content Include="Views\ChuLi\FKCreate.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -588,57 +592,35 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="Project_Readme.html" />
   </ItemGroup>
-       <ItemGroup>    
-<Content Include="Views\ChuLi\Create.cshtml" />
-    
-<Content Include="Views\ChuLi\Details.cshtml" />
-    
-<Content Include="Views\ChuLi\Edit.cshtml" />
-    
-<Content Include="Views\ChuLi\Index.cshtml" />
-    
-<Content Include="Views\GenZong\Create.cshtml" />
-    
-<Content Include="Views\GenZong\Details.cshtml" />
-    
-<Content Include="Views\GenZong\Edit.cshtml" />
-    
-<Content Include="Views\GenZong\Index.cshtml" />
-    
-<Content Include="Views\HuiYuan\Create.cshtml" />
-    
-<Content Include="Views\HuiYuan\Details.cshtml" />
-    
-<Content Include="Views\HuiYuan\Edit.cshtml" />
-    
-<Content Include="Views\HuiYuan\Index.cshtml" />
-    
-<Content Include="Views\School\Create.cshtml" />
-    
-<Content Include="Views\School\Details.cshtml" />
-    
-<Content Include="Views\School\Edit.cshtml" />
-    
-<Content Include="Views\School\Index.cshtml" />
-    
-<Content Include="Views\ShenQing\Create.cshtml" />
-    
-<Content Include="Views\ShenQing\Details.cshtml" />
-    
-<Content Include="Views\ShenQing\Edit.cshtml" />
-    
-<Content Include="Views\ShenQing\Index.cshtml" />
-     </ItemGroup>     <ItemGroup>    
-<Compile Include="Controllers\ChuLiController.cs" />
-    
-<Compile Include="Controllers\GenZongController.cs" />
-    
-<Compile Include="Controllers\HuiYuanController.cs" />
-    
-<Compile Include="Controllers\SchoolController.cs" />
-    
-<Compile Include="Controllers\ShenQingController.cs" />
-     </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ChuLi\Create.cshtml" />
+    <Content Include="Views\ChuLi\Details.cshtml" />
+    <Content Include="Views\ChuLi\Edit.cshtml" />
+    <Content Include="Views\ChuLi\Index.cshtml" />
+    <Content Include="Views\GenZong\Create.cshtml" />
+    <Content Include="Views\GenZong\Details.cshtml" />
+    <Content Include="Views\GenZong\Edit.cshtml" />
+    <Content Include="Views\GenZong\Index.cshtml" />
+    <Content Include="Views\HuiYuan\Create.cshtml" />
+    <Content Include="Views\HuiYuan\Details.cshtml" />
+    <Content Include="Views\HuiYuan\Edit.cshtml" />
+    <Content Include="Views\HuiYuan\Index.cshtml" />
+    <Content Include="Views\School\Create.cshtml" />
+    <Content Include="Views\School\Details.cshtml" />
+    <Content Include="Views\School\Edit.cshtml" />
+    <Content Include="Views\School\Index.cshtml" />
+    <Content Include="Views\ShenQing\Create.cshtml" />
+    <Content Include="Views\ShenQing\Details.cshtml" />
+    <Content Include="Views\ShenQing\Edit.cshtml" />
+    <Content Include="Views\ShenQing\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\ChuLiController.cs" />
+    <Compile Include="Controllers\GenZongController.cs" />
+    <Compile Include="Controllers\HuiYuanController.cs" />
+    <Compile Include="Controllers\SchoolController.cs" />
+    <Compile Include="Controllers\ShenQingController.cs" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -657,7 +639,9 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>55977</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:55977/</IISUrl>
+          <IISUrl>http://localhost:1277/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost:1277/</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
@@ -674,4 +658,3 @@
   <Target Name="AfterBuild">
   </Target> -->
 </Project>
-

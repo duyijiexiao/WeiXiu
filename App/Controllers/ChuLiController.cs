@@ -48,6 +48,38 @@ namespace Langben.App.Controllers
         {
 
             return View();
+        } 
+        /// <summary>
+        /// 处理反馈Index
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult FKIndex()
+        {
+            return View();
+        }
+        /// <summary>
+        /// 处理反馈Create
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult FKCreate()
+        {
+            return View();
+        }
+        /// <summary>
+        /// 处理反馈Details
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult FKDetails()
+        {
+            return View();
+        }
+        /// <summary>
+        /// 处理反馈Edit
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult FKEdit()
+        {
+            return View();
         }
         /// <summary>
         /// 异步加载数据

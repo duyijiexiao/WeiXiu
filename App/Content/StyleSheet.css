@@ -100,10 +100,10 @@ input {
 }
 
 .input_search-label {
-    width: 80px;
+    width: 60px;
     float: left;
     text-align: right;
-    margin: 13px 0 9px;
+    margin: 10px 0 9px;
     _margin: 13px 0 9px;
     line-height: 24px;
     display: inline;
