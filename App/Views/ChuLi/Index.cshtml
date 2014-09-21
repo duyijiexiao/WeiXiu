@@ -3,7 +3,6 @@
 @using Common
 @using Models
 <div id="divQuery">
-
     <div class="input_search">
         <div class="input_search-label">
             @Html.LabelFor(model => model.XueXiao):
@@ -12,38 +11,14 @@
             <input type='text' id='XueXiao' />
         </div>
     </div>
-    <div class="input_search">
-        <div class="input_search-label">
-            @Html.LabelFor(model => model.BaoXiuRen):
-        </div>
-        <div class="input_search-field">
-            <input type='text' id='BaoXiuRen' />
-        </div>
-    </div>
-    <div class="input_search">
-        <div class="input_search-label">
-            @Html.LabelFor(model => model.LianXiDianHua):
-        </div>
-        <div class="input_search-field">
-            <input type='text' id='LianXiDianHua' />
-        </div>
-    </div>
-    <div class="input_search">
-        <div class="input_search-label">
-            @Html.LabelFor(model => model.State):
-        </div>
-        <div class="input_search-field">
-            @Html.DropDownList("StateDDL_String", Models.SysFieldModels.GetSysField("ChuLi", "State"), "请选择", new { id = "StateDDL_String" })
-        </div>
-    </div>
     <div class='input_search'>
         <div class='input_search-label'>
-            @Html.LabelFor(model => model.FanKuiShiJian):
+            @Html.LabelFor(model => model.AnPaiShiJian):
         </div>
         <div class='input_search-field-time'>
-            <input type="text" id="FanKuiShiJianStart_Time" onclick="WdatePicker({maxDate:'#F{$dp.$D(\'FanKuiShiJianEnd_Time\');}'})" />
+            <input type="text" id="AnPaiShiJianStart_Time" onclick="WdatePicker({ maxDate: '#F{$dp.$D(\'AnPaiShiJianEnd_Time\');}' })" />
             <span>到</span>
-            <input type="text" id="FanKuiShiJianEnd_Time" onclick="WdatePicker({minDate:'#F{$dp.$D(\'FanKuiShiJianStart_Time\');}'})" />
+            <input type="text" id="AnPaiShiJianEnd_Time" onclick="WdatePicker({ minDate: '#F{$dp.$D(\'AnPaiShiJianStart_Time\');}' })" />
         </div>
     </div>
     <div class='input_search' style="padding-top:10px;">
@@ -66,7 +41,7 @@
             striped: true,
             collapsible: true,
             url: '../ChuLi/GetData', //获取数据的url
-            sortName: 'Id',
+            sortName: 'AnPaiShiJian',
             sortOrder: 'desc',
             idField: 'Id',
 
@@ -106,22 +81,22 @@
             columns: [[
 
 
-                { field: 'XueXiao', title: '@Html.DisplayNameFor(model => model.XueXiao)', width: 45 }
-                , { field: 'BaoXiuRen', title: '@Html.DisplayNameFor(model => model.BaoXiuRen)', width: 45 }
-                , { field: 'LianXiDianHua', title: '@Html.DisplayNameFor(model => model.LianXiDianHua)', width: 45 }
-                , { field: 'Anpai', title: '@Html.DisplayNameFor(model => model.Anpai)', width: 45 }
+                { field: 'XueXiao', title: '@Html.DisplayNameFor(model => model.XueXiao)', width: 80 }
+                , { field: 'BaoXiuRen', title: '@Html.DisplayNameFor(model => model.BaoXiuRen)', width: 60 }
+                , { field: 'LianXiDianHua', title: '@Html.DisplayNameFor(model => model.LianXiDianHua)', width: 80 }
+                , { field: 'Anpai', title: '@Html.DisplayNameFor(model => model.Anpai)', width: 80}
                 , {
-                    field: 'AnPaiShiJian', title: '@Html.DisplayNameFor(model => model.AnPaiShiJian)', width: 45
+                    field: 'AnPaiShiJian', title: '@Html.DisplayNameFor(model => model.AnPaiShiJian)', width: 80
                 , formatter: function (value, rec) {
                     if (value) {
                         return dateConvert(value);
                     }
                 }
                 }
-                , { field: 'FanKui', title: '@Html.DisplayNameFor(model => model.FanKui)', width: 45 }
-                , { field: 'FanKuiTuPian', title: '@Html.DisplayNameFor(model => model.FanKuiTuPian)', width: 45 }
+                , { field: 'FanKui', title: '@Html.DisplayNameFor(model => model.FanKui)', width: 120 }
+                , { field: 'FanKuiTuPian', title: '@Html.DisplayNameFor(model => model.FanKuiTuPian)', width: 100 }
                 , {
-                    field: 'FanKuiShiJian', title: '@Html.DisplayNameFor(model => model.FanKuiShiJian)', width: 45
+                    field: 'FanKuiShiJian', title: '@Html.DisplayNameFor(model => model.FanKuiShiJian)', width: 80
                 , formatter: function (value, rec) {
                     if (value) {
                         return dateConvert(value);
