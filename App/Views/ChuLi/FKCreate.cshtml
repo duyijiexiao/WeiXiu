@@ -1,17 +1,135 @@
-﻿@{
-    Layout = null;
+﻿@model Langben.DAL.ChuLi
+
+@{
+    Layout = "~/Views/Shared/Create.cshtml";
 }
+@using Common
+@using Models
+ 
+@section CurentPlace {
+ 
+      创建  
+ 
+ }
+    <fieldset>
+        <legend>
+            <input class="a2 f2" type="submit" value="创建" />
+            <input class="a2 f2" type="button" onclick="BackList('ChuLi')" value="返回" />
+        </legend>
+        <div class="bigdiv">
+                 
+            <div class="editor-label">
+                @Html.LabelFor(model => model.XueXiao)：
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.XueXiao)
+                @Html.ValidationMessageFor(model => model.XueXiao)
+            </div>     
+            <div class="editor-label">
+                @Html.LabelFor(model => model.BaoXiuRen)：
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.BaoXiuRen)
+                @Html.ValidationMessageFor(model => model.BaoXiuRen)
+            </div>     
+            <div class="editor-label">
+                @Html.LabelFor(model => model.LianXiDianHua)：
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.LianXiDianHua)
+                @Html.ValidationMessageFor(model => model.LianXiDianHua)
+            </div>
+            <br style="clear: both;" />
+            <div class="editor-label">
+                @Html.LabelFor(model => model.MiaoShu)：
+            </div>
+            <div class="textarea-box">
+                @Html.TextAreaFor(model => model.MiaoShu) 
+                @Html.ValidationMessageFor(model => model.MiaoShu) 
+            </div>     
+            <div class="editor-label">
+                @Html.LabelFor(model => model.TuPian)：
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.TuPian)
+                @Html.ValidationMessageFor(model => model.TuPian)
+            </div>     
+            <div class="editor-label">
+                @Html.LabelFor(model => model.PaiXu) ：
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.PaiXu, new {  onkeyup = "isInt(this)", @class="text-box single-line" })
+                @Html.ValidationMessageFor(model => model.PaiXu) 
+            </div>
+            <br style="clear: both;" />
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Remark)：
+            </div>
+            <div class="textarea-box">
+                @Html.TextAreaFor(model => model.Remark) 
+                @Html.ValidationMessageFor(model => model.Remark) 
+            </div>        
+            <div class="editor-label">
+                @Html.LabelFor(model => model.State)：
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.State,Models.SysFieldModels.GetSysField("ChuLi","State"),"请选择")
+            </div>     
+            <div class="editor-label">
+                @Html.LabelFor(model => model.HuiYuanId)：
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.HuiYuanId)
+                @Html.ValidationMessageFor(model => model.HuiYuanId)
+            </div>     
+            <div class="editor-label">
+                @Html.LabelFor(model => model.JuJueLiYou)：
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.JuJueLiYou)
+                @Html.ValidationMessageFor(model => model.JuJueLiYou)
+            </div>     
+            <div class="editor-label">
+                @Html.LabelFor(model => model.JuJueShiJian)：
+            </div>
+            <div class="editor-field">
+                @Html.TextBox("JuJueShiJian", ((Model != null && Model.JuJueShiJian != null) ? Model.JuJueShiJian.ToString().AsDateTime().ToString("yyyy-MM-dd") : ""), new { style = "width: 244px;", @class="easyui-datebox" })
+                @Html.ValidationMessageFor(model => model.JuJueShiJian)
+            </div>     
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Anpai)：
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Anpai)
+                @Html.ValidationMessageFor(model => model.Anpai)
+            </div>     
+            <div class="editor-label">
+                @Html.LabelFor(model => model.AnPaiShiJian)：
+            </div>
+            <div class="editor-field">
+                @Html.TextBox("AnPaiShiJian", ((Model != null && Model.AnPaiShiJian != null) ? Model.AnPaiShiJian.ToString().AsDateTime().ToString("yyyy-MM-dd") : ""), new { style = "width: 244px;", @class="easyui-datebox" })
+                @Html.ValidationMessageFor(model => model.AnPaiShiJian)
+            </div>     
+            <div class="editor-label">
+                @Html.LabelFor(model => model.ShenQingId)：
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.ShenQingId)
+                @Html.ValidationMessageFor(model => model.ShenQingId)
+            </div>     
+        </div>
+    </fieldset>
+ 
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
-    <div>
     
-    </div>
-</body>
-</html>
+    <script type="text/javascript">
+
+        $(function () {
+
+
+        });
+              
+
+    </script>
+
+
