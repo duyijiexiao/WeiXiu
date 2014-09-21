@@ -111,40 +111,12 @@
                 @Html.ValidationMessageFor(model => model.AnPaiShiJian)
             </div>     
             <div class="editor-label">
-                @Html.LabelFor(model => model.FanKui)：
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.FanKui)
-                @Html.ValidationMessageFor(model => model.FanKui)
-            </div>     
-            <div class="editor-label">
-                @Html.LabelFor(model => model.FanKuiTuPian)：
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.FanKuiTuPian)
-                @Html.ValidationMessageFor(model => model.FanKuiTuPian)
-            </div>     
-            <div class="editor-label">
-                @Html.LabelFor(model => model.FanKuiShiJian)：
-            </div>
-            <div class="editor-field">
-                @Html.TextBox("FanKuiShiJian", ((Model != null && Model.FanKuiShiJian != null) ? Model.FanKuiShiJian.ToString().AsDateTime().ToString("yyyy-MM-dd") : ""), new { style = "width: 244px;", @class="easyui-datebox" })
-                @Html.ValidationMessageFor(model => model.FanKuiShiJian)
-            </div>     
-            <div class="editor-label">
                 @Html.LabelFor(model => model.ShenQingId)：
             </div>
             <div class="editor-field">
                 @Html.EditorFor(model => model.ShenQingId)
                 @Html.ValidationMessageFor(model => model.ShenQingId)
             </div>     
-            <div class="editor-label">
-                @Html.LabelFor(model => model.BiaoShi)：
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.BiaoShi)
-                @Html.ValidationMessageFor(model => model.BiaoShi)
-            </div>
         </div>
     </fieldset>
  
