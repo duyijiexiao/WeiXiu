@@ -38,6 +38,80 @@ namespace Langben.App.Controllers
 
             return View();
         }
+
+
+        /// <summary>
+        /// 统计列表
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult TongjiIndex()
+        {
+
+            return View();
+        }
+        /// <summary>
+        /// 异步加载数据
+        /// </summary>
+        /// <param name="page">页码</param>
+        /// <param name="rows">每页显示的行数</param>
+        /// <param name="order">排序字段</param>
+        /// <param name="sort">升序asc（默认）还是降序desc</param>
+        /// <param name="search">查询条件</param>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult GetTjData(string id, int page, int rows, string order, string sort, string search)
+        {
+
+            int total = 0;
+            List<ChuLi> queryData = m_BLL.GetByParam(id, page, rows, order, sort, search, ref total);
+            return Json(new datagrid
+            {
+                total = total,
+                rows = queryData.Select(s => new
+                {
+                    Id = s.Id
+                    ,
+                    XueXiao = s.XueXiao
+                    ,
+                    BaoXiuRen = s.BaoXiuRen
+                    ,
+                    LianXiDianHua = s.LianXiDianHua
+                    ,
+                    MiaoShu = s.MiaoShu
+                    ,
+                    TuPian = s.TuPian
+                    ,
+                    PaiXu = s.PaiXu
+                    ,
+                    Remark = s.Remark
+                    ,
+                    State = s.State
+                    ,
+                    HuiYuanId = s.HuiYuanId
+                    ,
+                    JuJueLiYou = s.JuJueLiYou
+                    ,
+                    JuJueShiJian = s.JuJueShiJian
+                    ,
+                    Anpai = s.Anpai
+                    ,
+                    AnPaiShiJian = s.AnPaiShiJian
+                    ,
+                    FanKui = s.FanKui
+                    ,
+                    FanKuiTuPian = s.FanKuiTuPian
+                    ,
+                    FanKuiShiJian = s.FanKuiShiJian
+                    ,
+                    ShenQingId = s.ShenQingId
+                    ,
+                    BiaoShi = s.BiaoShi
+
+                }
+
+                    )
+            });
+        }
         /// <summary>
         /// 异步加载数据
         /// </summary>
