@@ -40,7 +40,7 @@ namespace  Models
         /// <returns>账户信息</returns>
         public Account GetCurrentAccount()
         {
-            if (Session["account"] != null)
+            if (Session!=null&&Session["account"] != null)
             {
                 Account account = (Account)Session["account"];
                 return account;
