@@ -9,7 +9,7 @@ namespace App
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery.min.js",
+                        "~/Scripts/jquery1.8.3.min.js",
                         "~/Scripts/JScriptCommon.js"));
             bundles.Add(new ScriptBundle("~/bundles/easyui").Include(
                        "~/Res/easyui/jquery.easyui.min.js",

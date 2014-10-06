@@ -101,7 +101,13 @@
                         handler: function () {
                             return flexiExport();
                         }
-                    } ],
+                    }, {
+                        text: '审核',
+                        iconCls: '.icon-blank',
+                        handler: function () {
+                            return ShenHe();
+                        }
+                    }],
                 columns: [[
                    
                     
@@ -138,6 +144,22 @@
             }
         });
 
+    function ShenHe()
+    {
+        var arr = $('#flexigridData').datagrid('getSelections');
+
+        if (arr.length == 1) {
+            $.post("../HuiYuan/ShenHe", { id: arr[0].Id, State: arr[0].State }, function (msg) {
+                    $("#flexigridData").datagrid("reload");
+                    $("#flexigridData").datagrid("clearSelections");
+                    $.messager.alert('操作提示',msg,'info');
+            })
+
+        } else {
+            $.messager.alert('操作提示', '请选择一条数据!', 'warning');
+        }
+        return false;
+    }
         //“查询”按钮，弹出查询框
         function flexiQuery() {
 

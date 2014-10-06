@@ -104,9 +104,10 @@ namespace Langben.App.Controllers
         /// <returns></returns>
         [SupportFilter]
         public ActionResult Create(string id)
-        { 
-            
-            return View();
+        {
+            School s = new School();
+            s.PaiXu = 99;
+            return View(s);
         }
         /// <summary>
         /// 创建

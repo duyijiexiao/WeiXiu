@@ -46,8 +46,14 @@ namespace Langben.IBLL
         /// <returns></returns>
         [OperationContract]
         System.Collections.Generic.List<HuiYuan> GetAll();
-        
-        
+        /// <summary>
+        /// 根据主键审核
+        /// </summary>
+        /// <param name="id">主键</param>
+        /// <param name="State">状态值</param>
+        /// <returns></returns>
+        [OperationContract]
+        int ShenHe(string id, string State);
         /// <summary>
         /// 根据主键，查看详细信息
         /// </summary>

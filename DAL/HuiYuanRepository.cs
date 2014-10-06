@@ -111,7 +111,18 @@ namespace Langben.DAL
                 return Save(db);
             }
         }
- 
+        /// <summary>
+        /// 根据id审核
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="State"></param>
+        /// <returns></returns>
+        public int ShenHe(SysEntities db,string id,string State)
+        {
+            string sql = string.Format("update HuiYuan set State='{0}' where Id='{1}'",State,id);
+            int result= db.Database.ExecuteSqlCommand(sql);
+            return result;
+        }
         /// <summary>
         /// 删除一个会员
         /// </summary>

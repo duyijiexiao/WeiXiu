@@ -43,7 +43,8 @@
                 @Html.LabelFor(model => model.State)：
             </div>
             <div class="editor-field">
-             @Html.RadioButtonListFor(model => model.State,Models.SysFieldModels.GetSysField("School","State"),false) 
+               已审核<input type="radio" name="State" value="1"/>
+                未审核<input type="radio" name="State" value="0"/>
             </div>     
             <div class="editor-label">
                 @Html.LabelFor(model => model.BiaoShi)：

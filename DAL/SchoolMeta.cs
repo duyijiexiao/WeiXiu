@@ -23,16 +23,19 @@ namespace Langben.DAL
 			[ScaffoldColumn(true)]
 			[Display(Name = "名称", Order = 2)]
 			[StringLength(200, ErrorMessage = "长度不可超过200")]
+            [Required(ErrorMessage="必填")]
 			public object Name { get; set; }
 
 			[ScaffoldColumn(true)]
 			[Display(Name = "地址", Order = 3)]
 			[StringLength(200, ErrorMessage = "长度不可超过200")]
+            [Required(ErrorMessage = "必填")]
 			public object Address { get; set; }
 
 			[ScaffoldColumn(true)]
 			[Display(Name = "排序", Order = 4)]
 			[Range(0,2147483646, ErrorMessage="数值超出范围")]
+            [Required(ErrorMessage = "必填")]
 			public int? PaiXu { get; set; }
 
 			[ScaffoldColumn(true)]

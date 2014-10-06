@@ -74,6 +74,24 @@ namespace Langben.App.Controllers
                     )
             });
         }
+        public ContentResult ShenHe(string id,string State)
+        {
+            if (State == "已审核")
+            {
+                State = "未审核";
+            }
+            else
+            {
+                State = "已审核";
+            }
+            if (m_BLL.ShenHe(id,State)>0)
+            {
+                return Content("修改成功");
+            }else
+            {
+                return Content("修改失败");
+            }
+        }
         /// <summary>
         ///  导出Excle /*在6.0版本中 新增*/
         /// </summary>
