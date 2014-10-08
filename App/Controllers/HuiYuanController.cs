@@ -74,16 +74,9 @@ namespace Langben.App.Controllers
                     )
             });
         }
-        public ContentResult ShenHe(string id,string State)
+        public ContentResult ShenHe(string id)
         {
-            if (State == "已审核")
-            {
-                State = "未审核";
-            }
-            else
-            {
-                State = "已审核";
-            }
+            string State = "已审核";
             if (m_BLL.ShenHe(id,State)>0)
             {
                 return Content("修改成功");

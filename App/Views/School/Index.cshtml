@@ -53,15 +53,7 @@
                 sortOrder: 'desc',
                 idField: 'Id',
 
-                toolbar: [
-                 
-                     {
-                        text: '详细',
-                        iconCls: 'icon-search',
-                        handler: function () {
-                            return getView();
-                        }
-                    }, {
+                toolbar: [{
                         text: '创建',
                         iconCls: 'icon-add',
                         handler: function () {
@@ -79,13 +71,7 @@
                         handler: function () {
                             return flexiModify();
                         }
-                    }, {
-                        text: '导出',
-                        iconCls: 'icon-excel',
-                        handler: function () {
-                            return flexiExport();
-                        }
-                    } ],
+                    }],
                 columns: [[
                    
                     
@@ -97,10 +83,7 @@
                         if (value) {
                             return dateConvert(value);
                         } 
-                    } 
-}
-					,{ field: 'State', title:  '@Html.DisplayNameFor(model => model.State)', width: 155 }
-					,{ field: 'BiaoShi', title:  '@Html.DisplayNameFor(model => model.BiaoShi)', width: 155 }
+                    } }
                 ]],
                 pagination: true,
                 rownumbers: true

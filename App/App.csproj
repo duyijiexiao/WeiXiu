@@ -375,6 +375,7 @@
     <Content Include="Res\easyui\themes\icons\back.png" />
     <Content Include="Res\easyui\themes\icons\blank.gif" />
     <Content Include="Res\easyui\themes\icons\cancel.png" />
+    <Content Include="Res\easyui\themes\icons\check.png" />
     <Content Include="Res\easyui\themes\icons\cut.png" />
     <Content Include="Res\easyui\themes\icons\edit_add.png" />
     <Content Include="Res\easyui\themes\icons\edit_remove.png" />

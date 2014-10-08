@@ -21,7 +21,7 @@ namespace Langben.DAL
 			public object Id { get; set; }
 
 			[ScaffoldColumn(true)]
-			[Display(Name = "用户名", Order = 2)]
+			[Display(Name = "学校单位", Order = 2)]
 			[StringLength(200, ErrorMessage = "长度不可超过200")]
 			public object Name { get; set; }
 
