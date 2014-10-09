@@ -80,39 +80,12 @@
                 @Html.EditorFor(model => model.HuiYuanId)
                 @Html.ValidationMessageFor(model => model.HuiYuanId)
             </div>     
-            <div class="editor-label">
-                @Html.LabelFor(model => model.JuJueLiYou)：
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.JuJueLiYou)
-                @Html.ValidationMessageFor(model => model.JuJueLiYou)
-            </div>     
-            <div class="editor-label">
-                @Html.LabelFor(model => model.JuJueShiJian)：
-            </div>
-            <div class="editor-field">
-                @Html.TextBox("JuJueShiJian", ((Model != null && Model.JuJueShiJian != null) ? Model.JuJueShiJian.ToString().AsDateTime().ToString("yyyy-MM-dd") : ""), new { style = "width: 244px;", @class="easyui-datebox" })
-                @Html.ValidationMessageFor(model => model.JuJueShiJian)
-            </div>     
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Anpai)：
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.Anpai)
-                @Html.ValidationMessageFor(model => model.Anpai)
-            </div>     
-            <div class="editor-label">
-                @Html.LabelFor(model => model.AnPaiShiJian)：
-            </div>
-            <div class="editor-field">
-                @Html.TextBox("AnPaiShiJian", ((Model != null && Model.AnPaiShiJian != null) ? Model.AnPaiShiJian.ToString().AsDateTime().ToString("yyyy-MM-dd") : ""), new { style = "width: 244px;", @class="easyui-datebox" })
-                @Html.ValidationMessageFor(model => model.AnPaiShiJian)
-            </div>     
+            <br style="clear: both;" />
             <div class="editor-label">
                 @Html.LabelFor(model => model.FanKui)：
             </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.FanKui)
+            <div class="textarea-box">
+                @Html.TextAreaFor(model => model.FanKui)
                 @Html.ValidationMessageFor(model => model.FanKui)
             </div>     
             <div class="editor-label">
