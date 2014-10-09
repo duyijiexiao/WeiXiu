@@ -197,6 +197,22 @@ function BackList(url) {
 
     window.location.href = '../../' + url;
 }
+function ShowDiv(ids1, ids) {
+    var traget = document.getElementById(ids1);
+    if (traget.style.display == "none") {  //隐藏
+        traget.style.display = "";
+    } else {                       //显示
+        traget.style.display = "none";
+    }
+    var traget = document.getElementById(ids);
+    if (traget.style.display == "none") {  //隐藏
+        traget.style.display = "";
+    } else {                       //显示
+        traget.style.display = "none";
+    }
+    //$(ids).show();
+}
+
 function manyTreeChecked(node, checked, hidControl, treeId) {
     var hidArr = $('#' + hidControl).val().split(',');
     //debugger;

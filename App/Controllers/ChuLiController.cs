@@ -267,11 +267,12 @@ namespace Langben.App.Controllers
                     //return Json(Suggestion.InsertSucceed);
                     if (Request.Url.AbsoluteUri.ToString().IndexOf("FKCreate") > 0)
                     {
-                        return Redirect("/Chuli/FKIndex");//
+                        
+                        return Json(Suggestion.InsertSucceed);//return Redirect("/Chuli/FKIndex");//
                     }
                     else
                     {
-                        return Redirect("/Chuli/Index");//
+                        return Json(Suggestion.InsertSucceed); //return Redirect("/Chuli/Index");//
                     }
                 }
                 else
@@ -345,12 +346,11 @@ namespace Langben.App.Controllers
                     //return Json(Suggestion.UpdateSucceed); //提示更新成功 
                     if (Request.Url.AbsoluteUri.ToString().IndexOf("FKEdit") > 0)
                     {
-                        return Redirect("/Chuli/FKIndex");//
-
+                        return Json(Suggestion.InsertSucceed); //return Redirect("/Chuli/FKIndex");//
                     }
                     else
                     {
-                        return Redirect("/Chuli/Index");//
+                        return Json(Suggestion.InsertSucceed);
                     }
                 }
                 else
