@@ -12,7 +12,6 @@
     <fieldset>
         <legend>
             <input class="a2 f2" type="submit" value="保存" />
-            <input class="a2 f2" type="button" value="拒绝申请" onclick="ShowDiv('Emsg', 'jujue1')" />
             <input class="a2 f2" type="button" onclick="BackList('ChuLi')" value="返回列表" />
         </legend>
         <div class="bigdiv" id="Emsg">
@@ -109,7 +108,7 @@
                 @Html.ValidationMessageFor(model => model.ShenQingId)
             </div>     
         </div>
-        <div id="jujue1" style="display:none">
+        @*<div id="jujue1" style="display:none">
             <br style="clear: both;" />
             <div class="editor-label">
                 @Html.LabelFor(model => model.JuJueLiYou)：
@@ -125,7 +124,7 @@
                 @Html.TextBox("JuJueShiJian", ((Model != null && Model.JuJueShiJian != null) ? Model.JuJueShiJian.ToString().AsDateTime().ToString("yyyy-MM-dd") : ""), new { style = "width: 244px;", @class = "easyui-datebox" })
                 @Html.ValidationMessageFor(model => model.JuJueShiJian)
             </div>
-        </div>
+        </div>*@
     </fieldset>
 
 

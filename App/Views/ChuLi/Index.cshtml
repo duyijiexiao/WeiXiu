@@ -28,7 +28,15 @@
     </div>
 </div>
 <br style="clear: both;" />
-
+<div id="1" style="display:none;">
+    <div id="dd" data-options="iconCls:'icon-save'" style="padding:5px;width:700px;height:250px;">
+        <div class="textarea-box">
+           <span id="123">@Html.LabelFor(model => model.JuJueLiYou)：</span>
+            @Html.TextAreaFor(model => model.JuJueLiYou)
+            @Html.ValidationMessageFor(model => model.JuJueLiYou)
+        </div>
+    </div>
+</div>
 <script type="text/javascript" language="javascript">
     $(function () {
 
@@ -81,18 +89,16 @@
             columns: [[
 
 
-                { field: 'XueXiao', title: '@Html.DisplayNameFor(model => model.XueXiao)', width: 80 }
-                , { field: 'BaoXiuRen', title: '@Html.DisplayNameFor(model => model.BaoXiuRen)', width: 60 }
-                , { field: 'LianXiDianHua', title: '@Html.DisplayNameFor(model => model.LianXiDianHua)', width: 80 }
-                , { field: 'Anpai', title: '@Html.DisplayNameFor(model => model.Anpai)', width: 80}
+                { field: 'XueXiao', title: '@Html.DisplayNameFor(model => model.XueXiao)', width: 120 }
+                , { field: 'BaoXiuRen', title: '@Html.DisplayNameFor(model => model.BaoXiuRen)', width: 80 }
+                , { field: 'LianXiDianHua', title: '@Html.DisplayNameFor(model => model.LianXiDianHua)', width: 110 }
+                , { field: 'Anpai', title: '@Html.DisplayNameFor(model => model.Anpai)', width: 160 }
                 , {
-                    field: 'AnPaiShiJian', title: '@Html.DisplayNameFor(model => model.AnPaiShiJian)', width: 80
+                    field: 'AnPaiShiJian', title: '@Html.DisplayNameFor(model => model.AnPaiShiJian)', width: 90
                 , formatter: function (value, rec) {
                     if (value) {
                         return dateConvert(value);
-                    }
-                }
-                }
+                    }                }      }
                 , { field: 'FanKui', title: '@Html.DisplayNameFor(model => model.FanKui)', width: 120 }
                 , { field: 'FanKuiTuPian', title: '@Html.DisplayNameFor(model => model.FanKuiTuPian)', width: 100 }
                 , {
@@ -100,9 +106,15 @@
                 , formatter: function (value, rec) {
                     if (value) {
                         return dateConvert(value);
-                    }
+                    }     }       },
+            {
+                field: '操 作', title: '操 作', width: 110, align: 'center',
+                formatter: function (value, row, index) {
+                    var e = '<a href="#" onclick="editrow(' + index + ')">拒绝</a>  &nbsp &nbsp&nbsp';
+                    var d = ' <a href="#" onclick="deleterow(' + index + ')">打回</a>';
+                    return e + d;
                 }
-                }
+            }
             ]],
             pagination: true,
             rownumbers: true
@@ -254,8 +266,90 @@
                 });
             }
         });
-
     };
 
+    function editrow(index) {
+            $('#dd').dialog({
+                title:"填写信息",
+                buttons: [{
+                    text: 'Ok',
+                    iconCls: 'icon-ok',
+                    handler: function () {
+                        $.ajax({
+                            url: 'URL',// 跳转到 action    
+                            data: {
+                                selRollBack: selRollBack 
+                            },
+                            type: 'post',
+                            cache: false,
+                            dataType: 'HTML',
+                            success: function (data) {
+                                if (data.msg == "true") {
+                                    // view("修改成功！");    
+                                    alert("修改成功！");
+                                    window.location.reload();
+                                } else {
+                                    view(data.msg);
+                                }
+                            },
+                            error: function () {
+                                // view("异常！");    
+                                alert("异常！");
+                            }
+                        });
+                        $.messager.alert('提示', '保存成功!', 'info');
+                        $('#dd').dialog('close');
+                    }
+                }, {
+                    text: 'Cancel',
+                    handler: function () {
+                        $('#dd').dialog('close');
+                    }
+                }]
+            });
+    }
+    function deleterow(index) {
+        $.messager.confirm('提示', '确定打回吗?', function (r) {
+            if (r) {
+                $("#123").text("打回理由:");
+                $('#dd').dialog({
+                    title: "填写信息",
+                    buttons: [{
+                        text: 'Ok',
+                        iconCls: 'icon-ok',
+                        handler: function () {
+                            $.ajax({
+                                url: 'URL',// 跳转到 action    
+                                data: {
+                                    selRollBack: selRollBack
+                                },
+                                type: 'post',
+                                cache: false,
+                                dataType: 'HTML',
+                                success: function (data) {
+                                    if (data.msg == "true") {
+                                        // view("修改成功！");    
+                                        alert("修改成功！");
+                                        window.location.reload();
+                                    } else {
+                                        view(data.msg);
+                                    }
+                                },
+                                error: function () {
+                                    // view("异常！");    
+                                    alert("异常！");
+                                }
+                            });
+                            $.messager.alert('提示', '保存成功!', 'info');
+                            $('#dd').dialog('close');
+                        }
+                    }, {
+                        text: 'Cancel',
+                        handler: function () {
+                            $('#dd').dialog('close');
+                        }
+                    }]
+                });
+            }    }); }
 </script>
 
