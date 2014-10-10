@@ -8,11 +8,7 @@
             状态:
         </div>
         <div class="input_search-field">
-            <input id="cc1" class="easyui-combobox" data-options="
-        valueField: 'id',
-        textField: 'text',data:[{id:'未审核',text:'未审核'},{id:'已审核',text:'已审核'}],
-                           onselect function(rec){
-                           LoadData(rec.text)}" />
+            <input id="cc" name="dept" value="请选择">  
         </div>
     </div>
     <div class="input_search">
@@ -33,12 +29,6 @@
             <input type="text" id="CreateTimeEnd_Time" onclick="WdatePicker({minDate:'#F{$dp.$D(\'CreateTimeStart_Time\');}'})" />
         </div>
     </div>
-    <div class="editor-label">
-        @Html.LabelFor(model => model.State)：
-    </div>
-    <div class="editor-field">
-        @Html.RadioButtonListFor(model => model.State, Models.SysFieldModels.GetSysField("HuiYuan", "State"), false)
-    </div>
     <div class='input_search' style="padding-top:10px;">
         <a href="#" onclick="flexiQuery()" class="easyui-linkbutton" data-options="iconCls:'icon-search'">
             查 询
@@ -49,6 +39,23 @@
 
 <script type="text/javascript" language="javascript">
     $(function () {
+        $('#cc').combobox({
+            data:[{    
+                "id":"wei",    
+                "text":"未审核"   
+            },{    
+                "id": "yi",
+                "text": "已审核"
+            }],
+            editable:false,
+            valueField: 'id',
+            textField: 'text',
+            onSelect: function (rec) {
+                console.log(rec.text);
+                var search = "State&" + rec.text + "^";
+                $('#flexigridData').datagrid('load', { search: search });
+            }
+        });
         $('#flexigridData').datagrid({
             title: '会员', //列表的标题
             iconCls: 'icon-site',
@@ -123,12 +130,15 @@
         }
     });
     function ShenHe() {
-        var arr = $('#flexigridData').datagrid('getSelections');
-
-        if (arr.length == 1) {
+        var rows = $('#flexigridData').datagrid('getSelections');
+        var arr = [];
+        for (var i = 0; i < rows.length; i++) {
+            arr.push("'"+rows[i].Id+"'");
+        }
+        if (arr.length>1) {
             $.messager.confirm('操作提示', "确认审核这 " + arr.length + " 项吗？", function (r) {
                 if (r) {
-                    $.post("../HuiYuan/ShenHe", { id: arr[0].Id }, function (msg) {
+                    $.post("../HuiYuan/ShenHe", { ids: arr.join(",") }, function (msg) {
                         $("#flexigridData").datagrid("reload");
                         $("#flexigridData").datagrid("clearSelections");
                         $.messager.alert('操作提示', msg, 'info');

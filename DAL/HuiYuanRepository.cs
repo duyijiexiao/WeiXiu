@@ -117,9 +117,9 @@ namespace Langben.DAL
         /// <param name="id"></param>
         /// <param name="State"></param>
         /// <returns></returns>
-        public int ShenHe(SysEntities db,string id,string State)
+        public int ShenHe(SysEntities db,string ids,string State)
         {
-            string sql = string.Format("update HuiYuan set State='{0}' where Id='{1}'",State,id);
+            string sql = string.Format("update HuiYuan set State='{0}' where Id in({1})",State,ids);
             int result= db.Database.ExecuteSqlCommand(sql);
             return result;
         }
