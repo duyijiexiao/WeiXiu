@@ -45,6 +45,7 @@ namespace Langben.DAL
 			[ScaffoldColumn(true)]
 			[Display(Name = "邮箱", Order = 6)]
 			[StringLength(200, ErrorMessage = "长度不可超过200")]
+            [RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}", ErrorMessage = "{0}的格式不正确")]
 			public object MyEmail { get; set; }
 
 			[ScaffoldColumn(true)]

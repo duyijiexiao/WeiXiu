@@ -10,7 +10,7 @@
                     @Html.LabelFor(model => model.Name):
              </div>
                 <div class="input_search-field">
-                    <input type='text' id='Name'/>
+                    <input id="cc" name="dept">  
                </div>
             </div> 
             <div class='input_search'>
@@ -23,12 +23,6 @@
                     <input type="text" id="CreateTimeEnd_Time" onclick="WdatePicker({minDate:'#F{$dp.$D(\'CreateTimeStart_Time\');}'})" />
                </div>
             </div>        
-            <div class="editor-label">
-                @Html.LabelFor(model => model.State)：
-            </div>
-            <div class="editor-field">
-             @Html.RadioButtonListFor(model => model.State,Models.SysFieldModels.GetSysField("School","State"),false) 
-            </div>
     <div class='input_search' style="padding-top:10px;">
         <a href="#" onclick="flexiQuery()" class="easyui-linkbutton" data-options="iconCls:'icon-search'">
             查 询
@@ -39,7 +33,30 @@
 
 <script type="text/javascript" language="javascript">
         $(function () {
+            $('#cc').combobox({
+                data: [{
+                    "id": "all",
+                    "text": "全部",
+                    "selected": true
+                }, {
+                    "id": "wei",
+                    "text": "未审核"
+                }, {
+                    "id": "yi",
+                    "text": "已审核"
+                }],
+                editable: false,
+                valueField: 'id',
+                textField: 'text',
+                onSelect: function (rec) {
 
+                    var search = "State&" + rec.text + "^";
+                    if (rec.id == "all") {
+                        search = '';
+                    }
+                    $('#flexigridData').datagrid('load', { search: search });
+                }
+            });
             $('#flexigridData').datagrid({
                 title: '学校单位', //列表的标题
                 iconCls: 'icon-site',

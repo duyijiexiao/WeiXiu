@@ -65,10 +65,6 @@ namespace Langben.BLL
             }
             return queryData.ToList();
         }
-        public int ShenHe(string ids,string State)
-        {
-         return repository.ShenHe(db, ids, State);
-        }
         /// <summary>
         /// 查询的数据 /*在6.0版本中 新增*/
         /// </summary>

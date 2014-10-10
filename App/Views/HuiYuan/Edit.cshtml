@@ -50,27 +50,13 @@
             <div class="editor-field">
                 @Html.EditorFor(model => model.MyEmail)
                 @Html.ValidationMessageFor(model => model.MyEmail)
-            </div>@Html.HiddenFor(model => model.CreateTime )      
-            <div class="editor-label">
-                @Html.LabelFor(model => model.LogonIP)：
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.LogonIP)
-                @Html.ValidationMessageFor(model => model.LogonIP)
-            </div>        
+            </div>@Html.HiddenFor(model => model.CreateTime )              
             <div class="editor-label">
                 @Html.LabelFor(model => model.State)：
             </div>
             <div class="editor-field">
-             @Html.RadioButtonListFor(model => model.State,Models.SysFieldModels.GetSysField("HuiYuan","State"),false) 
+             @Html.DropDownListFor(model => model.State, Models.SysFieldModels.GetSysField("HuiYuan", "State"))
             </div>     
-            <div class="editor-label">
-                @Html.LabelFor(model => model.BiaoShi)：
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.BiaoShi)
-                @Html.ValidationMessageFor(model => model.BiaoShi)
-            </div>
         </div>
     </fieldset>
 

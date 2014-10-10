@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Framework\DataOfDiffrent.cs" />
     <Compile Include="Framework\ExceptionsHander.cs" />
+    <Compile Include="Framework\HuiYuanBLL.cs" />
     <Compile Include="Framework\SysFieldHander.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="HuiYuanBLL.cs" />

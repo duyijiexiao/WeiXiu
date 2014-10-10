@@ -8,7 +8,7 @@
             状态:
         </div>
         <div class="input_search-field">
-            <input id="cc" name="dept" value="请选择">  
+            <input id="cc" name="dept">  
         </div>
     </div>
     <div class="input_search">
@@ -40,7 +40,11 @@
 <script type="text/javascript" language="javascript">
     $(function () {
         $('#cc').combobox({
-            data:[{    
+            data: [{
+                "id": "all",
+                "text": "全部",
+                "selected": true
+            }, {
                 "id":"wei",    
                 "text":"未审核"   
             },{    
@@ -51,8 +55,11 @@
             valueField: 'id',
             textField: 'text',
             onSelect: function (rec) {
-                console.log(rec.text);
+                
                 var search = "State&" + rec.text + "^";
+                if (rec.id=="all") {
+                    search = '';
+                }
                 $('#flexigridData').datagrid('load', { search: search });
             }
         });
@@ -133,7 +140,9 @@
         var rows = $('#flexigridData').datagrid('getSelections');
         var arr = [];
         for (var i = 0; i < rows.length; i++) {
-            arr.push("'"+rows[i].Id+"'");
+            if (rows[i].State=="未审核") {
+                arr.push("'" + rows[i].Id + "'");
+            }
         }
         if (arr.length>1) {
             $.messager.confirm('操作提示', "确认审核这 " + arr.length + " 项吗？", function (r) {

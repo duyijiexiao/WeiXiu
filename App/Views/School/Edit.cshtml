@@ -41,15 +41,8 @@
                 @Html.LabelFor(model => model.State)：
             </div>
             <div class="editor-field">
-             @Html.RadioButtonListFor(model => model.State,Models.SysFieldModels.GetSysField("School","State"),false) 
+               @Html.DropDownListFor(model => model.State, Models.SysFieldModels.GetSysField("School", "State"))
             </div>     
-            <div class="editor-label">
-                @Html.LabelFor(model => model.BiaoShi)：
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.BiaoShi)
-                @Html.ValidationMessageFor(model => model.BiaoShi)
-            </div>
         </div>
     </fieldset>
 

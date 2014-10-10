@@ -43,16 +43,11 @@
                 @Html.LabelFor(model => model.State)：
             </div>
             <div class="editor-field">
-               已审核<input type="radio" name="State" value="1"/>
-                未审核<input type="radio" name="State" value="0"/>
+                <select name="State">
+                    <option value="未审核" selected="selected">未审核</option>
+                    <option value="已审核">已审核</option>
+                </select>
             </div>     
-            <div class="editor-label">
-                @Html.LabelFor(model => model.BiaoShi)：
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.BiaoShi)
-                @Html.ValidationMessageFor(model => model.BiaoShi)
-            </div>
         </div>
     </fieldset>
  
