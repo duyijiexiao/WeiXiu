@@ -3,34 +3,6 @@
 @{ Layout = "~/Views/Shared/Index.cshtml"; }
 @using Common 
 @using Models
-<div id="divQuery">
-     
-            <div class="input_search">
-            <div class="input_search-label">
-                    @Html.LabelFor(model => model.Name):
-             </div>
-                <div class="input_search-field">
-                    <input id="cc" name="dept">  
-               </div>
-            </div> 
-            <div class='input_search'>
-              <div class='input_search-label'>
-                    @Html.LabelFor(model => model.CreateTime):
-                </div>
-                <div class='input_search-field-time'>
-                    <input type="text" id="CreateTimeStart_Time" onclick="WdatePicker({maxDate:'#F{$dp.$D(\'CreateTimeEnd_Time\');}'})"  />
-                    <span>到</span>
-                    <input type="text" id="CreateTimeEnd_Time" onclick="WdatePicker({minDate:'#F{$dp.$D(\'CreateTimeStart_Time\');}'})" />
-               </div>
-            </div>        
-    <div class='input_search' style="padding-top:10px;">
-        <a href="#" onclick="flexiQuery()" class="easyui-linkbutton" data-options="iconCls:'icon-search'">
-            查 询
-        </a>
-    </div>
-</div>
- <br style="clear: both;" />
-
 <script type="text/javascript" language="javascript">
         $(function () {
             $('#cc').combobox({

@@ -38,16 +38,7 @@
             <div class="editor-field">
                 @Html.TextBoxFor(model => model.PaiXu, new {  onkeyup = "isInt(this)", @class="text-box single-line" })
                 @Html.ValidationMessageFor(model => model.PaiXu) 
-            </div>        
-            <div class="editor-label">
-                @Html.LabelFor(model => model.State)：
-            </div>
-            <div class="editor-field">
-                <select name="State">
-                    <option value="未审核" selected="selected">未审核</option>
-                    <option value="已审核">已审核</option>
-                </select>
-            </div>     
+            </div>          
         </div>
     </fieldset>
  
