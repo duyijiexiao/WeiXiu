@@ -2,13 +2,15 @@
 @{ Layout = "~/Views/Shared/Index.cshtml"; }
 @using Common
 @using Models
-<div id="divQuery">
+@section HeadContent{
+    <script src="~/Res/easyui/easyuiExt.js"></script>
+}<div id="divQuery">
     <div class="input_search">
         <div class="input_search-label">
             状态:
         </div>
         <div class="input_search-field">
-            <input id="cc" name="dept">  
+            <input id="cc">
         </div>
     </div>
     <div class="input_search">
@@ -16,7 +18,7 @@
             @Html.LabelFor(model => model.PhoneNumber):
         </div>
         <div class="input_search-field">
-            <input type='text' id='PhoneNumber' />
+            <input type='text' id='PhoneNumber' class="easyui-validatebox" data-options="validType:'mobile'" name="PhoneNumber" />
         </div>
     </div>
     <div class='input_search'>
@@ -36,7 +38,6 @@
     </div>
 </div>
 <br style="clear: both;" />
-
 <script type="text/javascript" language="javascript">
     $(function () {
         $('#cc').combobox({
@@ -45,19 +46,19 @@
                 "text": "全部",
                 "selected": true
             }, {
-                "id":"wei",    
-                "text":"未审核"   
-            },{    
+                "id": "wei",
+                "text": "未审核"
+            }, {
                 "id": "yi",
                 "text": "已审核"
             }],
-            editable:false,
+            editable: false,
             valueField: 'id',
             textField: 'text',
             onSelect: function (rec) {
-                
+
                 var search = "State&" + rec.text + "^";
-                if (rec.id=="all") {
+                if (rec.id == "all") {
                     search = '';
                 }
                 $('#flexigridData').datagrid('load', { search: search });
@@ -76,7 +77,7 @@
             sortOrder: 'desc',
             idField: 'Id',
             queryParams: {
-                search:''
+                search: ''
             },
 
             toolbar: [{
@@ -90,12 +91,6 @@
                 iconCls: 'icon-edit',
                 handler: function () {
                     return flexiModify();
-                }
-            }, {
-                text: '导出',
-                iconCls: 'icon-excel',
-                handler: function () {
-                    return flexiExport();
                 }
             }, {
                 text: '审核',
@@ -140,12 +135,12 @@
         var rows = $('#flexigridData').datagrid('getSelections');
         var arr = [];
         for (var i = 0; i < rows.length; i++) {
-            if (rows[i].State=="未审核") {
+            if (rows[i].State == "未审核") {
                 arr.push("'" + rows[i].Id + "'");
             }
         }
-        if (arr.length>0) {
-            $.messager.confirm('操作提示', "确认审核这 " + arr.length + " 项吗？", function (r) {
+        if (arr.length > 0) {
+            $.messager.confirm('操作提示', "您确定审核通过该用户吗？", function (r) {
                 if (r) {
                     $.post("../HuiYuan/ShenHe", { ids: arr.join(",") }, function (msg) {
                         $("#flexigridData").datagrid("reload");
@@ -297,4 +292,3 @@
     };
 
 </script>
-

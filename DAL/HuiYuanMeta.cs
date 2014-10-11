@@ -39,7 +39,7 @@ namespace Langben.DAL
 			[ScaffoldColumn(true)]
 			[Display(Name = "手机号码", Order = 5)]
 			[StringLength(200, ErrorMessage = "长度不可超过200")]
-			[DataType(System.ComponentModel.DataAnnotations.DataType.PhoneNumber,ErrorMessage="号码格式不正确")]
+            [RegularExpression(@"13[0-9]{9}$|14[0-9]{9}|15[0-9]{9}$|18[0-9]{9}", ErrorMessage = "格式不正确")]
 			public object PhoneNumber { get; set; }
 
 			[ScaffoldColumn(true)]
