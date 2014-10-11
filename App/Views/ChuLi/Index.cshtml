@@ -31,7 +31,6 @@
 <div id="1" style="display:none;">
     <div id="dd" data-options="iconCls:'icon-save'" style="padding:5px;width:700px;height:250px;">
         <div class="textarea-box">
-            <span id="123">@Html.LabelFor(model => model.JuJueLiYou)：</span>
             @Html.TextAreaFor(model => model.JuJueLiYou)
             @Html.ValidationMessageFor(model => model.JuJueLiYou)
         </div>
@@ -262,9 +261,9 @@
     function editrow(row) {
         var dd = row;
         $('#dd').dialog({
-            title: "填写信息",
+            title: "请填写拒绝理由：",
             buttons: [{
-                text: 'Ok',
+                text: '保存',
                 iconCls: 'icon-ok',
                 handler: function () {
                     $.ajax({
@@ -292,7 +291,7 @@
                     $('#dd').dialog('close');
                 }
             }, {
-                text: 'Cancel',
+                text: '取消',
                 handler: function () {
                     $('#dd').dialog('close');
                 }
@@ -300,13 +299,10 @@
         });
     }
     function deleterow(row) {
-        $.messager.confirm('提示', '确定打回吗?', function (r) {
-            if (r) {
-                $("#123").text("打回理由:");
                 $('#dd').dialog({
-                    title: "填写信息",
+                    title: "填写打回理由：",
                     buttons: [{
-                        text: 'Ok',
+                        text: '保存',
                         iconCls: 'icon-ok',
                         handler: function () {
                             $.ajax({
@@ -332,14 +328,12 @@
                             });
                         }
                     }, {
-                        text: 'Cancel',
+                        text: '取消',
                         handler: function () {
                             $('#dd').dialog('close');
                         }
                     }]
                 });
-            }
-        });
     }
 </script>
 

@@ -25,9 +25,13 @@ namespace Langben.App.Controllers
             var jjliyou = Request.Form["jjliyou"];
             var id = Request.Form["Id"];
             ChuLi entity = m_BLL.GetById(id);
+            if (entity == null || entity.Id == null || entity.Id == "")
+            {
+                return Json("失败");
+            }
             entity.JuJueLiYou = jjliyou;
             entity.JuJueShiJian = DateTime.Now;
-            entity.State = "拒绝";
+            entity.State = "已拒绝";
             if (entity != null && ModelState.IsValid)
             {   //数据校验
                 if (m_BLL.Edit(ref validationErrors, entity))
@@ -42,9 +46,13 @@ namespace Langben.App.Controllers
             var dhliyou = Request.Form["dhliyou"];
             var id = Request.Form["Id"];
             ChuLi entity = m_BLL.GetById(id);
+            if (entity == null || entity.Id == null || entity.Id == "")
+            {
+                return Json("失败");
+            }
             entity.JuJueLiYou = dhliyou;
             entity.JuJueShiJian = DateTime.Now;
-            entity.State = "打回";
+            entity.State = "已打回";
             if (entity != null && ModelState.IsValid)
             {   //数据校验
                 if (m_BLL.Edit(ref validationErrors, entity))
