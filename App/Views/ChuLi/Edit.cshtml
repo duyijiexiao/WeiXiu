@@ -23,6 +23,16 @@
                 @Html.EditorFor(model => model.XueXiao)
                 @Html.ValidationMessageFor(model => model.XueXiao)
             </div>     
+            <div style="float:right; width:420px;height:184px;">
+                <img id="showPic" src="~/Images/noPic.jpg" width="149" height="175" />
+                <div style="float:left">
+                    <div id="uploader-demo">
+                        <!--用来存放item-->
+                        <div id="fileList" style="display:none;" class="uploader-list"></div>
+                        <div id="filePicker">上传图片</div>
+                    </div>
+                </div>
+            </div>
             <div class="editor-label">
                 @Html.LabelFor(model => model.BaoXiuRen)：
             </div>
@@ -37,6 +47,13 @@
                 @Html.EditorFor(model => model.LianXiDianHua)
                 @Html.ValidationMessageFor(model => model.LianXiDianHua)
             </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.PaiXu) ：
+            </div>
+            <div class="editor-field">
+                @Html.TextBoxFor(model => model.PaiXu, new { onkeyup = "isInt(this)", @class = "text-box single-line" })
+                @Html.ValidationMessageFor(model => model.PaiXu)
+            </div>
             <br style="clear: both;" />
             <div class="editor-label">
                 @Html.LabelFor(model => model.MiaoShu)：
@@ -45,20 +62,6 @@
                 @Html.TextAreaFor(model => model.MiaoShu) 
                 @Html.ValidationMessageFor(model => model.MiaoShu) 
             </div>     
-            <div class="editor-label">
-                @Html.LabelFor(model => model.TuPian)：
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.TuPian)
-                @Html.ValidationMessageFor(model => model.TuPian)
-            </div>     
-            <div class="editor-label">
-                @Html.LabelFor(model => model.PaiXu) ：
-            </div>
-            <div class="editor-field">
-                @Html.TextBoxFor(model => model.PaiXu, new {  onkeyup = "isInt(this)", @class="text-box single-line" })
-                @Html.ValidationMessageFor(model => model.PaiXu) 
-            </div>
             <br style="clear: both;" />
             <div class="editor-label">
                 @Html.LabelFor(model => model.Remark)：
@@ -108,35 +111,30 @@
                 @Html.ValidationMessageFor(model => model.ShenQingId)
             </div>     
         </div>
-        @*<div id="jujue1" style="display:none">
-            <br style="clear: both;" />
-            <div class="editor-label">
-                @Html.LabelFor(model => model.JuJueLiYou)：
-            </div>
-            <div class="textarea-box">
-                @Html.TextAreaFor(model => model.JuJueLiYou)
-                @Html.ValidationMessageFor(model => model.JuJueLiYou)
-            </div>
-            <div class="editor-label">
-                @Html.LabelFor(model => model.JuJueShiJian)：
-            </div>
-            <div class="editor-field">
-                @Html.TextBox("JuJueShiJian", ((Model != null && Model.JuJueShiJian != null) ? Model.JuJueShiJian.ToString().AsDateTime().ToString("yyyy-MM-dd") : ""), new { style = "width: 244px;", @class = "easyui-datebox" })
-                @Html.ValidationMessageFor(model => model.JuJueShiJian)
-            </div>
-        </div>*@
+
+        @Html.HiddenFor(model => model.TuPian)
+        <input type="hidden" id="OldPic" name="OldPic" value="@(ViewBag.OldPic)" />
+        <input type="hidden" id="fileUrl" value="TuPian" />
+        <script type="text/javascript" src="@Url.Content("~/Res/webuploader/js/webuploader.nolog.min.js")"></script>
+        <script type="text/javascript" src="@Url.Content("~/Scripts/UploadFile.js")"></script>
     </fieldset>
 
 
-
+@section HeadContent{
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Res/webuploader/css/webuploader.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Res/webuploader/images/style.css")" />
+}
 
     <script type="text/javascript">
-
-        $(function () {
-            
-
-        });
-        
+            $(function () {
+                var pic = $("#TuPian").val();
+                if (pic=='') {
+                    $("#showPic").attr("src","/Images/noPic.jpg")
+                }else
+                {
+                    $("#showPic").attr("src", pic);//显示头像图片
+                }
+            });
 
     </script>
 

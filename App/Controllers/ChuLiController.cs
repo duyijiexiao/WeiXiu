@@ -19,6 +19,34 @@ namespace Langben.App.Controllers
     public class ChuLiController : BaseController
     {
 
+
+        public ActionResult UpdataJJ( )
+        {
+            var qry = Request.Form["jjliyou"];
+            var id = Request.Form["Id"];
+            ChuLi entity = m_BLL.GetById(id);
+            if (entity != null && ModelState.IsValid)
+            {   //数据校验
+                if (m_BLL.Edit(ref validationErrors, entity))
+                {
+                }
+            }
+            return Json(Suggestion.InsertSucceed);
+        }
+
+        public ActionResult UpdataDH()
+        {
+            var qry = Request.Form["dhliyou"];
+            var id = Request.Form["Id"];
+            ChuLi entity = m_BLL.GetById(id);
+            if (entity != null && ModelState.IsValid)
+            {   //数据校验
+                if (m_BLL.Edit(ref validationErrors, entity))
+                {
+                }
+            }
+            return Json(Suggestion.InsertSucceed);
+        }
         /// <summary>
         /// 列表
         /// </summary>
@@ -77,9 +105,79 @@ namespace Langben.App.Controllers
         /// 处理反馈Edit
         /// </summary>
         /// <returns></returns>
-        public ActionResult FKEdit()
+        public ActionResult FKEdit(string id)
         {
-            return View();
+            ChuLi item = m_BLL.GetById(id);
+            ViewBag.OldPic = item.TuPian;
+            ViewBag.OldPic1 = item.FanKuiTuPian;
+            return View(item);
+        }
+        /// <summary>
+        /// 提交编辑信息
+        /// </summary>
+        /// <param name="id">主键</param>
+        /// <param name="collection">客户端传回的集合</param>
+        /// <returns></returns>
+        [HttpPost]
+        [SupportFilter]
+        public ActionResult FKEdit(string id, ChuLi entity)
+        {
+            if (entity != null && ModelState.IsValid)
+            {   //数据校验
+
+                string currentPerson = GetCurrentPerson();
+                //entity.UpdateTime = DateTime.Now;
+                //entity.UpdatePerson = currentPerson;
+
+                string returnValue = string.Empty;
+                if (m_BLL.Edit(ref validationErrors, entity))
+                {
+                    GenZong gzg = new GenZong();
+                    gzg.BiaoShi = entity.BiaoShi;
+                    gzg.ChuLiId = entity.Id;
+                    gzg.CreatePerson = "";
+                    gzg.CreateTime = DateTime.Now;
+                    gzg.Id = Result.GetNewId();
+                    gzg.JiLu = "";
+                    if (string.IsNullOrEmpty(entity.FanKui))
+                        gzg.LeiXing = "维修处理";
+                    else
+                        gzg.LeiXing = "维修处理反馈";
+                    gzg.Remark = "";
+                    gzg.ShenQing = null;
+                    gzg.ShenQingId = entity.ShenQingId;
+                    gzg.ShenQingIdOld = "";
+                    GenZongController ddd = new GenZongController();
+                    ddd.Create(gzg);
+                    LogClassModels.WriteServiceLog(Suggestion.UpdateSucceed + "，维修处理信息的Id为" + id, "维修处理"
+                        );//写入日志                           
+                    //return Json(Suggestion.UpdateSucceed); //提示更新成功 
+                    if (Request.Url.AbsoluteUri.ToString().IndexOf("FKEdit") > 0)
+                    {
+                        return Json(Suggestion.InsertSucceed); //return Redirect("/Chuli/FKIndex");//
+                    }
+                    else
+                    {
+                        return Json(Suggestion.InsertSucceed);
+                    }
+                }
+                else
+                {
+                    if (validationErrors != null && validationErrors.Count > 0)
+                    {
+                        validationErrors.All(a =>
+                        {
+                            returnValue += a.ErrorMessage;
+                            return true;
+                        });
+                    }
+                    LogClassModels.WriteServiceLog(Suggestion.UpdateFail + "，维修处理信息的Id为" + id + "," + returnValue, "维修处理"
+                        );//写入日志                           
+                    return Json(Suggestion.UpdateFail + returnValue); //提示更新失败
+                }
+            }
+            return Json(Suggestion.UpdateFail + "请核对输入的数据的格式"); //提示输入的数据的格式不对               
+
         }
         /// <summary>
         /// 异步加载数据
@@ -302,6 +400,7 @@ namespace Langben.App.Controllers
         public ActionResult Edit(string id)
         {
             ChuLi item = m_BLL.GetById(id);
+            ViewBag.OldPic = item.TuPian;
             return View(item);
         }
         /// <summary>

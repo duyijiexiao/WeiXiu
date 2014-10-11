@@ -130,6 +130,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="up\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -139,6 +140,7 @@
     <Compile Include="Codes\LogClassModels.cs" />
     <Compile Include="Codes\SupportFilter.cs" />
     <Compile Include="Codes\SysFieldModels.cs" />
+    <Compile Include="Controllers\FileUploaderController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -172,6 +174,7 @@
     <Content Include="Images\login_pic.gif" />
     <Content Include="Images\login_top.gif" />
     <Content Include="Images\mimaxiugai.gif" />
+    <Content Include="Images\noPic.jpg" />
     <Content Include="Images\noscript.gif" />
     <Content Include="Images\notfound.gif" />
     <Content Include="Images\password_bg.gif" />
@@ -469,6 +472,17 @@
     <Content Include="Res\My97DatePicker\skin\whyGreen\datepicker.css" />
     <Content Include="Res\My97DatePicker\skin\whyGreen\img.gif" />
     <Content Include="Res\My97DatePicker\WdatePicker.js" />
+    <Content Include="Res\webuploader\css\webuploader.css" />
+    <Content Include="Res\webuploader\images\bg.png" />
+    <Content Include="Res\webuploader\images\icons.png" />
+    <Content Include="Res\webuploader\images\image.png" />
+    <Content Include="Res\webuploader\images\progress.png" />
+    <Content Include="Res\webuploader\images\style.css" />
+    <Content Include="Res\webuploader\images\success.png" />
+    <Content Include="Res\webuploader\js\expressInstall.swf" />
+    <Content Include="Res\webuploader\js\Uploader.swf" />
+    <Content Include="Res\webuploader\js\webuploader.min.js" />
+    <Content Include="Res\webuploader\js\webuploader.nolog.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Res\jquery.uploadify-v2.1.4\check.php" />
@@ -547,13 +561,17 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\UploadFile.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="up\b.xls" />
     <Content Include="Views\ChuLi\TongjiIndex.cshtml" />
     <Content Include="Views\ChuLi\FKDetails.cshtml" />
     <Content Include="Views\ChuLi\FKEdit.cshtml" />
     <Content Include="Views\ChuLi\FKIndex.cshtml" />
     <Content Include="Views\ChuLi\FKCreate.cshtml" />
+    <Content Include="Views\FileUploader\Create.cshtml" />
+    <Content Include="Views\FileUploader\Details.cshtml" />
+    <Content Include="Views\FileUploader\Edit.cshtml" />
+    <Content Include="Views\FileUploader\Index.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

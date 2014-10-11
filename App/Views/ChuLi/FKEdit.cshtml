@@ -45,13 +45,16 @@
                 @Html.TextAreaFor(model => model.MiaoShu) 
                 @Html.ValidationMessageFor(model => model.MiaoShu) 
             </div>     
-            <div class="editor-label">
-                @Html.LabelFor(model => model.TuPian)：
+            <div style="float:right; width:420px;height:184px;">
+                <img id="showPic" src="~/Images/noPic.jpg" width="149" height="175" />
+                <div style="float:left">
+                    <div id="uploader-demo">
+                        <!--用来存放item-->
+                        <div id="fileList" style="display:none;" class="uploader-list"></div>
+                        <div id="filePicker">上传图片</div>
+                    </div>
+                </div>
             </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.TuPian)
-                @Html.ValidationMessageFor(model => model.TuPian)
-            </div>     
             <div class="editor-label">
                 @Html.LabelFor(model => model.PaiXu) ：
             </div>
@@ -88,13 +91,16 @@
                 @Html.TextAreaFor(model => model.FanKui)
                 @Html.ValidationMessageFor(model => model.FanKui)
             </div>     
-            <div class="editor-label">
-                @Html.LabelFor(model => model.FanKuiTuPian)：
+            <div style="float:right; width:420px;height:184px;">
+                <img id="showPic1" src="~/Images/noPic.jpg" width="149" height="175" />
+                <div style="float:left">
+                    <div id="uploader-demo">
+                        <!--用来存放item-->
+                        <div id="fileList" style="display:none;" class="uploader-list"></div>
+                        <div id="filePicker">上传图片</div>
+                    </div>
+                </div>
             </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.FanKuiTuPian)
-                @Html.ValidationMessageFor(model => model.FanKuiTuPian)
-            </div>     
             <div class="editor-label">
                 @Html.LabelFor(model => model.FanKuiShiJian)：
             </div>
@@ -117,20 +123,42 @@
                 @Html.ValidationMessageFor(model => model.BiaoShi)
             </div>
         </div>
+
+        @Html.HiddenFor(model => model.TuPian)
+        <input type="hidden" id="OldPic" name="OldPic" value="@(ViewBag.OldPic)" />
+        <input type="hidden" id="fileUrl" value="TuPian" />
+
+        @Html.HiddenFor(model => model.FanKuiTuPian)
+        <input type="hidden" id="OldPic1" name="OldPic1" value="@(ViewBag.OldPic1)" />
+        <input type="hidden" id="fileUrl2" value="FanKuiTuPian" />
+        <script type="text/javascript" src="@Url.Content("~/Res/webuploader/js/webuploader.nolog.min.js")"></script>
+        <script type="text/javascript" src="@Url.Content("~/Scripts/UploadFile.js")"></script>
     </fieldset>
 
 
 
+@section HeadContent{
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Res/webuploader/css/webuploader.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Res/webuploader/images/style.css")" />
+}
+<script type="text/javascript">
+    $(function () {
+        var pic = $("#TuPian").val();
+        if (pic == '') {
+            $("#showPic").attr("src", "/Images/noPic.jpg")
+        } else {
+            $("#showPic").attr("src", pic);//显示头像图片
+        }
 
-    <script type="text/javascript">
+        var pic1 = $("#FanKuiTuPian").val();
+        if (pic1 == '') {
+            $("#showPic1").attr("src", "/Images/noPic.jpg")
+        } else {
+            $("#showPic1").attr("src", pic1);//显示头像图片
+        }
+    });
 
-        $(function () {
-            
-
-        });
-        
-
-    </script>
+</script>
 
 
 
