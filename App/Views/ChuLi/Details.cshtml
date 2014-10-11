@@ -1,7 +1,8 @@
 ﻿@model Langben.DAL.ChuLi
 
 @{
-    Layout = "~/Views/Shared/Details.cshtml";
+    //Layout = "~/Views/Shared/Details.cshtml";
+    Layout = "~/Views/Shared/Edit.cshtml";
 }
 @using Common
  @section CurentPlace {
@@ -26,38 +27,40 @@
                 <div class="display-field">
                     @Html.DisplayFor(model => model.BaoXiuRen) 
                 </div>      
+            <div style="float:right; width:220px;height:184px;">
+                <img id="showPic" src="~/Images/noPic.jpg" width="149" height="175" />
+                <div style="float:left">
+                    <div id="uploader-demo">
+                        <!--用来存放item-->
+                        <div id="fileList" style="display:none;" class="uploader-list"></div>
+                        <div id="filePicker">图片</div>
+                    </div>
+                </div>
+            </div>
+            <div style="float:right; width:220px;height:184px;">
+                <img id="showPic1" src="~/Images/noPic.jpg" width="149" height="175" />
+                <div style="float:left">
+                    <div id="uploader-demo">
+                        <!--用来存放item-->
+                        <div id="fileList" style="display:none;" class="uploader-list"></div>
+                        <div id="filePicker">反馈图片</div>
+                    </div>
+                </div>
+            </div>
                 <div class="display-label">
                       @Html.LabelFor(model => model.LianXiDianHua) :
                 </div>
                 <div class="display-field">
                     @Html.DisplayFor(model => model.LianXiDianHua) 
                 </div>
-                <br style="clear: both;" />
-                <div class="display-label">
-                    @Html.LabelFor(model => model.MiaoShu) :
-                </div>
-                <div class="textarea-box">
-                    @Html.TextAreaFor(model => model.MiaoShu, new {  @readonly=true})                   
-                </div>      
-                <div class="display-label">
-                      @Html.LabelFor(model => model.TuPian) :
-                </div>
+        
+                
+             
                 <div class="display-field">
-                    @Html.DisplayFor(model => model.TuPian) 
-                </div>      
-                <div class="display-label">
-                      @Html.LabelFor(model => model.PaiXu) :
-                </div>
-                <div class="display-field">
+                    @Html.LabelFor(model => model.PaiXu) :
                     @Html.DisplayFor(model => model.PaiXu) 
                 </div>
-                <br style="clear: both;" />
-                <div class="display-label">
-                    @Html.LabelFor(model => model.Remark) :
-                </div>
-                <div class="textarea-box">
-                    @Html.TextAreaFor(model => model.Remark, new {  @readonly=true})                   
-                </div>      
+                 
                 <div class="display-label">
                       @Html.LabelFor(model => model.State) :
                 </div>
@@ -70,18 +73,26 @@
                 <div class="display-field">
                     @Html.DisplayFor(model => model.HuiYuanId) 
                 </div>      
-                <div class="display-label">
-                      @Html.LabelFor(model => model.JuJueLiYou) :
-                </div>
-                <div class="display-field">
-                    @Html.DisplayFor(model => model.JuJueLiYou) 
-                </div>      
+        
                 <div class="display-label">
                       @Html.LabelFor(model => model.JuJueShiJian) :
                 </div>
                 <div class="display-field">
                     @Html.DisplayFor(model => model.JuJueShiJian) 
                 </div>      
+            <div class="display-label">
+                @Html.LabelFor(model => model.FanKuiShiJian) :
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.FanKuiShiJian)
+            </div>
+            <div class="display-label">
+                @Html.LabelFor(model => model.ShenQingId) :
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.ShenQingId)
+            </div>  
+       
                 <div class="display-label">
                       @Html.LabelFor(model => model.Anpai) :
                 </div>
@@ -93,14 +104,68 @@
                 </div>
                 <div class="display-field">
                     @Html.DisplayFor(model => model.AnPaiShiJian) 
-                </div>      
-                <div class="display-label">
-                      @Html.LabelFor(model => model.ShenQingId) :
-                </div>
-                <div class="display-field">
-                    @Html.DisplayFor(model => model.ShenQingId) 
-                </div>      
+                </div>     
+
+            <br style="clear: both;" />
+            <div class="display-label">
+                @Html.LabelFor(model => model.MiaoShu) :
+            </div>
+            <div class="textarea-box">
+                @Html.TextAreaFor(model => model.MiaoShu, new { @readonly = true })
+            </div>  
+            <br style="clear: both;" />
+            <div class="display-label">
+                @Html.LabelFor(model => model.Remark) :
+            </div>
+            <div class="textarea-box">
+                @Html.TextAreaFor(model => model.Remark, new { @readonly = true })
+            </div>    
+            <br style="clear: both;" />
+            <div class="display-label">
+                @Html.LabelFor(model => model.JuJueLiYou) :
+            </div>
+            <div class="textarea-box">
+                @Html.TextAreaFor(model => model.JuJueLiYou, new { @readonly = true })
+            </div> 
+            <br style="clear: both;" />
+            <div class="display-label">
+                @Html.LabelFor(model => model.FanKui) :
+            </div>
+            <div class="textarea-box">
+                @Html.TextAreaFor(model => model.FanKui, new { @readonly = true })
+            </div> 
+            
         </div>
+        @Html.HiddenFor(model => model.TuPian)
+        <input type="hidden" id="OldPic" name="OldPic" value="@(ViewBag.OldPic)" />
+        <input type="hidden" id="fileUrl" value="TuPian" />
+        @Html.HiddenFor(model => model.FanKuiTuPian)
+        <input type="hidden" id="OldPic1" name="OldPic1" value="@(ViewBag.OldPic1)" />
+        <input type="hidden" id="fileUrl2" value="FanKuiTuPian" />
+        <script type="text/javascript" src="@Url.Content("~/Res/webuploader/js/webuploader.nolog.min.js")"></script>
+        <script type="text/javascript" src="@Url.Content("~/Scripts/UploadFile.js")"></script>
     </fieldset>
 
 
+@section HeadContent{
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Res/webuploader/css/webuploader.css")" />
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Res/webuploader/images/style.css")" />
+}
+<script type="text/javascript">
+    $(function () {
+        var pic = $("#TuPian").val();
+        if (pic == '') {
+            $("#showPic").attr("src", "/Images/noPic.jpg")
+        } else {
+            $("#showPic").attr("src", pic);//显示头像图片
+        }
+
+        var pic1 = $("#FanKuiTuPian").val();
+        if (pic1 == '') {
+            $("#showPic1").attr("src", "/Images/noPic.jpg")
+        } else {
+            $("#showPic1").attr("src", pic1);//显示头像图片
+        }
+    });
+
+</script>

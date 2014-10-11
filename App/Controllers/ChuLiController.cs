@@ -322,6 +322,8 @@ namespace Langben.App.Controllers
         public ActionResult Details(string id)
         {
             ChuLi item = m_BLL.GetById(id);
+            ViewBag.OldPic = item.TuPian;
+            ViewBag.OldPic1 = item.FanKuiTuPian;
             return View(item);
 
         }

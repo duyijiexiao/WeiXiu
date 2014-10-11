@@ -74,7 +74,7 @@
                 @Html.LabelFor(model => model.State)：
             </div>
             <div class="editor-field">
-                @Html.DropDownListFor(model => model.State,Models.SysFieldModels.GetSysField("ChuLi","State"),"请选择")
+                @Html.DropDownListFor(model => model.State, Models.SysFieldModels.GetState1(), "请选择")
             </div>     
             <div class="editor-label">
                 <a class="anUnderLine" onclick="showModalOnly('HuiYuanId','../../HuiYuan');">
@@ -91,10 +91,13 @@
             <div class="editor-label">
                 @Html.LabelFor(model => model.Anpai)：
             </div>
-            <div class="textarea-box">
+            @*<div class="textarea-box">
                 @Html.TextAreaFor(model => model.Anpai)
                 @Html.ValidationMessageFor(model => model.Anpai)
-            </div>       
+            </div>*@       
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.Anpai, Models.SysFieldModels.GetSysField("SysPerson", "MyName"), "请选择")
+            </div>  
             <div class="editor-label">
                 @Html.LabelFor(model => model.AnPaiShiJian)：
             </div>
