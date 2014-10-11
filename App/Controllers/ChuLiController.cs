@@ -27,7 +27,7 @@ namespace Langben.App.Controllers
             ChuLi entity = m_BLL.GetById(id);
             if (entity == null || entity.Id == null || entity.Id == "")
             {
-                return Json("失败");
+                return Content("失败");
             }
             entity.JuJueLiYou = jjliyou;
             entity.JuJueShiJian = DateTime.Now;
@@ -38,7 +38,7 @@ namespace Langben.App.Controllers
                 {
                 }
             }
-            return Json("成功");
+            return Content("成功");
         }
 
         public ActionResult UpdataDH()
@@ -48,7 +48,7 @@ namespace Langben.App.Controllers
             ChuLi entity = m_BLL.GetById(id);
             if (entity == null || entity.Id == null || entity.Id == "")
             {
-                return Json("失败");
+                return Content("失败");
             }
             entity.JuJueLiYou = dhliyou;
             entity.JuJueShiJian = DateTime.Now;
@@ -59,7 +59,7 @@ namespace Langben.App.Controllers
                 {
                 }
             }
-            return Json("成功");
+            return Content("成功");
         }
         /// <summary>
         /// 列表

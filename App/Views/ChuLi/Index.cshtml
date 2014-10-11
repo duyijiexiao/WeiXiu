@@ -29,7 +29,7 @@
 </div>
 <br style="clear: both;" />
 <div id="1" style="display:none;">
-    <div id="dd" data-options="iconCls:'icon-save'" style="padding:5px;width:700px;height:250px;">
+    <div id="dd" data-options="iconCls:'icon-save'" style="padding:5px;width:700px;height:230px;">
         <div class="textarea-box">
             @Html.TextAreaFor(model => model.JuJueLiYou)
             @Html.ValidationMessageFor(model => model.JuJueLiYou)
@@ -276,19 +276,17 @@
                         cache: false,
                         dataType: 'HTML',
                         success: function (data) {
-                            if (data.msg == "true") {
+                            if (data== "成功") {
                                 $.messager.alert('提示', '保存成功!', 'info');
                                 $('#dd').dialog('close');
                             } else {
-                                view(data.msg);
+                                $.messager.alert('提示', '保存失败!', 'info');
                             }
                         },
                         error: function () {
                             $.messager.alert('提示', '保存失败!', 'info');
                         }
                     });
-                    $.messager.alert('提示', '保存成功!', 'info');
-                    $('#dd').dialog('close');
                 }
             }, {
                 text: '取消',
@@ -315,11 +313,11 @@
                                 cache: false,
                                 dataType: 'HTML',
                                 success: function (data) {
-                                    if (data.msg == "true") {
+                                    if (data== "成功") {
                                         $.messager.alert('提示', '保存成功!', 'info');
                                         $('#dd').dialog('close');
                                     } else {
-                                        view(data.msg);
+                                        $.messager.alert('提示', '保存失败!', 'info');
                                     }
                                 },
                                 error: function () {
