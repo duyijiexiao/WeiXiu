@@ -27,13 +27,14 @@ namespace Langben.App.Controllers
             ChuLi entity = m_BLL.GetById(id);
             entity.JuJueLiYou = jjliyou;
             entity.JuJueShiJian = DateTime.Now;
+            entity.State = "拒绝";
             if (entity != null && ModelState.IsValid)
             {   //数据校验
                 if (m_BLL.Edit(ref validationErrors, entity))
                 {
                 }
             }
-            return Json(Suggestion.InsertSucceed);
+            return Json("成功");
         }
 
         public ActionResult UpdataDH()
@@ -43,13 +44,14 @@ namespace Langben.App.Controllers
             ChuLi entity = m_BLL.GetById(id);
             entity.JuJueLiYou = dhliyou;
             entity.JuJueShiJian = DateTime.Now;
+            entity.State = "打回";
             if (entity != null && ModelState.IsValid)
             {   //数据校验
                 if (m_BLL.Edit(ref validationErrors, entity))
                 {
                 }
             }
-            return Json(Suggestion.InsertSucceed);
+            return Json("成功");
         }
         /// <summary>
         /// 列表
