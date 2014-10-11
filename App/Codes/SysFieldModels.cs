@@ -43,6 +43,13 @@ namespace Models
             //return new SelectList(baseDDL.GetSysField(table, colum), "MyTexts", "MyTexts");
 
         }
+        public static SelectList GetState()
+        {
+            List<object> sl = new List<object>();
+            sl.Add(new { Id = "未审核", Text = "未审核" });
+            sl.Add(new { Id = "已审核", Text = "已审核" });
+            return new SelectList(sl,"Id","Text");
+        }
         /// <summary>
         /// 获取字段，首选默认，Id做为value值
         /// </summary>
