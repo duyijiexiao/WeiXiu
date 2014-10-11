@@ -52,7 +52,7 @@ namespace Langben.App.Controllers
             }
             entity.JuJueLiYou = dhliyou;
             entity.JuJueShiJian = DateTime.Now;
-            entity.State = "已打回";
+            entity.State = "已打回/待修改";
             if (entity != null && ModelState.IsValid)
             {   //数据校验
                 if (m_BLL.Edit(ref validationErrors, entity))
@@ -294,11 +294,9 @@ namespace Langben.App.Controllers
 					,FanKuiTuPian = s.FanKuiTuPian
 					,FanKuiShiJian = s.FanKuiShiJian
 					,ShenQingId = s.ShenQingId
+                    ,ShenQingShiJian = ShenQingController.GetSqTime(s.ShenQingId)
 					,BiaoShi = s.BiaoShi
-					
-                }
-
-                    )
+                }     ).OrderByDescending(m=>m.ShenQingShiJian).ToList()
             });
         }
         /// <summary>

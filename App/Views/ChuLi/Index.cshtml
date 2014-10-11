@@ -5,13 +5,11 @@
 <div id="divQuery">
     <div class="input_search">
         <div class="input_search-label">
-            @Html.LabelFor(model => model.XueXiao):
+            状态:
         </div>
         <div class="input_search-field">
-            <input type='text' id='XueXiao' />
+            <input id="cc" name="State">
         </div>
-    </div>
-    <div class='input_search'>
         <div class='input_search-label'>
             @Html.LabelFor(model => model.AnPaiShiJian):
         </div>
@@ -38,7 +36,42 @@
 </div>
 <script type="text/javascript" language="javascript">
     $(function () {
+        $('#cc').combobox({
+            data: [{
+                "id": "",
+                "text": "全部",
+                "selected": true
+            }, {
+                "id": "已提交/待处理",
+                "text": "已提交/待处理"
+            }, {
+                "id": "已拒绝",
+                "text": "已拒绝"
+            }, {
+                "id": "已安排/待维修",
+                "text": "已安排/待维修"
+            }, {
+                "id": "已打回/待修改",
+                "text": "已打回/待修改"
+            }, {
+                "id": "已维修/待评论",
+                "text": "已维修/待评论"
+            }, {
+                "id": "结束",
+                "text": "结束"
+            }],
+            editable: false,
+            valueField: 'id',
+            textField: 'text',
+            onSelect: function (rec) {
 
+                var search = "State&" + rec.text + "^";
+                if (rec.id == "all") {
+                    search = '';
+                }
+                $('#flexigridData').datagrid('load', { search: search });
+            }
+        });
         $('#flexigridData').datagrid({
             title: '维修处理', //列表的标题
             iconCls: 'icon-site',
@@ -54,19 +87,29 @@
 
             toolbar: [
 
+                 //{
+                 //    text: '创建',
+                 //    iconCls: 'icon-add',
+                 //    handler: function () {
+                 //        return flexiCreate();
+                 //    }
+                 //},
+                 //, {
+                 //    text: '导出',
+                 //    iconCls: 'icon-excel',
+                 //    handler: function () {
+                 //        return flexiExport();
+                 //    }
+                 //}
+
                  {
                      text: '详细',
                      iconCls: 'icon-search',
                      handler: function () {
                          return getView();
                      }
-                 }, {
-                     text: '创建',
-                     iconCls: 'icon-add',
-                     handler: function () {
-                         return flexiCreate();
-                     }
-                 }, {
+                 },
+                 {
                      text: '删除',
                      iconCls: 'icon-remove',
                      handler: function () {
@@ -78,12 +121,6 @@
                      handler: function () {
                          return flexiModify();
                      }
-                 }, {
-                     text: '导出',
-                     iconCls: 'icon-excel',
-                     handler: function () {
-                         return flexiExport();
-                     }
                  }],
             columns: [[
 
@@ -92,20 +129,31 @@
                 , { field: 'BaoXiuRen', title: '@Html.DisplayNameFor(model => model.BaoXiuRen)', width: 80 }
                 , { field: 'LianXiDianHua', title: '@Html.DisplayNameFor(model => model.LianXiDianHua)', width: 110 }
                 , { field: 'Anpai', title: '@Html.DisplayNameFor(model => model.Anpai)', width: 160 }
+                  , {
+                      field: 'ShenQingShiJian', title: '申请时间', width: 90
+                , formatter: function (value, rec) {
+                    if (value) {
+                        return dateConvert(value);
+                    }
+                }
+                  }
                 , {
                     field: 'AnPaiShiJian', title: '@Html.DisplayNameFor(model => model.AnPaiShiJian)', width: 90
-                , formatter: function (value, rec) {
-                    if (value) {    return dateConvert(value);
-                    }                }                }
-                , { field: 'MiaoShu', title: '@Html.DisplayNameFor(model => model.MiaoShu)', width: 120 }
+               , formatter: function (value, rec) {
+                   if (value) {
+                       return dateConvert(value);
+                   }
+               }
+                }
                    , { field: 'State', title: '@Html.DisplayNameFor(model => model.State)', width: 80 }
-                , { field: 'TuPian', title: '@Html.DisplayNameFor(model => model.TuPian)', width: 100 }
-                ,  {  field: '操 作', title: '操 作', width: 110, align: 'center',
-                formatter: function (value, row, index) {
-                    var e = '<a href="#" onclick="editrow(' + row.Id + ')">拒绝</a>  &nbsp &nbsp&nbsp';
-                    var d = ' <a href="#" onclick="deleterow(' + row.Id + ')">打回</a>';
-                    return e + d;
-                }            }            ]],
+                , {
+                    field: '操 作', title: '操 作', width: 110, align: 'center',
+                    formatter: function (value, row, index) {
+                        var e = '<a href="#" onclick="editrow(' + row.Id + ')">拒绝</a>  &nbsp &nbsp&nbsp';
+                        var d = ' <a href="#" onclick="deleterow(' + row.Id + ')">打回</a>';
+                        return e + d;
+                    }
+                }]],
             pagination: true,
             rownumbers: true
 
@@ -259,7 +307,7 @@
     };
 
     function editrow(row) {
-        var dd = row;
+        $('#JuJueLiYou').text("");
         $('#dd').dialog({
             title: "请填写拒绝理由：",
             buttons: [{
@@ -269,14 +317,14 @@
                     $.ajax({
                         url: '/ChuLi/UpdataJJ',// 跳转到 action
                         data: {
-                            Id:row,
+                            Id: row,
                             jjliyou: $("#JuJueLiYou").val()
                         },
                         type: 'post',
                         cache: false,
                         dataType: 'HTML',
                         success: function (data) {
-                            if (data== "成功") {
+                            if (data == "成功") {
                                 $.messager.alert('提示', '保存成功!', 'info');
                                 $('#dd').dialog('close');
                             } else {
@@ -297,41 +345,42 @@
         });
     }
     function deleterow(row) {
-                $('#dd').dialog({
-                    title: "填写打回理由：",
-                    buttons: [{
-                        text: '保存',
-                        iconCls: 'icon-ok',
-                        handler: function () {
-                            $.ajax({
-                                url: '/ChuLi/UpdataDH',// 跳转到 action
-                                data: {
-                                    Id: row,
-                                    dhliyou: $("#JuJueLiYou").val()
-                                },
-                                type: 'post',
-                                cache: false,
-                                dataType: 'HTML',
-                                success: function (data) {
-                                    if (data== "成功") {
-                                        $.messager.alert('提示', '保存成功!', 'info');
-                                        $('#dd').dialog('close');
-                                    } else {
-                                        $.messager.alert('提示', '保存失败!', 'info');
-                                    }
-                                },
-                                error: function () {
-                                    $.messager.alert('提示', '保存失败!', 'info');
-                                }
-                            });
+        $('#JuJueLiYou').text("");
+        $('#dd').dialog({
+            title: "填写打回理由：",
+            buttons: [{
+                text: '保存',
+                iconCls: 'icon-ok',
+                handler: function () {
+                    $.ajax({
+                        url: '/ChuLi/UpdataDH',// 跳转到 action
+                        data: {
+                            Id: row,
+                            dhliyou: $("#JuJueLiYou").val()
+                        },
+                        type: 'post',
+                        cache: false,
+                        dataType: 'HTML',
+                        success: function (data) {
+                            if (data == "成功") {
+                                $.messager.alert('提示', '保存成功!', 'info');
+                                $('#dd').dialog('close');
+                            } else {
+                                $.messager.alert('提示', '保存失败!', 'info');
+                            }
+                        },
+                        error: function () {
+                            $.messager.alert('提示', '保存失败!', 'info');
                         }
-                    }, {
-                        text: '取消',
-                        handler: function () {
-                            $('#dd').dialog('close');
-                        }
-                    }]
-                });
+                    });
+                }
+            }, {
+                text: '取消',
+                handler: function () {
+                    $('#dd').dialog('close');
+                }
+            }]
+        });
     }
 </script>
 

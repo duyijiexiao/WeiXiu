@@ -104,7 +104,15 @@ namespace Langben.App.Controllers
             return View(item);
 
         }
- 
+        public static DateTime? GetSqTime(string id)
+        {
+            IBLL.IShenQingBLL m_BLL1=new ShenQingBLL();
+            ShenQing item = m_BLL1.GetById(id);
+            if (item != null)
+                return item.CreateTime;
+            else
+                return DateTime.Now;
+        }
         /// <summary>
         /// 首次创建
         /// </summary>
