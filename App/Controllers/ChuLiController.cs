@@ -22,9 +22,11 @@ namespace Langben.App.Controllers
 
         public ActionResult UpdataJJ( )
         {
-            var qry = Request.Form["jjliyou"];
+            var jjliyou = Request.Form["jjliyou"];
             var id = Request.Form["Id"];
             ChuLi entity = m_BLL.GetById(id);
+            entity.JuJueLiYou = jjliyou;
+            entity.JuJueShiJian = DateTime.Now;
             if (entity != null && ModelState.IsValid)
             {   //数据校验
                 if (m_BLL.Edit(ref validationErrors, entity))
@@ -36,9 +38,11 @@ namespace Langben.App.Controllers
 
         public ActionResult UpdataDH()
         {
-            var qry = Request.Form["dhliyou"];
+            var dhliyou = Request.Form["dhliyou"];
             var id = Request.Form["Id"];
             ChuLi entity = m_BLL.GetById(id);
+            entity.JuJueLiYou = dhliyou;
+            entity.JuJueShiJian = DateTime.Now;
             if (entity != null && ModelState.IsValid)
             {   //数据校验
                 if (m_BLL.Edit(ref validationErrors, entity))
