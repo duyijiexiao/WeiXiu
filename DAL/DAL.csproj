@@ -57,6 +57,9 @@
     <Compile Include="ChuLi.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="FileUploader.cs" />
+    <Compile Include="FileUploaderMeta.cs" />
+    <Compile Include="FileUploaderRepository.cs" />
     <Compile Include="Framework\BaseRepository.cs" />
     <Compile Include="Framework\BaseViewRepository.cs" />
     <Compile Include="Framework\HuiYuanRepository.cs" />

@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FileUploaderBLL.cs" />
     <Compile Include="Framework\DataOfDiffrent.cs" />
     <Compile Include="Framework\ExceptionsHander.cs" />
     <Compile Include="Framework\HuiYuanBLL.cs" />
