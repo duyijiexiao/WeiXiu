@@ -51,6 +51,7 @@
                 @Html.EditorFor(model => model.MyEmail)
                 @Html.ValidationMessageFor(model => model.MyEmail)
             </div>@Html.HiddenFor(model => model.CreateTime ) 
+            @Html.HiddenFor(model=>model.LogonIP)
             <div class="editor-label">
                 @Html.LabelFor(model => model.State)：
             </div>

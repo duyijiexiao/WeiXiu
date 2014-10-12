@@ -10,7 +10,7 @@
             状态:
         </div>
         <div class="input_search-field">
-            <input id="cc">
+            <input id="State" name="State">
         </div>
     </div>
     <div class="input_search">
@@ -40,29 +40,21 @@
 <br style="clear: both;" />
 <script type="text/javascript" language="javascript">
     $(function () {
-        $('#cc').combobox({
+        $('#State').combobox({
             data: [{
-                "id": "all",
+                "id": "",
                 "text": "全部",
                 "selected": true
             }, {
-                "id": "wei",
+                "id": "未审核",
                 "text": "未审核"
             }, {
-                "id": "yi",
+                "id": "已审核",
                 "text": "已审核"
             }],
             editable: false,
             valueField: 'id',
-            textField: 'text',
-            onSelect: function (rec) {
-
-                var search = "State&" + rec.text + "^";
-                if (rec.id == "all") {
-                    search = '';
-                }
-                $('#flexigridData').datagrid('load', { search: search });
-            }
+            textField: 'text'
         });
         $('#flexigridData').datagrid({
             title: '会员', //列表的标题
@@ -133,6 +125,7 @@
     });
     function ShenHe() {
         var rows = $('#flexigridData').datagrid('getSelections');
+        $.messager.confirm('操作提示', "您确定审核通过该用户吗？", function (r) {
         var arr = [];
         for (var i = 0; i < rows.length; i++) {
             if (rows[i].State == "未审核") {
@@ -140,7 +133,6 @@
             }
         }
         if (arr.length > 0) {
-            $.messager.confirm('操作提示', "您确定审核通过该用户吗？", function (r) {
                 if (r) {
                     $.post("../HuiYuan/ShenHe", { ids: arr.join(",") }, function (msg) {
                         $("#flexigridData").datagrid("reload");
@@ -148,11 +140,11 @@
                         $.messager.alert('操作提示', msg, 'info');
                     })
                 }
-            });
 
         } else {
             $.messager.alert('操作提示', '审核成功!', 'info');
         }
+        });
         return false;
     }
     //“查询”按钮，弹出查询框
@@ -161,11 +153,14 @@
         //将查询条件按照分隔符拼接成字符串
         var search = "";
         $('#divQuery').find(":text,:selected,select,textarea,:hidden,:checked,:password").each(function () {
-            if (this.id)
+            if (this.id) {
                 search = search + this.id + "&" + this.value + "^";
-            else
+            }
+            else {
                 search = search + this.name + "&" + this.value + "^";
+            }
         });
+        
         //执行查询
         $('#flexigridData').datagrid('load', { search: search });
     };
