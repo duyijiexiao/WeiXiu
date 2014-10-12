@@ -33,6 +33,17 @@
             @Html.ValidationMessageFor(model => model.JuJueLiYou)
         </div>
     </div>
+    <div id="dd1" data-options="iconCls:'icon-save'" style="padding:5px;width:700px;height:230px;">
+        <div class="textarea-box">
+            @Html.TextAreaFor(model => model.JuJueLiYou)
+            @Html.ValidationMessageFor(model => model.JuJueLiYou)
+        </div>
+    </div>
+    <div id="dd2" data-options="iconCls:'icon-save'" style="padding:5px;width:700px;height:230px;">
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Anpai, Models.SysFieldModels.GetSysField("SysPerson", "MyName"), "请选择")
+        </div>  
+    </div>
 </div>
 <script type="text/javascript" language="javascript">
     $(function () {
@@ -257,15 +268,49 @@
     }
     //导航到修改的按钮
     function flexiModify() {
-
-        var arr = $('#flexigridData').datagrid('getSelections');
-
-        if (arr.length == 1) {
-            window.location.href = "../ChuLi/Edit/" + arr[0].Id;
-
-        } else {
-            $.messager.alert('操作提示', '请选择一条数据!', 'warning');
+         var ids = [];
+         var rows = $('#flexigridData').datagrid('getSelections');
+        for(var i=0; i<rows.length; i++){
+            ids.push(rows[i].Id);
         }
+        var dddd= ids.join(',');
+        $('#dd2').dialog({
+            title: "请选择安排人员：",
+            buttons: [{
+                text: '保存',
+                iconCls: 'icon-ok',
+                handler: function () {
+                    $.ajax({
+                        url: '/ChuLi/UpdataAnPai',// 跳转到 action
+                        data: {
+                            Id: dddd,
+                            Anpai: $("#Anpai").val()
+                        },
+                        type: 'post',
+                        cache: false,
+                        dataType: 'HTML',
+                        success: function (data) {
+                            if (data == "成功") {
+                                $.messager.alert('提示', '保存成功!', 'info');
+                                $('#dd2').dialog('close');
+                                $('#flexigridData').datagrid('reload');
+                            } else {
+                                $.messager.alert('提示', data, 'info');
+                                $('#flexigridData').datagrid('reload');
+                            }
+                        },
+                        error: function () {
+                            $.messager.alert('提示', '保存失败!', 'info');
+                        }
+                    });
+                }
+            }, {
+                text: '取消',
+                handler: function () {
+                    $('#dd2').dialog('close');
+                }
+            }]
+        });
         return false;
 
     };
@@ -327,8 +372,10 @@
                             if (data == "成功") {
                                 $.messager.alert('提示', '保存成功!', 'info');
                                 $('#dd').dialog('close');
+                                $('#flexigridData').datagrid('reload');
                             } else {
                                 $.messager.alert('提示', '保存失败!', 'info');
+                                $('#flexigridData').datagrid('reload');
                             }
                         },
                         error: function () {
@@ -346,7 +393,7 @@
     }
     function deleterow(row) {
         $('#JuJueLiYou').text("");
-        $('#dd').dialog({
+        $('#dd1').dialog({
             title: "填写打回理由：",
             buttons: [{
                 text: '保存',
@@ -364,9 +411,11 @@
                         success: function (data) {
                             if (data == "成功") {
                                 $.messager.alert('提示', '保存成功!', 'info');
-                                $('#dd').dialog('close');
+                                $('#dd1').dialog('close');
+                                $('#flexigridData').datagrid('reload');
                             } else {
                                 $.messager.alert('提示', '保存失败!', 'info');
+                                $('#flexigridData').datagrid('reload');
                             }
                         },
                         error: function () {
@@ -377,7 +426,7 @@
             }, {
                 text: '取消',
                 handler: function () {
-                    $('#dd').dialog('close');
+                    $('#dd1').dialog('close');
                 }
             }]
         });
