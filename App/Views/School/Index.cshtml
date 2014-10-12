@@ -5,30 +5,6 @@
 @using Models
 <script type="text/javascript" language="javascript">
         $(function () {
-            $('#cc').combobox({
-                data: [{
-                    "id": "all",
-                    "text": "全部",
-                    "selected": true
-                }, {
-                    "id": "wei",
-                    "text": "未审核"
-                }, {
-                    "id": "yi",
-                    "text": "已审核"
-                }],
-                editable: false,
-                valueField: 'id',
-                textField: 'text',
-                onSelect: function (rec) {
-
-                    var search = "State&" + rec.text + "^";
-                    if (rec.id == "all") {
-                        search = '';
-                    }
-                    $('#flexigridData').datagrid('load', { search: search });
-                }
-            });
             $('#flexigridData').datagrid({
                 title: '学校单位', //列表的标题
                 iconCls: 'icon-site',
