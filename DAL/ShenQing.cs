@@ -30,6 +30,7 @@ namespace Langben.DAL
         public string Remark { get; set; }
         public string State { get; set; }
         public string HuiYuanId { get; set; }
+        public Nullable<System.DateTime> YuYue { get; set; }
         public Nullable<System.DateTime> CreateTime { get; set; }
         public string CreatePerson { get; set; }
         public string BiaoShi { get; set; }

@@ -5,11 +5,16 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="06cfbae2dc4f47a3923564e6abd36d81" Name="Diagram1">
-        <EntityTypeShape EntityType="SysModel.ChuLi" Width="1.5" PointX="5.75" PointY="5.75" />
-        <EntityTypeShape EntityType="SysModel.GenZong" Width="1.5" PointX="5.25" PointY="1.625" />
-        <EntityTypeShape EntityType="SysModel.HuiYuan" Width="1.5" PointX="0.75" PointY="1.5" />
-        <EntityTypeShape EntityType="SysModel.School" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="SysModel.ChuLi" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="SysModel.Company" Width="1.5" PointX="2.75" PointY="6.75" />
+        <EntityTypeShape EntityType="SysModel.Department" Width="1.5" PointX="5.75" PointY="5.75" />
+        <EntityTypeShape EntityType="SysModel.GenZong" Width="1.5" PointX="5.25" PointY="1.75" />
+        <EntityTypeShape EntityType="SysModel.HuiYuan" Width="1.5" PointX="0.75" PointY="1.375" />
+        <EntityTypeShape EntityType="SysModel.Member" Width="1.5" PointX="7.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SysModel.School" Width="1.5" PointX="7.75" PointY="5.75" />
         <EntityTypeShape EntityType="SysModel.ShenQing" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="SysModel.WeiXiuRenYuan" Width="1.5" PointX="4.75" PointY="8.75" />
+        <AssociationConnector Association="SysModel.FK_DEPARTME_REFERENCE_DEPARTME" />
         <AssociationConnector Association="SysModel.FK_GENZONG_REFERENCE_SHENQING" />
         <AssociationConnector Association="SysModel.FK_SHENQING_REFERENCE_HUIYUAN" />
       </Diagram>

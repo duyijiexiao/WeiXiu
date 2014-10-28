@@ -26,6 +26,7 @@ namespace Langben.DAL
         public string HuiYuanId { get; set; }
         public string JuJueLiYou { get; set; }
         public Nullable<System.DateTime> JuJueShiJian { get; set; }
+        public string AnpaiName { get; set; }
         public string Anpai { get; set; }
         public Nullable<System.DateTime> AnPaiShiJian { get; set; }
         public string FanKui { get; set; }

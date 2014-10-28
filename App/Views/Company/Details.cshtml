@@ -1,0 +1,92 @@
+﻿@model Langben.DAL.Company
+
+@{
+    Layout = "~/Views/Shared/Details.cshtml";
+}
+@using Common
+ @section CurentPlace {
+    详细  
+}
+ 
+    <fieldset>
+        <legend>
+            <input class="a2 f2" type="button" onclick="window.location.href = 'javascript:history.go(-1)';" value="返回" />
+        </legend>
+        <div class="bigdiv">
+                  
+                <div class="display-label">
+                      @Html.LabelFor(model => model.PhoneNumber) :
+                </div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.PhoneNumber) 
+                </div>      
+                <div class="display-label">
+                      @Html.LabelFor(model => model.MyEmail) :
+                </div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.MyEmail) 
+                </div>      
+                <div class="display-label">
+                      @Html.LabelFor(model => model.PersonName) :
+                </div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.PersonName) 
+                </div>      
+                <div class="display-label">
+                      @Html.LabelFor(model => model.CompanyName) :
+                </div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.CompanyName) 
+                </div>      
+                <div class="display-label">
+                      @Html.LabelFor(model => model.MyName) :
+                </div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.MyName) 
+                </div>      
+                <div class="display-label">
+                      @Html.LabelFor(model => model.Password) :
+                </div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Password) 
+                </div>      
+                <div class="display-label">
+                      @Html.LabelFor(model => model.PersonPhone) :
+                </div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.PersonPhone) 
+                </div>      
+                <div class="display-label">
+                      @Html.LabelFor(model => model.PersonPhoneNumber) :
+                </div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.PersonPhoneNumber) 
+                </div>      
+                <div class="display-label">
+                      @Html.LabelFor(model => model.CreateTime) :
+                </div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.CreateTime) 
+                </div>      
+                <div class="display-label">
+                      @Html.LabelFor(model => model.LogonIP) :
+                </div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.LogonIP) 
+                </div>      
+                <div class="display-label">
+                      @Html.LabelFor(model => model.State) :
+                </div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.State) 
+                </div>      
+                <div class="display-label">
+                      @Html.LabelFor(model => model.Remark) :
+                </div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Remark) 
+                </div>
+        </div>
+    </fieldset>
+
+

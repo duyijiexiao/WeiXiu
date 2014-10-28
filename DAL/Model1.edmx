@@ -19,15 +19,42 @@
           <Property Name="Remark" Type="nvarchar" MaxLength="4000" />
           <Property Name="State" Type="nvarchar" MaxLength="200" />
           <Property Name="HuiYuanId" Type="nvarchar" MaxLength="36" />
-          <Property Name="JuJueLiYou" Type="nvarchar" MaxLength="200" />
+          <Property Name="JuJueLiYou" Type="nvarchar" MaxLength="4000" />
           <Property Name="JuJueShiJian" Type="datetime" />
-          <Property Name="Anpai" Type="nvarchar" MaxLength="200" />
+          <Property Name="AnpaiName" Type="nvarchar" MaxLength="200" />
+          <Property Name="Anpai" Type="nvarchar" MaxLength="36" />
           <Property Name="AnPaiShiJian" Type="datetime" />
-          <Property Name="FanKui" Type="nvarchar" MaxLength="200" />
-          <Property Name="FanKuiTuPian" Type="nvarchar" MaxLength="200" />
+          <Property Name="FanKui" Type="nvarchar" MaxLength="4000" />
+          <Property Name="FanKuiTuPian" Type="nvarchar" MaxLength="4000" />
           <Property Name="FanKuiShiJian" Type="datetime" />
           <Property Name="ShenQingId" Type="nvarchar" MaxLength="36" />
           <Property Name="BiaoShi" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="36" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="200" />
+          <Property Name="MyEmail" Type="nvarchar" MaxLength="200" />
+          <Property Name="PersonName" Type="nvarchar" MaxLength="200" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="200" />
+          <Property Name="MyName" Type="nvarchar" MaxLength="200" />
+          <Property Name="Password" Type="nvarchar" MaxLength="200" />
+          <Property Name="PersonPhone" Type="nvarchar" MaxLength="200" />
+          <Property Name="PersonPhoneNumber" Type="nvarchar" MaxLength="200" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="LogonIP" Type="nvarchar" MaxLength="200" />
+          <Property Name="State" Type="nvarchar" MaxLength="200" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="nvarchar" MaxLength="36" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="parentid" Type="nvarchar" MaxLength="36" />
         </EntityType>
         <EntityType Name="GenZong">
           <Key>
@@ -50,13 +77,34 @@
           <Property Name="Id" Type="nvarchar" MaxLength="36" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="200" />
           <Property Name="MyName" Type="nvarchar" MaxLength="200" />
+          <Property Name="SchoolName" Type="nvarchar" MaxLength="200" />
           <Property Name="Password" Type="nvarchar" MaxLength="200" />
           <Property Name="PhoneNumber" Type="nvarchar" MaxLength="200" />
+          <Property Name="VCode" Type="nvarchar" MaxLength="200" />
           <Property Name="MyEmail" Type="nvarchar" MaxLength="200" />
+          <Property Name="CodeTime" Type="datetime" />
           <Property Name="CreateTime" Type="datetime" />
           <Property Name="LogonIP" Type="nvarchar" MaxLength="200" />
           <Property Name="State" Type="nvarchar" MaxLength="200" />
           <Property Name="BiaoShi" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="userid" />
+          </Key>
+          <Property Name="userid" Type="nvarchar" MaxLength="36" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="200" />
+          <Property Name="department" Type="nvarchar" MaxLength="200" />
+          <Property Name="position" Type="nvarchar" MaxLength="200" />
+          <Property Name="mobile" Type="nvarchar" MaxLength="200" />
+          <Property Name="gender" Type="nvarchar" MaxLength="20" />
+          <Property Name="tel" Type="nvarchar" MaxLength="200" />
+          <Property Name="email" Type="nvarchar" MaxLength="200" />
+          <Property Name="weixinid" Type="nvarchar" MaxLength="200" />
+          <Property Name="avatar" Type="nvarchar" MaxLength="200" />
+          <Property Name="status" Type="nvarchar" MaxLength="200" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="Remark" Type="nvarchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="School">
           <Key>
@@ -85,10 +133,41 @@
           <Property Name="Remark" Type="nvarchar" MaxLength="4000" />
           <Property Name="State" Type="nvarchar" MaxLength="200" />
           <Property Name="HuiYuanId" Type="nvarchar" MaxLength="36" />
+          <Property Name="YuYue" Type="datetime" />
           <Property Name="CreateTime" Type="datetime" />
           <Property Name="CreatePerson" Type="nvarchar" MaxLength="200" />
           <Property Name="BiaoShi" Type="nvarchar" MaxLength="200" />
         </EntityType>
+        <EntityType Name="WeiXiuRenYuan">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="36" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="MyName" Type="nvarchar" MaxLength="200" />
+          <Property Name="SchoolName" Type="nvarchar" MaxLength="200" />
+          <Property Name="Password" Type="nvarchar" MaxLength="200" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="200" />
+          <Property Name="VCode" Type="nvarchar" MaxLength="200" />
+          <Property Name="MyEmail" Type="nvarchar" MaxLength="200" />
+          <Property Name="CodeTime" Type="datetime" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="LogonIP" Type="nvarchar" MaxLength="200" />
+          <Property Name="State" Type="nvarchar" MaxLength="200" />
+          <Property Name="BiaoShi" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <Association Name="FK_DEPARTME_REFERENCE_DEPARTME">
+          <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+          <End Role="Department1" Type="Self.Department" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Department1">
+              <PropertyRef Name="parentid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_GENZONG_REFERENCE_SHENQING">
           <End Role="ShenQing" Type="Self.ShenQing" Multiplicity="0..1" />
           <End Role="GenZong" Type="Self.GenZong" Multiplicity="*" />
@@ -115,10 +194,18 @@
         </Association>
         <EntityContainer Name="SysModelStoreContainer">
           <EntitySet Name="ChuLi" EntityType="Self.ChuLi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GenZong" EntityType="Self.GenZong" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HuiYuan" EntityType="Self.HuiYuan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Member" EntityType="Self.Member" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="School" EntityType="Self.School" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ShenQing" EntityType="Self.ShenQing" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WeiXiuRenYuan" EntityType="Self.WeiXiuRenYuan" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_DEPARTME_REFERENCE_DEPARTME" Association="Self.FK_DEPARTME_REFERENCE_DEPARTME">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Department1" EntitySet="Department" />
+          </AssociationSet>
           <AssociationSet Name="FK_GENZONG_REFERENCE_SHENQING" Association="Self.FK_GENZONG_REFERENCE_SHENQING">
             <End Role="ShenQing" EntitySet="ShenQing" />
             <End Role="GenZong" EntitySet="GenZong" />
@@ -134,10 +221,18 @@
       <Schema Namespace="SysModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="SysEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ChuLi" EntityType="SysModel.ChuLi" />
+          <EntitySet Name="Company" EntityType="SysModel.Company" />
+          <EntitySet Name="Department" EntityType="SysModel.Department" />
           <EntitySet Name="GenZong" EntityType="SysModel.GenZong" />
           <EntitySet Name="HuiYuan" EntityType="SysModel.HuiYuan" />
+          <EntitySet Name="Member" EntityType="SysModel.Member" />
           <EntitySet Name="School" EntityType="SysModel.School" />
           <EntitySet Name="ShenQing" EntityType="SysModel.ShenQing" />
+          <EntitySet Name="WeiXiuRenYuan" EntityType="SysModel.WeiXiuRenYuan" />
+          <AssociationSet Name="FK_DEPARTME_REFERENCE_DEPARTME" Association="SysModel.FK_DEPARTME_REFERENCE_DEPARTME">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Department1" EntitySet="Department" />
+          </AssociationSet>
           <AssociationSet Name="FK_GENZONG_REFERENCE_SHENQING" Association="SysModel.FK_GENZONG_REFERENCE_SHENQING">
             <End Role="ShenQing" EntitySet="ShenQing" />
             <End Role="GenZong" EntitySet="GenZong" />
@@ -161,15 +256,44 @@
           <Property Name="Remark" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="State" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="HuiYuanId" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
-          <Property Name="JuJueLiYou" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="JuJueLiYou" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="JuJueShiJian" Type="DateTime" Precision="3" />
-          <Property Name="Anpai" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="AnpaiName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Anpai" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
           <Property Name="AnPaiShiJian" Type="DateTime" Precision="3" />
-          <Property Name="FanKui" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="FanKuiTuPian" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="FanKui" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="FanKuiTuPian" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="FanKuiShiJian" Type="DateTime" Precision="3" />
           <Property Name="ShenQingId" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
           <Property Name="BiaoShi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="MyEmail" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="PersonName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="MyName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="PersonPhone" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="PersonPhoneNumber" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="LogonIP" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Remark" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="parentid" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Department1" Relationship="SysModel.FK_DEPARTME_REFERENCE_DEPARTME" FromRole="Department" ToRole="Department1" />
+          <NavigationProperty Name="Department2" Relationship="SysModel.FK_DEPARTME_REFERENCE_DEPARTME" FromRole="Department1" ToRole="Department" />
         </EntityType>
         <EntityType Name="GenZong">
           <Key>
@@ -193,14 +317,35 @@
           <Property Name="Id" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="true" />
           <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="MyName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="SchoolName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="PhoneNumber" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="VCode" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="MyEmail" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CodeTime" Type="DateTime" Precision="3" />
           <Property Name="CreateTime" Type="DateTime" Precision="3" />
           <Property Name="LogonIP" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="State" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="BiaoShi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ShenQing" Relationship="SysModel.FK_SHENQING_REFERENCE_HUIYUAN" FromRole="HuiYuan" ToRole="ShenQing" />
+        </EntityType>
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="userid" />
+          </Key>
+          <Property Name="userid" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="department" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="position" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="mobile" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="gender" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="tel" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="weixinid" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="avatar" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="Remark" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="School">
           <Key>
@@ -229,12 +374,43 @@
           <Property Name="Remark" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="State" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="HuiYuanId" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="YuYue" Type="DateTime" Precision="3" />
           <Property Name="CreateTime" Type="DateTime" Precision="3" />
           <Property Name="CreatePerson" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="BiaoShi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="GenZong" Relationship="SysModel.FK_GENZONG_REFERENCE_SHENQING" FromRole="ShenQing" ToRole="GenZong" />
           <NavigationProperty Name="HuiYuan" Relationship="SysModel.FK_SHENQING_REFERENCE_HUIYUAN" FromRole="ShenQing" ToRole="HuiYuan" />
         </EntityType>
+        <EntityType Name="WeiXiuRenYuan">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="MyName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="SchoolName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="VCode" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="MyEmail" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CodeTime" Type="DateTime" Precision="3" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="LogonIP" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="BiaoShi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_DEPARTME_REFERENCE_DEPARTME">
+          <End Type="SysModel.Department" Role="Department" Multiplicity="0..1" />
+          <End Type="SysModel.Department" Role="Department1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Department1">
+              <PropertyRef Name="parentid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_GENZONG_REFERENCE_SHENQING">
           <End Type="SysModel.ShenQing" Role="ShenQing" Multiplicity="0..1" />
           <End Type="SysModel.GenZong" Role="GenZong" Multiplicity="*" />
@@ -275,6 +451,7 @@
                 <ScalarProperty Name="FanKui" ColumnName="FanKui" />
                 <ScalarProperty Name="AnPaiShiJian" ColumnName="AnPaiShiJian" />
                 <ScalarProperty Name="Anpai" ColumnName="Anpai" />
+                <ScalarProperty Name="AnpaiName" ColumnName="AnpaiName" />
                 <ScalarProperty Name="JuJueShiJian" ColumnName="JuJueShiJian" />
                 <ScalarProperty Name="JuJueLiYou" ColumnName="JuJueLiYou" />
                 <ScalarProperty Name="HuiYuanId" ColumnName="HuiYuanId" />
@@ -287,6 +464,34 @@
                 <ScalarProperty Name="BaoXiuRen" ColumnName="BaoXiuRen" />
                 <ScalarProperty Name="XueXiao" ColumnName="XueXiao" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Company">
+            <EntityTypeMapping TypeName="SysModel.Company">
+              <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="LogonIP" ColumnName="LogonIP" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="PersonPhoneNumber" ColumnName="PersonPhoneNumber" />
+                <ScalarProperty Name="PersonPhone" ColumnName="PersonPhone" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="MyName" ColumnName="MyName" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="PersonName" ColumnName="PersonName" />
+                <ScalarProperty Name="MyEmail" ColumnName="MyEmail" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Department">
+            <EntityTypeMapping TypeName="SysModel.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="parentid" ColumnName="parentid" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -312,12 +517,34 @@
                 <ScalarProperty Name="State" ColumnName="State" />
                 <ScalarProperty Name="LogonIP" ColumnName="LogonIP" />
                 <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CodeTime" ColumnName="CodeTime" />
                 <ScalarProperty Name="MyEmail" ColumnName="MyEmail" />
+                <ScalarProperty Name="VCode" ColumnName="VCode" />
                 <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="SchoolName" ColumnName="SchoolName" />
                 <ScalarProperty Name="MyName" ColumnName="MyName" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Member">
+            <EntityTypeMapping TypeName="SysModel.Member">
+              <MappingFragment StoreEntitySet="Member">
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="avatar" ColumnName="avatar" />
+                <ScalarProperty Name="weixinid" ColumnName="weixinid" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="tel" ColumnName="tel" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="mobile" ColumnName="mobile" />
+                <ScalarProperty Name="position" ColumnName="position" />
+                <ScalarProperty Name="department" ColumnName="department" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -340,6 +567,7 @@
                 <ScalarProperty Name="BiaoShi" ColumnName="BiaoShi" />
                 <ScalarProperty Name="CreatePerson" ColumnName="CreatePerson" />
                 <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="YuYue" ColumnName="YuYue" />
                 <ScalarProperty Name="HuiYuanId" ColumnName="HuiYuanId" />
                 <ScalarProperty Name="State" ColumnName="State" />
                 <ScalarProperty Name="Remark" ColumnName="Remark" />
@@ -350,6 +578,25 @@
                 <ScalarProperty Name="LianXiDianHua" ColumnName="LianXiDianHua" />
                 <ScalarProperty Name="BaoXiuRen" ColumnName="BaoXiuRen" />
                 <ScalarProperty Name="XueXiao" ColumnName="XueXiao" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WeiXiuRenYuan">
+            <EntityTypeMapping TypeName="SysModel.WeiXiuRenYuan">
+              <MappingFragment StoreEntitySet="WeiXiuRenYuan">
+                <ScalarProperty Name="BiaoShi" ColumnName="BiaoShi" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="LogonIP" ColumnName="LogonIP" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="CodeTime" ColumnName="CodeTime" />
+                <ScalarProperty Name="MyEmail" ColumnName="MyEmail" />
+                <ScalarProperty Name="VCode" ColumnName="VCode" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="SchoolName" ColumnName="SchoolName" />
+                <ScalarProperty Name="MyName" ColumnName="MyName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

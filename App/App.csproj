@@ -140,14 +140,20 @@
     <Compile Include="Codes\LogClassModels.cs" />
     <Compile Include="Codes\SupportFilter.cs" />
     <Compile Include="Codes\SysFieldModels.cs" />
+    <Compile Include="Controllers\CompanyController.cs" />
+    <Compile Include="Controllers\DepartmentController.cs" />
+    <Compile Include="Controllers\DepartmentTreeController.cs" />
     <Compile Include="Controllers\FileUploaderController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MemberController.cs" />
+    <Compile Include="Controllers\WeiXiuRenYuanController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HtmlHelper\CheckBoxListHelper.cs" />
     <Compile Include="HtmlHelper\Easyui.cs" />
     <Compile Include="HtmlHelper\RadioButtonListHelper.cs" />
+    <Compile Include="Models\DepartmentTreeModel.cs" />
     <Compile Include="Models\EmptyClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -573,6 +579,16 @@
     <Content Include="Views\FileUploader\Details.cshtml" />
     <Content Include="Views\FileUploader\Edit.cshtml" />
     <Content Include="Views\FileUploader\Index.cshtml" />
+    <Content Include="Views\Company\Create.cshtml" />
+    <Content Include="Views\Company\Details.cshtml" />
+    <Content Include="Views\Company\Edit.cshtml" />
+    <Content Include="Views\Company\Index.cshtml" />
+    <Content Include="Views\DepartmentTree\Index.cshtml" />
+    <Content Include="Views\Department\Create.cshtml" />
+    <Content Include="Views\Department\Details.cshtml" />
+    <Content Include="Views\Department\Edit.cshtml" />
+    <Content Include="Views\Department\Index.cshtml" />
+    <Content Include="Views\Department\IndexSef.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -588,6 +604,14 @@
     <Content Include="Views\Shared\Details.cshtml" />
     <Content Include="Views\Shared\Edit.cshtml" />
     <Content Include="Views\Shared\Index.cshtml" />
+    <Content Include="Views\Member\Create.cshtml" />
+    <Content Include="Views\Member\Details.cshtml" />
+    <Content Include="Views\Member\Edit.cshtml" />
+    <Content Include="Views\Member\Index.cshtml" />
+    <Content Include="Views\WeiXiuRenYuan\Create.cshtml" />
+    <Content Include="Views\WeiXiuRenYuan\Details.cshtml" />
+    <Content Include="Views\WeiXiuRenYuan\Edit.cshtml" />
+    <Content Include="Views\WeiXiuRenYuan\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL\BLL.csproj">

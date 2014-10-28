@@ -12,27 +12,20 @@ namespace Langben.DAL
     using System;
     using System.Collections.Generic;
     
-    public partial class HuiYuan
+    public partial class Company
     {
-        public HuiYuan()
-        {
-            this.ShenQing = new HashSet<ShenQing>();
-        }
-    
         public string Id { get; set; }
-        public string Name { get; set; }
-        public string MyName { get; set; }
-        public string SchoolName { get; set; }
-        public string Password { get; set; }
         public string PhoneNumber { get; set; }
-        public string VCode { get; set; }
         public string MyEmail { get; set; }
-        public Nullable<System.DateTime> CodeTime { get; set; }
+        public string PersonName { get; set; }
+        public string CompanyName { get; set; }
+        public string MyName { get; set; }
+        public string Password { get; set; }
+        public string PersonPhone { get; set; }
+        public string PersonPhoneNumber { get; set; }
         public Nullable<System.DateTime> CreateTime { get; set; }
         public string LogonIP { get; set; }
         public string State { get; set; }
-        public string BiaoShi { get; set; }
-    
-        public virtual ICollection<ShenQing> ShenQing { get; set; }
+        public string Remark { get; set; }
     }
 }

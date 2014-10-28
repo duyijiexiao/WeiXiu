@@ -1,0 +1,69 @@
+﻿@model Langben.DAL.Department
+
+@{
+    Layout = "~/Views/Shared/Edit.cshtml";
+}
+@using Common
+@using Models
+ @section CurentPlace {
+    修改  
+}
+
+    <fieldset>
+        <legend>
+            <input class="a2 f2" type="submit" value="修改" />
+            <input class="a2 f2" type="button" onclick="BackList('Department')" value="返回列表" />
+        </legend>
+        <div class="bigdiv">
+            @Html.HiddenFor(model => model.id )      
+            <div class="editor-label">
+                @Html.LabelFor(model => model.name)：
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.name)
+                @Html.ValidationMessageFor(model => model.name)
+            </div>       
+            <div class="editor-label">
+                <a class="anUnderLine" onclick="showModalOnly('parentid','../../Department');">
+                    @Html.LabelFor(model => model.parentid) 
+                </a>：
+            </div>
+            <div class="editor-field">
+                <div id="checkparentid">
+                    @if(Model!=null)
+                        {
+                        if (!string.IsNullOrWhiteSpace(Model.parentid))
+                        {
+                    <table  id="@Model.parentid"
+                        class="deleteStyle">
+                        <tr>
+                            <td>
+                                <img  alt="删除"  title="点击删除" src="../../../Images/deleteimge.png" onclick="deleteTable('@Model.parentid ','parentid');"/>
+                            </td>
+                            <td>
+                                @Model.Department2.name
+                            </td>
+                        </tr>
+                    </table>
+                     }} 
+                </div>
+                @Html.HiddenFor(model => model.parentid)
+            </div>
+        </div>
+    </fieldset>
+
+
+
+
+    <script type="text/javascript">
+
+        $(function () {
+            
+
+        });
+        
+
+    </script>
+
+
+

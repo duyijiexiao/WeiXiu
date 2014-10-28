@@ -26,9 +26,13 @@ namespace Langben.DAL
         }
     
         public virtual DbSet<ChuLi> ChuLi { get; set; }
+        public virtual DbSet<Company> Company { get; set; }
+        public virtual DbSet<Department> Department { get; set; }
         public virtual DbSet<GenZong> GenZong { get; set; }
         public virtual DbSet<HuiYuan> HuiYuan { get; set; }
+        public virtual DbSet<Member> Member { get; set; }
         public virtual DbSet<School> School { get; set; }
         public virtual DbSet<ShenQing> ShenQing { get; set; }
+        public virtual DbSet<WeiXiuRenYuan> WeiXiuRenYuan { get; set; }
     }
 }

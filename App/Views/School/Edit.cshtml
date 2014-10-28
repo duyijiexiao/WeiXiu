@@ -36,13 +36,9 @@
             <div class="editor-field">
                 @Html.TextBoxFor(model => model.PaiXu, new {  onkeyup = "isInt(this)", @class="text-box single-line" })
                 @Html.ValidationMessageFor(model => model.PaiXu) 
-            </div>@Html.HiddenFor(model => model.CreateTime )       
-            <div class="editor-label">
-                @Html.LabelFor(model => model.State)：
-            </div>
-            <div class="editor-field">
-               @Html.DropDownListFor(model => model.State, Models.SysFieldModels.GetState())
-            </div>     
+            </div>@Html.HiddenFor(model => model.CreateTime )  
+            @Html.HiddenFor(model => model.State)
+           
         </div>
     </fieldset>
 
