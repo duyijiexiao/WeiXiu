@@ -1,7 +1,9 @@
 ﻿@model Langben.DAL.ChuLi
+ 
 @{ Layout = "~/Views/Shared/Index.cshtml"; }
 @using Common
 @using Models
+@using  Langben.App.Controllers;
 <div id="divQuery">
     <div class="input_search">
         <div class="input_search-label">
@@ -41,10 +43,10 @@
     </div>
     <div id="dd2" data-options="iconCls:'icon-save'" style="padding:5px;width:700px;height:230px;">
         <div class="editor-field">
-            @Html.DropDownListFor(model => model.Anpai, Models.SysFieldModels.GetSysField("SysPerson", "MyName"), "请选择")
+            @Html.DropDownListFor(model => model.Anpai,(List<SelectListItem>)WeiXiuRenYuanController.GetAnpaiUserData(), "请选择");
+        </div>  
         </div>  
     </div>
-</div>
 <script type="text/javascript" language="javascript">
     $(function () {
         $('#cc').combobox({
@@ -277,7 +279,7 @@
         $('#dd2').dialog({
             title: "请选择安排人员：",
             buttons: [{
-                text: '保存',
+                text: '安排',
                 iconCls: 'icon-ok',
                 handler: function () {
                     $.ajax({

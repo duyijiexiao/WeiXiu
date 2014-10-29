@@ -16,17 +16,11 @@
         <div class="bigdiv">
                   
                 <div class="display-label">
-                      @Html.LabelFor(model => model.XueXiao) :
+                      @Html.LabelFor(model => model.XueXiao) :  @Html.DisplayFor(model => model.XueXiao)
                 </div>
-                <div class="display-field">
-                    @Html.DisplayFor(model => model.XueXiao) 
-                </div>      
                 <div class="display-label">
-                      @Html.LabelFor(model => model.BaoXiuRen) :
+                      @Html.LabelFor(model => model.BaoXiuRen) :  @Html.DisplayFor(model => model.BaoXiuRen)
                 </div>
-                <div class="display-field">
-                    @Html.DisplayFor(model => model.BaoXiuRen) 
-                </div>      
             <div style="float:right; width:220px;height:184px;">
                 <img id="showPic" src="~/Images/noPic.jpg" width="149" height="175" />
                 <div style="float:left">
@@ -48,64 +42,42 @@
                 </div>
             </div>
                 <div class="display-label">
-                      @Html.LabelFor(model => model.LianXiDianHua) :
+                      @Html.LabelFor(model => model.LianXiDianHua) :  @Html.DisplayFor(model => model.LianXiDianHua)
                 </div>
-                <div class="display-field">
-                    @Html.DisplayFor(model => model.LianXiDianHua) 
-                </div>
-        
-                
-             
                 <div class="display-field">
                     @Html.LabelFor(model => model.PaiXu) :
                     @Html.DisplayFor(model => model.PaiXu) 
                 </div>
-                 
                 <div class="display-label">
                       @Html.LabelFor(model => model.State) :
-                </div>
-                <div class="display-field">
                     @Html.DisplayFor(model => model.State) 
                 </div>      
                 <div class="display-label">
                       @Html.LabelFor(model => model.HuiYuanId) :
-                </div>
-                <div class="display-field">
                     @Html.DisplayFor(model => model.HuiYuanId) 
                 </div>      
-        
                 <div class="display-label">
                       @Html.LabelFor(model => model.JuJueShiJian) :
-                </div>
-                <div class="display-field">
-                    @Html.DisplayFor(model => model.JuJueShiJian) 
+                      @Html.DisplayFor(model => model.JuJueShiJian) 
                 </div>      
             <div class="display-label">
                 @Html.LabelFor(model => model.FanKuiShiJian) :
-            </div>
-            <div class="display-field">
                 @Html.DisplayFor(model => model.FanKuiShiJian)
             </div>
-            <div class="display-label">
+            @*<div class="display-label">
                 @Html.LabelFor(model => model.ShenQingId) :
             </div>
             <div class="display-field">
                 @Html.DisplayFor(model => model.ShenQingId)
-            </div>  
-       
+            </div>*@  
                 <div class="display-label">
                       @Html.LabelFor(model => model.Anpai) :
-                </div>
-                <div class="display-field">
                     @Html.DisplayFor(model => model.Anpai) 
                 </div>      
                 <div class="display-label">
                       @Html.LabelFor(model => model.AnPaiShiJian) :
-                </div>
-                <div class="display-field">
                     @Html.DisplayFor(model => model.AnPaiShiJian) 
                 </div>     
-
             <br style="clear: both;" />
             <div class="display-label">
                 @Html.LabelFor(model => model.MiaoShu) :

@@ -3,7 +3,7 @@
 @using Common
 @using Models
 <div id="divQuery">
- 
+
     <div class="input_search">
         <div class="input_search-label">
             @Html.LabelFor(model => model.BaoXiuRen):
@@ -45,39 +45,35 @@
             sortName: 'Id',
             sortOrder: 'desc',
             idField: 'Id',
-
             toolbar: [
-
                      {
                          text: '导出',
                          iconCls: 'icon-excel',
                          handler: function () {
                              return flexiExport();
                          }
-                     } ],
+                     }],
             columns: [[
                 { field: 'XueXiao', title: '@Html.DisplayNameFor(model => model.XueXiao)', width: 80 }
                 , { field: 'BaoXiuRen', title: '@Html.DisplayNameFor(model => model.BaoXiuRen)', width: 80 }
                 , { field: 'LianXiDianHua', title: '@Html.DisplayNameFor(model => model.LianXiDianHua)', width: 100 }
+                    , { field: 'AnpaiName', title: '@Html.DisplayNameFor(model => model.AnpaiName)', width: 80 }
                 , {
                     field: 'AnPaiShiJian', title: '@Html.DisplayNameFor(model => model.AnPaiShiJian)', width: 80
                     , formatter: function (value, rec) {
-                        if (value) {
-                            return dateConvert(value);
-                        }
+                        if (value) { return dateConvert(value); }
                     }
                 }
                 , { field: 'FanKui', title: '@Html.DisplayNameFor(model => model.FanKui)', width: 80 }
-                , { field: 'FanKuiTuPian', title: '@Html.DisplayNameFor(model => model.FanKuiTuPian)', width: 80 }
+                @*, { field: 'FanKuiTuPian', title: '@Html.DisplayNameFor(model => model.FanKuiTuPian)', width: 80 }*@
                 , {
                     field: 'FanKuiShiJian', title: '@Html.DisplayNameFor(model => model.FanKuiShiJian)', width: 80
                  , formatter: function (value, rec) {
-                     if (value) {
-                         return dateConvert(value);
-                     }
+                     if (value) { return dateConvert(value); }
                  }
                 }
-                @*, { field: 'ShenQingId', title: '@Html.DisplayNameFor(model => model.ShenQingId)', width: 80 }*@
+                     , { field: 'JuJueLiYou', title: '@Html.DisplayNameFor(model => model.JuJueLiYou)', width: 120 }
+                      , { field: 'JuJueShiJian', title: '@Html.DisplayNameFor(model => model.JuJueShiJian)', width: 80 }
             ]],
             pagination: true,
             rownumbers: true
