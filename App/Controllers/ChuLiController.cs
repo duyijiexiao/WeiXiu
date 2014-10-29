@@ -18,7 +18,43 @@ namespace Langben.App.Controllers
     /// </summary>
     public class ChuLiController : BaseController
     {
-
+        public ActionResult UpdataFankui()
+        {
+            var fdcount = 0;
+            try
+            {
+                var jjliyou = Request.Form["fank"];
+                var id = Request.Form["Id"];
+                var ids = id.Split(',');
+                for (int i = 0; i < ids.Length; i++)
+                {
+                    ChuLi entity = m_BLL.GetById(ids[i]);
+                    if (entity == null || entity.Id == null || entity.Id == "")
+                    {
+                        //return Content("失败");
+                        fdcount++;
+                        continue;
+                    }
+                    entity.FanKui = jjliyou;
+                    entity.FanKuiShiJian = DateTime.Now;
+                    entity.State = "已维修/待评论";
+                    if (entity != null && ModelState.IsValid)
+                    {   //数据校验
+                        if (m_BLL.Edit(ref validationErrors, entity))
+                        {
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return Content("失败");
+            }
+            if (fdcount < 1)
+                return Content("成功");
+            else
+                return Content("有" + fdcount + "条失败！");
+        }
         public ActionResult UpdataAnPai()
         {
             var fdcount = 0;
