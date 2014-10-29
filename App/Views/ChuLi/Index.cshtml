@@ -41,9 +41,11 @@
             @Html.ValidationMessageFor(model => model.JuJueLiYou)
         </div>
     </div>
-    <div id="dd2" data-options="iconCls:'icon-save'" style="padding:5px;width:700px;height:230px;">
+    <div id="dd2" data-options="iconCls:'icon-save'" style="padding:2px;width:720px;height:280px;">
         <div class="editor-field">
-            @Html.DropDownListFor(model => model.Anpai,(List<SelectListItem>)WeiXiuRenYuanController.GetAnpaiUserData(), "请选择");
+            @Html.DropDownListFor(model => model.AnpaiName, (List<SelectListItem>)WeiXiuRenYuanController.GetAnpaiUserData(), "请选择")
+            @Html.TextAreaFor(model => model.Anpai)
+            @Html.ValidationMessageFor(model => model.Anpai)
         </div>  
         </div>  
     </div>
@@ -141,15 +143,7 @@
                 { field: 'XueXiao', title: '@Html.DisplayNameFor(model => model.XueXiao)', width: 120 }
                 , { field: 'BaoXiuRen', title: '@Html.DisplayNameFor(model => model.BaoXiuRen)', width: 80 }
                 , { field: 'LianXiDianHua', title: '@Html.DisplayNameFor(model => model.LianXiDianHua)', width: 110 }
-                , { field: 'Anpai', title: '@Html.DisplayNameFor(model => model.Anpai)', width: 160 }
-                  , {
-                      field: 'ShenQingShiJian', title: '申请时间', width: 90
-                , formatter: function (value, rec) {
-                    if (value) {
-                        return dateConvert(value);
-                    }
-                }
-                  }
+                , { field: 'AnpaiName', title: '@Html.DisplayNameFor(model => model.AnpaiName)', width: 160 }
                 , {
                     field: 'AnPaiShiJian', title: '@Html.DisplayNameFor(model => model.AnPaiShiJian)', width: 90
                , formatter: function (value, rec) {
@@ -158,6 +152,14 @@
                    }
                }
                 }
+                  , {
+                      field: 'ShenQingShiJian', title: '申请时间', width: 90
+                , formatter: function (value, rec) {
+                    if (value) {
+                        return dateConvert(value);
+                    }
+                }
+                  }
                    , { field: 'State', title: '@Html.DisplayNameFor(model => model.State)', width: 80 }
                 , {
                     field: '操 作', title: '操 作', width: 110, align: 'center',
@@ -277,7 +279,7 @@
         }
         var dddd= ids.join(',');
         $('#dd2').dialog({
-            title: "请选择安排人员：",
+            title: "请选择安排人员并填写安排留言：",
             buttons: [{
                 text: '安排',
                 iconCls: 'icon-ok',
@@ -286,7 +288,8 @@
                         url: '/ChuLi/UpdataAnPai',// 跳转到 action
                         data: {
                             Id: dddd,
-                            Anpai: $("#Anpai").val()
+                            Anpai: $("#Anpai").val(),
+                            AnpaiName: $("#AnpaiName").val()
                         },
                         type: 'post',
                         cache: false,

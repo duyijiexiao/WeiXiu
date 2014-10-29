@@ -105,7 +105,7 @@ namespace Langben.App.Controllers
                 SelectListItem selectListItem = new SelectListItem
               {
                   Text = department.Name,
-                  Value = department.Id.ToString(),
+                  Value = department.Name,
                   Selected = false
               };
                 selectListItems.Add(selectListItem);

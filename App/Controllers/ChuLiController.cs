@@ -60,7 +60,8 @@ namespace Langben.App.Controllers
             var fdcount = 0;
             try
             {
-                var jjliyou = Request.Form["Anpai"];
+                var apai = Request.Form["Anpai"];
+                var apiname = Request.Form["AnpaiName"];
                 var id = Request.Form["Id"];
                 var ids = id.Split(',');
                 for (int i = 0; i < ids.Length; i++)
@@ -72,8 +73,9 @@ namespace Langben.App.Controllers
                         fdcount++;
                         continue;
                     }
-                    entity.JuJueLiYou = jjliyou;
-                    entity.JuJueShiJian = DateTime.Now;
+                    entity.Anpai = apai;
+                    entity.AnpaiName = apiname;
+                    entity.AnPaiShiJian = DateTime.Now;
                     entity.State = "已安排/待维修";
                     if (entity != null && ModelState.IsValid)
                     {   //数据校验
