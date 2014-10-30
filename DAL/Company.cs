@@ -27,5 +27,6 @@ namespace Langben.DAL
         public string LogonIP { get; set; }
         public string State { get; set; }
         public string Remark { get; set; }
+        public string BiaoShi { get; set; }
     }
 }

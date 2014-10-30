@@ -1,0 +1,235 @@
+﻿@model Langben.DAL.ShenQing
+@{
+   
+    Layout = null;
+}
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>编辑维修申请</title>
+
+    <!--css start-->
+    <link href="http://image.yihaodianimg.com/member/global/css/global_site_base.css?1154501" rel="stylesheet" type="text/css" />
+    <link href="http://image.yihaodianimg.com/member/member/css/orderList2013.css?1154501" rel="stylesheet" type="text/css" />
+    <!--css end-->
+
+    <link href="http://image.yihaodianimg.com/member/member/js/My97DatePicker_v20131127/skin/WdatePicker.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="http://image.yihaodianimg.com/member/global/css/global_yhdLib.css?1154501">
+
+
+    <link href="https://passport.yhd.com/front-passport/passport/css/css_base.css?1148270" rel="stylesheet" type="text/css" />
+    <link href="https://passport.yhd.com/front-passport/passport/css/regist.css?1148270" rel="stylesheet" type="text/css" />
+    <style>
+        .cart3_head_step {
+            background: url("../../Images/cart3_step.png?1154729") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+            float: right;
+            height: 48px;
+            width: 900px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .cart3_head_top {
+            height: 48px;
+            position: relative;
+        }
+    </style>
+
+
+</head>
+<body>
+
+
+    <div id="global_top_bar" class="hd_global_top_bar">
+        <div class="wrap clearfix">
+            <div class="hd_topbar_left clearfix">
+                <span class="fl">Hi, </span>
+                <div id="global_unlogin" class="hd_unlogin_wrap">
+                    <span class="hd_unlogin">
+                        请
+                        <a id="global_top_bar_loginLink" class="blue_link" onclick="top.location.href='@Url.Action("Login", "Account")'"> 登录 </a>
+                        /
+                        <a class="blue_link" tk="YHD_TOP_register" onclick="top.location.href='@Url.Action("Register", "Account")'"> 注册</a>
+                    </span>
+                </div>
+
+                <a id="logout" class="logout blue_link none" href="javaScript:bothSiteLogoutJsonp();" style="background: none repeat scroll 0% 0% transparent;">退出</a>
+                <div id="headerSelectProvince" class=""></div>
+            </div>
+            <div class="hd_top_manu clearfix">
+            </div>
+        </div>
+    </div>
+
+    <div id="layout_main" class="layout_w1200_g22">
+    <div class="grid_4">
+        <div class="mod_personal_menu">
+            <h3 class="big_title">
+                <a href="/member/my.do">提交申请</a>
+            </h3>
+            <div class="personal_user_info">
+                <blockquote class="user_img">
+                    <a href="/member/userinfo/editinfo.do">
+                        <img src="http://image.yihaodianimg.com/member/member/images/peopleicon_01.gif" alt="用户头像">
+                        <span>
+                            <u>编辑资料</u>
+                        </span>
+                    </a>
+                </blockquote>
+                <blockquote class="user_info">
+                    <p>
+                        <strong>
+                            <a id="leftendUserName">宇生俱来的幸福</a>
+                        </strong>
+                    </p>
+                    <p>
+                        <span class="pV1">
+                            <a target="_blank" href="http://vip.yhd.com">会员等级：V1</a>
+                        </span>
+                    </p>
+                </blockquote>
+            </div>
+            <div class="trading_center">
+                <dl>
+                    <dt>
+                        <i class="icon_img"></i>
+                        <span class="tit_big">会员中心</span>
+                    </dt>
+                    <dd>
+                        @*<a class="selected" onclick="addTrackPositionToCookie('2','O_L_MYORDER')" onclick="top.location.href='@Url.Action("Login", "Account")'" >我的维修申请单</a>*@
+                        <a class="selected" onclick="top.location.href='@Url.Action("GetList", "Apply")'">我的维修申请单</a>
+
+                    </dd>
+                    <dd>
+                        @*<a onclick="addTrackPositionToCookie('2','O_L_MYREGULARBUY')" onclick="top.location.href='@Url.Action("Login", "Account")'">申请维修</a>*@\
+                        <a onclick="top.location.href='@Url.Action("Index", "Apply")'">申请维修</a>
+
+                    </dd>
+                    <dd>
+                        @*<a onclick="addTrackPositionToCookie('2','O_L_MYREGULARBUY')" onclick="top.location.href='@Url.Action("Login", "Account")'">维修点评</a>*@
+                        <a onclick="top.location.href='@Url.Action("Index", "Apply")'">申请维修</a>
+                    </dd>
+                    <dd>
+                        @*<a onclick="addTrackPositionToCookie('2','O_L_MYREGULARBUY')" onclick="top.location.href='@Url.Action("Login", "Account")'">会员注册</a>*@
+
+                        <a onclick="top.location.href='@Url.Action("Register", "Account")'">会员注册</a>
+                </dl>
+            </div>
+            <div class="services_personal_center">
+                <dl>
+                    <dt>
+                        <i class="icon_img"></i>
+                        <span class="tit_big">个人中心</span>
+                    </dt>
+
+                </dl>
+            </div>
+        </div>
+    </div>
+
+        <div id="gridContent" class="grid_18">
+            <div class="mod_personal_head">
+                <font class="tit">提交维修申请</font>
+                <div class="recpt_bor"></div>
+            </div>
+
+        
+                <div class="mod_my_order_list">
+                    <dl class="clearfix">
+                        <dd >
+                            <div class="list_border">
+                          
+
+                                <!--居中begin-->
+
+                                @using (Html.BeginForm())
+                                {
+
+
+                                    <div class="mod_my_order_list">
+
+                                        <!--登陆-->
+                                        <div class="regist_form">
+
+                                            <ul class="clearfix">
+                                                <!--取得焦点的时候给li加class:cur,错误的时候给li加class：cur_error,正确的时候给li加class：cur_right -->
+                                                <li>
+                                                    <div class="form_item">
+                                                        <label> 学校：</label>
+                                                        @Html.DropDownListFor(m => m.XueXiao, Models.SysFieldModels.GetSysField())
+
+                                                    </div>
+
+                                                </li>
+                                                <li>
+                                                    <div class="form_item">
+                                                        <label> 报修人：</label>
+                                                        @Html.TextBoxFor(m => m.BaoXiuRen, new { @class = "form-control" })
+                                                    </div>
+
+                                                </li>
+
+                                                <li>
+                                                    <div class="form_item">
+                                                        <label> 联系电话：</label>
+                                                        @Html.TextBoxFor(m => m.LianXiDianHua, new { @class = "form-control" })
+                                                    </div>
+
+                                                </li>
+
+
+                                                <li>
+                                                    <div class="form_item" style="height:100px;">
+                                                        <label> 描述：</label>
+                                                        @Html.TextAreaFor(m => m.MiaoShu, new { style = "height:100px;" })
+                                                    </div>
+
+                                                </li>
+                                                <li>
+                                                    <div class="form_item" style="height:100px;">
+                                                        <label> 上传图片：</label>
+                                                        @Html.TextAreaFor(m => m.TuPian, new { style = "height:100px;" })
+                                                    </div>
+
+                                                </li>
+
+                                                <li class="regist_btn">
+                                                    <button id="email_btn" type="submit">提交</button>
+
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <!--登陆 -->
+
+                                    </div>
+
+
+                                }
+
+                                <!--居中end-->
+
+                            </div>
+                        </dd>
+
+                    </dl>
+                </div>
+
+           
+        </div>
+
+
+
+  
+</div>
+
+</body>
+</html>

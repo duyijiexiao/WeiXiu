@@ -21,6 +21,25 @@ namespace Langben.IBLL
     /// <returns></returns>
      [OperationContract]
      int ShenHe(string ids,string State);
+     /// <summary>
+     /// 根据电话号码，查看详细信息
+     /// </summary>
+     /// <param name="id">根据电话号码</param>
+     /// <returns></returns>
+     [OperationContract]
+     HuiYuan GetByPhone(string phone, string pwd, string biaoshi);
+     /// <summary>
+     /// 找回密码
+     /// </summary>
+     /// <param name="phone"></param>
+     /// <param name="pwd"></param>
+     /// <param name="biaoshi"></param>
+     /// <returns></returns>
+     [OperationContract]
+     HuiYuan NewPassword(string phone, string pwd, string biaoshi);
+
+     [OperationContract]
+     bool IsPhone(string phone, string biaoshi);
     }
 }
 

@@ -22,6 +22,7 @@ namespace Langben.DAL
         public string id { get; set; }
         public string name { get; set; }
         public string parentid { get; set; }
+        public string BiaoShi { get; set; }
     
         public virtual ICollection<Department> Department1 { get; set; }
         public virtual Department Department2 { get; set; }

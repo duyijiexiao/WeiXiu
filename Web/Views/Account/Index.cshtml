@@ -1,0 +1,107 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录 </title>
+
+    @Styles.Render("~/Content/base")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/my")
+   
+</head>
+<body>
+    <div class="regist_header clearfix">
+        <div class="wrap">
+            <a class="logo" href="#"><img alt="狼奔维修系统" src="~/images/@(ViewBag.Id).png" /></a>
+            <div class="regist_header_right clearfix">
+
+                <div class="help_wrap">
+                    <a href="#" class="hd_menu"><s class="help_ico"></s>帮助中心</a>
+
+                </div>
+                <span class="fr">您好，欢迎光临维修系统！  </span>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="login_wrap">
+        <div class="wrap clearfix">
+            <div class="mod_login_wrap login_entry_css">
+                <div class="clearfix" style="position: relative;">
+                    <div style="position: relative; padding-left: 160px; padding-right: 160px; height: 40px;">
+                        <h3 style="margin: 0 auto;float: none; width: 100%;">维修申请用户登录</h3>
+                    </div>
+                    <a style="position: absolute; right: 15px; top: 0px;" href="/@ViewBag.Id/Account/Register" class="regist_new blue_link">
+                        注册新账号
+                    </a>
+                </div>
+                <div class="login_form">
+                    <i class="arraow">&nbsp;</i>
+                    <p id="error_tips" class="error_tips" style="display: none">您填写的账户名不存在，请核对后重新填写</p>
+                    <div class="form_item_wrap">
+
+                        <div class="form_item">
+                            <label class="user_ico">&nbsp;</label>
+                            <input id="UserName" type="text" name="UserName" spellcheck="false" tabindex="1" class="ipt  ipt_username"
+                                   style="outline: none;" value="" />
+
+                        </div>
+                        <div class="form_item">
+                            <label class="paswd_ico">&nbsp;</label>
+                            <input id="Password" type="password" name="Password" tabindex="2" class="ipt ipt_password" style="outline: none;" />
+                            <a href="/@ViewBag.Id/Passport" target="_blank" class="forget_pswd" tabindex="-1">忘记密码？</a>
+                        </div>
+                        <p id="autoLoginDiv" class="auto_login">
+                            <a id="check_agreement"class="uncheck_agreement" href="#">自动登录</a>
+                            <input id="autoLoginCheck" type="hidden" />
+                            <label id="agreement_tips" style="display: none; color: red;">请勿在公用电脑上启用。</label>
+                        </p>
+                        <button id="login_button" type="submit" class="login_btn" onclick="javascript:double_submit();return false;">登录</button>
+                    </div>
+                    <div class="login_entry">
+                        <p>注意事项</p>
+                        <div class="account_more">
+                            只有审核通过的账户才能登陆
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="mod_left_banner">
+                <img width="400" height="300" id="img" src="~/images/login_pic.jpg" />
+
+            </div>
+        </div>
+    </div>
+
+    <div id="simplefooter">
+        <p>Copyright &copy;  2003-2014，All Rights Reserved</p>
+    </div>
+    <script>
+        $(function () {
+            $("#check_agreement").click(function () {
+                if ($(this).hasClass("uncheck_agreement")) {
+                    $(this).attr("class", "check_agreement");
+                    $("#autoLoginCheck").val(true);
+                    $("#agreement_tips").show();
+                } else {
+                    $(this).attr("class", "uncheck_agreement");
+                    $("#autoLoginCheck").val(false);
+                    $("#agreement_tips").hide();
+                }
+                return false;
+            })
+        })
+         
+    </script>
+    <input id="BiaoShi" type="hidden" value="@ViewBag.Id" />
+</body>
+
+</html>

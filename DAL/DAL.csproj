@@ -74,6 +74,7 @@
     <Compile Include="Framework\BaseViewRepository.cs" />
     <Compile Include="Framework\HuiYuanRepository.cs" />
     <Compile Include="Framework\IBaseEntity.cs" />
+    <Compile Include="Framework\ShenQing2Repository.cs" />
     <Compile Include="GenZong.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

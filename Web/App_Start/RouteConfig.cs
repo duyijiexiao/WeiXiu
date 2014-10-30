@@ -12,12 +12,32 @@ namespace Web
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
             routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+             "Default",
+             "",
+             new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+         );
+            routes.MapRoute(
+                           name: "Apply",
+                           url: "Apply/{action}/{id}",
+                           defaults: new { controller = "Apply", action = "Index", id = UrlParameter.Optional }
+                       );
+            routes.MapRoute(
+                             name: "Company",
+                             url: "Company/{action}/{id}",
+                             defaults: new { controller = "Company", action = "Index", id = UrlParameter.Optional }
+                         );
+            routes.MapRoute(
+                          "Account",
+                          "{id}",
+                          new { controller = "Account", action = "Index", id = UrlParameter.Optional }
+                      );
+            routes.MapRoute(
+                name: "Default3",
+                url: "{id}/{controller}/{action}",
+                defaults: new { controller = "Passport", action = "Index", id = UrlParameter.Optional }
             );
+
         }
     }
 }

@@ -53,6 +53,7 @@
     <Compile Include="Framework\DataOfDiffrent.cs" />
     <Compile Include="Framework\ExceptionsHander.cs" />
     <Compile Include="Framework\HuiYuanBLL.cs" />
+    <Compile Include="Framework\ShenQing2BLL.cs" />
     <Compile Include="Framework\SysFieldHander.cs" />
     <Compile Include="MemberBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

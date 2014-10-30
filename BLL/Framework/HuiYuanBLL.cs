@@ -11,13 +11,26 @@ namespace Langben.BLL
     /// <summary>
     /// 会员 
     /// </summary>
-    public partial class HuiYuanBLL :  IBLL.IHuiYuanBLL, IDisposable
+    public partial class HuiYuanBLL : IBLL.IHuiYuanBLL, IDisposable
     {
-        public int ShenHe(string ids,string State)
+        public int ShenHe(string ids, string State)
         {
-         return repository.ShenHe(db, ids, State);
+            return repository.ShenHe(db, ids, State);
         }
 
+        public HuiYuan GetByPhone(string phone, string pwd, string biaoshi)
+        {
+            return repository.GetByPhone(db, phone, pwd, biaoshi);
+        }
+
+        public HuiYuan NewPassword(string phone, string pwd, string biaoshi)
+        {
+            return repository.NewPassword(db, phone, pwd, biaoshi);
+        }
+        public bool IsPhone(string phone, string biaoshi)
+        {
+            return repository.IsPhone(db, phone, biaoshi);
+        }
     }
 }
 

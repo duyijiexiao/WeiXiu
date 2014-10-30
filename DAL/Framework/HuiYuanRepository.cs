@@ -10,6 +10,30 @@ namespace Langben.DAL
     /// </summary>
     public partial class HuiYuanRepository : BaseRepository<HuiYuan>, IDisposable
     {
+        public HuiYuan GetByPhone(SysEntities db, string phone, string pwd, string biaoshi)
+        {
+            return db.HuiYuan.SingleOrDefault(s => s.PhoneNumber == phone && s.Password == pwd && s.BiaoShi == biaoshi && s.State == "开启");
+
+        }
+        public HuiYuan NewPassword(SysEntities db, string phone, string pwd, string biaoshi)
+        {
+            var data = db.HuiYuan.SingleOrDefault(s => s.PhoneNumber == phone && s.Password == pwd && s.BiaoShi == biaoshi && s.State == "开启");
+            if (data == null)
+            {
+                return null;
+            }
+            return data;
+        }
+        public bool IsPhone(SysEntities db, string phone, string biaoshi)
+        {
+            var data = db.HuiYuan.FirstOrDefault(s => s.PhoneNumber == phone && s.BiaoShi == biaoshi);
+            if (data == null)
+            {
+                return false;
+            }
+            return true;
+        }
+
         /// <summary>
         /// 根据id审核
         /// </summary>

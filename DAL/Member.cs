@@ -27,5 +27,6 @@ namespace Langben.DAL
         public string status { get; set; }
         public Nullable<System.DateTime> CreateTime { get; set; }
         public string Remark { get; set; }
+        public string BiaoShi { get; set; }
     }
 }

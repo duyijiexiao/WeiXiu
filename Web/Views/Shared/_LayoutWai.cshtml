@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title </title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/my")
+
+   @*根据cookies中的值，控制huanying中的值*@
+</head>
+<body>
+    <div class="regist_header clearfix">
+        <div class="wrap">
+            <a id="logo" class="logo" href="#"></a>
+            <div class="regist_header_right clearfix">
+              
+                <div class="help_wrap">
+                    <a href="#" class="hd_menu"><s class="help_ico"></s>帮助中心</a>
+
+                </div>
+                <span id="huanying">您好，欢迎光临维修系统！  </span>
+            </div>
+        </div>
+    </div>
+
+    @RenderBody()
+
+    <div id="simplefooter">
+        <p>Copyright &copy;  2003-2014，All Rights Reserved</p>
+    </div>
+    
+    <input id="BiaoShi" type="hidden" value="@ViewBag.Id" />
+    <script>
+        $(function () {
+            if ($("#BiaoShi").val()) {
+                document.getElementById("logo").innerHTML = '<img alt="维修系统" src="/images/' + $("#BiaoShi").val() + '.png" />';
+            }
+
+
+        })
+    </script>
+</body>
+</html>

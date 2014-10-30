@@ -19,6 +19,7 @@ namespace Langben.DAL
         public string BaoXiuRen { get; set; }
         public string LianXiDianHua { get; set; }
         public string MiaoShu { get; set; }
+        public Nullable<System.DateTime> YuYue { get; set; }
         public string TuPian { get; set; }
         public Nullable<int> PaiXu { get; set; }
         public string Remark { get; set; }

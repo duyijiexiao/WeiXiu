@@ -1,0 +1,120 @@
+﻿@{
+    ViewBag.Title = "客户评语";
+}
+<div class="regist_wrap nobg_wrap">
+    <div class="wrap">
+
+        <div class="find_password_wrap">
+            <ul class="clearfix">
+                <li>
+                    <i></i><u></u>
+                    <b>1</b>维修申请
+                </li>
+                <li class="">
+                    <i></i>
+                    <b>2</b>提交成功
+                </li>
+                <li class="first cur">
+                    <i></i>
+                    <b>3</b>客户评语
+                </li>
+                <li class="last">
+                    <b>4</b>维护结束
+                </li>
+            </ul>
+        </div>
+        <div class="regist_form b2b_regist_list">
+            <p class=" b2b_regist_tit">客户打分：</p>
+            <ul class="clearfix">
+
+                <li>
+                    <div id="DaFen">
+                    </div>
+                    <div id="DaFen_error" class="tips_box regist_tips_error">
+
+                    </div>
+                </li>
+
+
+            </ul>
+            <p class=" b2b_regist_tit">客户评论：</p>
+            <ul class="clearfix">
+                <li>
+                    <div class="form_item" style="height:206px;width:580px; ">
+
+                        <textarea onblur="checkshenqing('PingLun', '评论不能为空');" style="height: 154px; width: 550px; font-family: Microsoft YaHei; " name="PingLun" id="PingLun"></textarea>
+
+                    </div>
+                    <div id="PingLun_error" class="tips_box regist_tips_error">
+                        <u></u>
+                    </div>
+                </li>
+                <li class="setting_btn clearfix">
+                    <button type="submit" id="login_button" onclick="javascript:shenqing();return false;">下一步</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<link href="~/Content/jquery.raty.css" rel="stylesheet" />
+<script src="~/Content/jquery.raty.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#DaFen').raty({ size: 124 });
+
+    })
+    function checkshenqing(id, message) {
+        if ($("#" + id).val() == "") {
+
+            $("#" + id).focus();
+
+            showErrorInfo(id + "_error", message);
+            return false
+        } else {
+
+            $("#" + id + "_error").hide();
+            jQuery("#" + id).parents("li").removeClass("cur_error")
+        }
+
+        return true
+    }
+    var messageDaFen = '请打分',
+            messagePingLun = '评论不能为空';
+    function shenqing() {
+
+        if (!$('#DaFen').raty('score')) {
+            showErrorInfo("DaFen_error", messageDaFen);
+            return;
+        } else if (!checkshenqing('PingLun', messagePingLun)) {
+            return;
+        }
+        var ShenQing = {
+            DaFen: $("#DaFen").val(),
+            PingLun: $("#PingLun").val()
+        };
+
+        jQuery.post("", ShenQing, function (response) {
+            if (response) {
+                if (response.errorCode == 0) {
+                    window.location = "/Apply/Finished";
+                }
+                else if (response.errorCode == 1) {
+                    alert(response.content);
+                    return
+                }
+                else if (response.errorCode == 2) {
+                    showErrorInfo("DaFen_error", messageDaFen);
+                    return
+                }
+                else if (response.errorCode == 4) {
+                    checkshenqing('PingLun', messagePingLun)
+                    ; return
+                }
+
+            }
+        })
+    }
+
+</script>
+

@@ -14,6 +14,7 @@
           <Property Name="BaoXiuRen" Type="nvarchar" MaxLength="200" />
           <Property Name="LianXiDianHua" Type="nvarchar" MaxLength="200" />
           <Property Name="MiaoShu" Type="nvarchar" MaxLength="4000" />
+          <Property Name="YuYue" Type="datetime" />
           <Property Name="TuPian" Type="nvarchar" MaxLength="200" />
           <Property Name="PaiXu" Type="int" />
           <Property Name="Remark" Type="nvarchar" MaxLength="4000" />
@@ -47,6 +48,7 @@
           <Property Name="LogonIP" Type="nvarchar" MaxLength="200" />
           <Property Name="State" Type="nvarchar" MaxLength="200" />
           <Property Name="Remark" Type="nvarchar" MaxLength="200" />
+          <Property Name="BiaoShi" Type="nvarchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
@@ -55,6 +57,7 @@
           <Property Name="id" Type="nvarchar" MaxLength="36" Nullable="false" />
           <Property Name="name" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="parentid" Type="nvarchar" MaxLength="36" />
+          <Property Name="BiaoShi" Type="nvarchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="GenZong">
           <Key>
@@ -105,6 +108,7 @@
           <Property Name="status" Type="nvarchar" MaxLength="200" />
           <Property Name="CreateTime" Type="datetime" />
           <Property Name="Remark" Type="nvarchar" MaxLength="200" />
+          <Property Name="BiaoShi" Type="nvarchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="School">
           <Key>
@@ -251,6 +255,7 @@
           <Property Name="BaoXiuRen" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="LianXiDianHua" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="MiaoShu" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="YuYue" Type="DateTime" Precision="3" />
           <Property Name="TuPian" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="PaiXu" Type="Int32" />
           <Property Name="Remark" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
@@ -284,6 +289,7 @@
           <Property Name="LogonIP" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="State" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Remark" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="BiaoShi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
@@ -292,6 +298,7 @@
           <Property Name="id" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="true" />
           <Property Name="name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="parentid" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="BiaoShi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Department1" Relationship="SysModel.FK_DEPARTME_REFERENCE_DEPARTME" FromRole="Department" ToRole="Department1" />
           <NavigationProperty Name="Department2" Relationship="SysModel.FK_DEPARTME_REFERENCE_DEPARTME" FromRole="Department1" ToRole="Department" />
         </EntityType>
@@ -346,6 +353,7 @@
           <Property Name="status" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="CreateTime" Type="DateTime" Precision="3" />
           <Property Name="Remark" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="BiaoShi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="School">
           <Key>
@@ -459,6 +467,7 @@
                 <ScalarProperty Name="Remark" ColumnName="Remark" />
                 <ScalarProperty Name="PaiXu" ColumnName="PaiXu" />
                 <ScalarProperty Name="TuPian" ColumnName="TuPian" />
+                <ScalarProperty Name="YuYue" ColumnName="YuYue" />
                 <ScalarProperty Name="MiaoShu" ColumnName="MiaoShu" />
                 <ScalarProperty Name="LianXiDianHua" ColumnName="LianXiDianHua" />
                 <ScalarProperty Name="BaoXiuRen" ColumnName="BaoXiuRen" />
@@ -470,6 +479,7 @@
           <EntitySetMapping Name="Company">
             <EntityTypeMapping TypeName="SysModel.Company">
               <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="BiaoShi" ColumnName="BiaoShi" />
                 <ScalarProperty Name="Remark" ColumnName="Remark" />
                 <ScalarProperty Name="State" ColumnName="State" />
                 <ScalarProperty Name="LogonIP" ColumnName="LogonIP" />
@@ -489,6 +499,7 @@
           <EntitySetMapping Name="Department">
             <EntityTypeMapping TypeName="SysModel.Department">
               <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="BiaoShi" ColumnName="BiaoShi" />
                 <ScalarProperty Name="parentid" ColumnName="parentid" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="id" ColumnName="id" />
@@ -532,6 +543,7 @@
           <EntitySetMapping Name="Member">
             <EntityTypeMapping TypeName="SysModel.Member">
               <MappingFragment StoreEntitySet="Member">
+                <ScalarProperty Name="BiaoShi" ColumnName="BiaoShi" />
                 <ScalarProperty Name="Remark" ColumnName="Remark" />
                 <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
                 <ScalarProperty Name="status" ColumnName="status" />

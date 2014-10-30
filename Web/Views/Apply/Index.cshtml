@@ -1,0 +1,165 @@
+﻿@{
+    ViewBag.Title = "维修申请";
+}
+<div class="regist_wrap nobg_wrap">
+    <div class="wrap">
+
+        <div class="find_password_wrap">
+            <ul class="clearfix">
+                <li class="first cur">
+                    <i></i><u></u>
+                    <b>1</b>维修申请
+                </li>
+                <li class="">
+                    <i></i>
+                    <b>2</b>提交成功
+                </li>
+                <li class="">
+                    <i></i>
+                    <b>3</b>客户评语
+                </li>
+                <li class="last">
+                    <b>4</b>维护结束
+                </li>
+            </ul>
+        </div>
+        <div class="regist_form b2b_regist_list">
+            <p class=" b2b_regist_tit">基本信息</p>
+            <ul class="clearfix">
+                <li>
+                    <div class="form_item">
+                        <label>单   位：</label>
+                        <select id="XueXiao" style="width: 293px; height: 33px; " class="ipt">
+                            <option value="">-- 请选择 --</option>
+                            <option value="60">北京海淀区中关村第四小学</option>
+                        </select>
+                    </div>
+                    <div id="XueXiao_error" class="tips_box regist_tips_error">
+                        <u></u>
+                    </div>
+                </li>
+                <li>
+                    <div class="form_item">
+                        <label>报  修  人：</label>
+                        <input type="text" id="BaoXiuRen" onblur="checkshenqing('BaoXiuRen', '报修人不能为空');" value="" class="ipt ipt_phone" />
+                    </div>
+                    <div id="BaoXiuRen_error" class="tips_box regist_tips_error">
+
+                    </div>
+                </li>
+                <li>
+                    <div class="form_item">
+                        <label>联系方式：</label>
+                        <input type="text" id="LianXiDianHua" onblur="checkshenqing('LianXiDianHua', '联系方式不能为空');" value="" class="ipt ipt_phone" />
+                    </div>
+                    <div id="LianXiDianHua_error" class="tips_box regist_tips_error">
+
+                    </div>
+                </li>
+                <li>
+                    <div class="form_item">
+                        <label>预约时间：</label>
+                        <input type="text" id="YuYue" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm', minDate: '%y-%M-#{%d}' })" class="ipt ipt_phone" />
+                    </div>
+                    <div id="YuYue_error" class="tips_box regist_tips_error">
+
+                    </div>
+                </li>
+            </ul>
+            <p class=" b2b_regist_tit">描述信息:</p>
+            <ul class="clearfix">
+                <li>
+                    <div id="addimg" class="form_item" style="height:266px;width:580px; ">
+
+                        <textarea onblur="checkshenqing('MiaoShu', '描述不能为空');" style="height: 154px; width: 550px; font-family: Microsoft YaHei; " name="MiaoShu" id="MiaoShu"></textarea>
+                        <br style="clear:both; " /> 
+                        <div   id="filePicker">
+                            点击上传图片，最多上传3张，每张最大5mb
+                        </div> 
+                    </div>
+
+
+                    <div id="MiaoShu_error" class="tips_box regist_tips_error">
+                        <u></u>
+                    </div>
+                </li>
+                <li class="setting_btn clearfix">
+                    <button type="submit" id="login_button" onclick="javascript:shenqing();return false;">下一步</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+
+    })
+    function checkshenqing(id, message) {
+        if ($("#" + id).val() == "") {
+
+            $("#" + id).focus();
+
+            showErrorInfo(id + "_error", message);
+            return false
+        } else {
+
+            $("#" + id + "_error").hide();
+            jQuery("#" + id).parents("li").removeClass("cur_error")
+        }
+
+        return true
+    }
+    var messageBaoXiuRen = '报修人不能为空',
+        messageLianXiDianHua = '联系方式不能为空',
+            messageMiaoShu = '描述不能为空';
+    function shenqing() {
+
+        if (!checkshenqing('BaoXiuRen', messageBaoXiuRen)) {
+            return;
+        }
+        if (!checkshenqing('LianXiDianHua', messageLianXiDianHua)) {
+            return;
+        } if (!checkshenqing('MiaoShu', messageMiaoShu)) {
+            return;
+        }
+       
+        var ShenQing = {
+            XueXiao: $("#XueXiao").val(),
+            BaoXiuRen: $("#BaoXiuRen").val(),
+            LianXiDianHua: $("#LianXiDianHua").val(),
+            MiaoShu: $("#MiaoShu").val(),
+            TuPian: "" 
+        };
+
+        jQuery.post("", ShenQing, function (response) {
+            if (response) {
+                if (response.errorCode == 0) {
+                    window.location = "/Apply/OK";
+                }
+                else if (response.errorCode == 99) {
+                    alert(response.content);
+                    return
+                }
+                else if (response.errorCode == "2") {
+                    checkshenqing('BaoXiuRen', messageBaoXiuRen);
+                    return
+                }
+                else if (response.errorCode == "3") {
+                    checkshenqing('LianXiDianHua', messageLianXiDianHua);
+                    return
+                }
+                else if (response.errorCode == "4") {
+                    checkshenqing('MiaoShu', messageMiaoShu)
+                    ; return
+                }
+
+            }
+        })
+    }
+
+</script>
+<link href="~/Content/webuploader/css/webuploader.css" rel="stylesheet" />
+
+<script src="~/Content/webuploader/js/webuploader.nolog.min.js"></script>
+<script src="~/Scripts/UploadFile.js"></script>

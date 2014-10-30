@@ -40,9 +40,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Senparc.Weixin.MP">
+      <HintPath>..\..\..\weixin\Senparc.Weixin.MP.BuildOutPut\Senparc.Weixin.MP.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -157,38 +161,92 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Codes\QyCustomMessageContext.cs" />
+    <Compile Include="Codes\QyCustomMessageHandler.cs" />
+    <Compile Include="Codes\UploadFiles.cs" />
+    <Compile Include="Codes\Validator.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Codes\AccountModels.cs" />
+    <Compile Include="Codes\orderstates.cs" />
+    <Compile Include="Codes\Utils.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ApplyController.cs" />
+    <Compile Include="Controllers\CompanyController.cs" />
+    <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\FileUpController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PassportController.cs" />
+    <Compile Include="Controllers\QYController.cs" />
+    <Compile Include="Controllers\VcController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\SuggestionRes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Startup.cs" />
+    <Compile Include="Models\SysFieldModels.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\fonts\raty.svg" />
+    <Content Include="Content\images\cancel-off.png" />
+    <Content Include="Content\images\cancel-on.png" />
+    <Content Include="Content\images\star-half.png" />
+    <Content Include="Content\images\star-off-big.png" />
+    <Content Include="Content\images\star-off.png" />
+    <Content Include="Content\images\star-on-big.png" />
+    <Content Include="Content\images\star-on.png" />
+    <Content Include="Content\jquery.raty.css" />
+    <Content Include="Content\My97DatePicker\calendar.js" />
+    <Content Include="Content\My97DatePicker\demo.htm" />
+    <Content Include="Content\My97DatePicker\lang\en.js" />
+    <Content Include="Content\My97DatePicker\lang\zh-cn.js" />
+    <Content Include="Content\My97DatePicker\lang\zh-tw.js" />
+    <Content Include="Content\My97DatePicker\skin\datePicker.gif" />
+    <Content Include="Content\My97DatePicker\skin\default\datepicker.css" />
+    <Content Include="Content\My97DatePicker\skin\default\img.gif" />
+    <Content Include="Content\My97DatePicker\skin\WdatePicker.css" />
+    <Content Include="Content\My97DatePicker\skin\whyGreen\bg.jpg" />
+    <Content Include="Content\My97DatePicker\skin\whyGreen\datepicker.css" />
+    <Content Include="Content\My97DatePicker\skin\whyGreen\img.gif" />
+    <Content Include="Content\My97DatePicker\WdatePicker.js" />
+    <Content Include="Content\webuploader\css\webuploader.css" />
+    <Content Include="Content\webuploader\images\bg.png" />
+    <Content Include="Content\webuploader\images\icons.png" />
+    <Content Include="Content\webuploader\images\image.png" />
+    <Content Include="Content\webuploader\images\progress.png" />
+    <Content Include="Content\webuploader\images\style.css" />
+    <Content Include="Content\webuploader\images\success.png" />
+    <Content Include="Content\webuploader\js\expressInstall.swf" />
+    <Content Include="Content\webuploader\js\Uploader.swf" />
+    <Content Include="Content\webuploader\js\webuploader.min.js" />
+    <Content Include="Content\webuploader\js\webuploader.nolog.min.js" />
+    <Content Include="css\base - 复制.css" />
+    <Content Include="css\base2 - 复制.css" />
+    <Content Include="css\base2.css" />
+    <Content Include="css\base.css" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Content\Site.css" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\jquery-1.10.2.js" />
-    <Content Include="Scripts\jquery-1.10.2.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\respond.js" />
-    <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\_references.js" />
+    <Content Include="Images\cart3_step.png" />
+    <Content Include="Images\index\ap_categoryboxbg.gif" />
+    <Content Include="Images\login.png" />
+    <Content Include="Images\loginlogo.png" />
+    <Content Include="Images\login_pic.jpg" />
+    <Content Include="Images\login_repeat_line.png" />
+    <Content Include="Images\logo.png" />
+    <Content Include="Images\order\my_order_sprite.jpg" />
+    <Content Include="Images\regist.png" />
+    <Content Include="Images\regist_bg.jpg" />
+    <Content Include="Images\regist_topshadow.png" />
+    <Content Include="Content\fonts\raty.eot" />
+    <Content Include="Content\fonts\raty.ttf" />
+    <Content Include="Content\fonts\raty.woff" />
+    <None Include="Properties\PublishProfiles\weixiu.pubxml" />
+    <None Include="Scripts\my.js" />
+    <Content Include="Scripts\jquery.cookie.js" />
+    <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Content\jquery.raty.js" />
+    <Content Include="Scripts\UploadFile.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -200,29 +258,55 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Account\_RemoveAccountPartial.cshtml" />
-    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Manage.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Apply\Edit.cshtml" />
+    <Content Include="Views\Apply\List.cshtml" />
+    <Content Include="Views\Apply\Comment.cshtml" />
+    <Content Include="Views\Passport\Index.cshtml" />
+    <Content Include="Views\Passport\NewPassword.cshtml" />
+    <Content Include="Views\Passport\FindPassword.cshtml" />
+    <Content Include="Views\Passport\Success.cshtml" />
+    <Content Include="Views\Apply\Index.cshtml" />
+    <Content Include="Views\Company\Index.cshtml" />
+    <Content Include="Views\Apply\OK.cshtml" />
+    <Content Include="Views\Apply\Finished.cshtml" />
+    <None Include="Views\Shared\_LayoutWai.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Up\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <None Include="Project_Readme.html" />
+    <ProjectReference Include="..\BLL\BLL.csproj">
+      <Project>{90ae47ed-b0d9-4b2a-a7ac-1c6d74b51de6}</Project>
+      <Name>BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{ade2ca10-f91e-4312-ba9d-5d264291e549}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{d1ac05a2-96af-4124-ad40-ad0a05c84f5c}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IBLL\IBLL.csproj">
+      <Project>{9b7fca89-a8a4-4fa8-b67b-0bf0fe9c53cd}</Project>
+      <Name>IBLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="E:\weixin\Senparc.Weixin.MP.MvcExtension\Senparc.Weixin.MP.MvcExtension\Senparc.Weixin.MP.MvcExtension.csproj">
+      <Project>{ee8630bc-6191-4c40-9061-12c76342562d}</Project>
+      <Name>Senparc.Weixin.MP.MvcExtension</Name>
+    </ProjectReference>
+    <ProjectReference Include="E:\weixin\Senparc.Weixin.QY\Senparc.Weixin.QY\Senparc.Weixin.QY.csproj">
+      <Project>{2ca35598-f1a1-4dc9-aa20-a4346bfcb954}</Project>
+      <Name>Senparc.Weixin.QY</Name>
+    </ProjectReference>
+    <ProjectReference Include="E:\weixin\Senparc.Weixin\Senparc.Weixin\Senparc.Weixin.csproj">
+      <Project>{814092cd-9cd0-4fb7-91e8-d147f476f1fb}</Project>
+      <Name>Senparc.Weixin</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

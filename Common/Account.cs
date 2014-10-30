@@ -9,9 +9,12 @@ namespace Common
     /// <summary>
     /// 登录的用户信息
     /// </summary>
+   [Serializable]
     [DataContract]
     public class Account
     {
+        [DataMember]
+        public string BiaoShi { get; set; }
         /// <summary>
         /// 主键
         /// </summary>

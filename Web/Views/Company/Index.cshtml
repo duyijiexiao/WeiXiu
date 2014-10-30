@@ -1,0 +1,422 @@
+﻿@{
+    ViewBag.Title = "企业申请";
+}
+@{
+    Layout = "~/Views/Shared/_LayoutWai.cshtml";
+}
+ 
+<div class="regist_wrap nobg_wrap">
+    <div class="wrap">
+        <div class="set_password_wrap">
+            <div class="b2b_regist">
+                <strong>企业申请</strong>
+                <p>（<i>* </i>手机号、固定电话选填一项，其余均为必填项）</p>
+            </div>
+        </div>
+        <form id="registCompanyInfoSubmit" name="registCompanyInfoSubmit" method="post" action="/passport/b2bRegister.do">
+            <div class="regist_form b2b_regist_list">
+                <p class=" b2b_regist_tit">账号信息</p>
+                <ul class="clearfix  regist_account_info">
+                    <!--取得焦点的时候给li加class:cur,错误的时候给li加class：cur_error -->
+                    <li>
+                        <div class="form_item">
+                            <label>手机号：</label>
+                            <input type="text" onblur="checkPhoneOnBlur()" onfocus="    phoneOnFocus('phone')" onkeyup="    showoff('phone_desc');" id="phone" value="请输入手机号码" class="ipt gay_text ipt_phone" />
+                        </div>
+                        <div id="phone_tip" class="tips_box regist_tips">
+                            <u></u>
+                            请填写正确的手机号码，以便接收通知，找回密码等。
+                        </div>
+                        <div id="phone_error" class="tips_box regist_tips_error">
+                        </div>
+                        <div id="phone_desc" class="tips_box username_ok"></div>
+                    </li>
+
+                    <li>
+                        <div class="form_item">
+                            <label>设置密码：</label>
+                            <input type="text" value="6-20个大小写英文字母、符号或数字" name="pwd" class="ipt gay_text" />
+                            <input type="password" onfocus="passwordOnFocus('password_mobile');" onblur="checkPasswordOnBlur('password_mobile');" onpaste="return false;" oncut="return false;" oncopy="return false;" name="user.password" id="password_mobile" class="ipt password none" />
+                        </div>
+                        <div id="password_mobile_tip" class="tips_box regist_tips">
+                            <u></u>
+                            请填写6-20个大小写英文字母、符号或数字。
+                        </div>
+
+                        <div id="password_mobile_error" class="tips_box regist_tips_error">
+                        </div>
+                        <div id="password_mobile_desc" class="tips_box username_ok"></div>
+
+
+                    </li>
+                    <li>
+                        <div class="form_item">
+                            <label>确认密码：</label>
+                            <input type="text" value="请再次输入密码" name="pwd" class="ipt gay_text" />
+                            <input type="password" onblur="checkPassword2OnBlur('password_mobile');" onkeyup="showoff('password_mobile2_desc');showoff('password_mobile2_error')" onfocus="hideOtherTips('password_mobile2')" onpaste="return false;" oncut="return false;" oncopy="return false;" name="password2" id="password_mobile2" class="ipt password none" readonly="readonly" style="background-color: rgb(192, 193, 196);" />
+                            <div id="password_mobile2_tip" class="tips_box regist_tips">
+                                <u></u>
+                                请再次输入密码。
+                            </div>
+                            <div id="password_mobile2_error" class="tips_box regist_tips_error">
+                            </div>
+                            <div id="password_mobile2_desc" class="tips_box username_ok"></div>
+                        </div>
+                    </li>
+
+                </ul>
+                <p class=" b2b_regist_tit">企业信息</p>
+                <ul class="clearfix">
+                    <!--取得焦点的时候给li加class:cur,错误的时候给li加class：cur_error -->
+                    <li>
+                        <div class="form_item">
+                            <label>公司名称：</label>
+                            <input type="text" onfocus="companyOnFocus('company')" onkeyup="showoff('company_desc');" onblur="    checkCompanyOnBlur();" id="company" name="b2bCompany.companyName" value="请按营业执照填写" class="ipt gay_text ipt_companyName">
+                        </div>
+                        <div id="company_tip" class="tips_box regist_tips">
+                            <u></u>
+                            请按营业执照填写
+                        </div>
+                        <div id="company_error" class="tips_box regist_tips_error">
+                        </div>
+                        <div id="company_desc" class="tips_box username_ok"></div>
+                    </li>
+
+                    <li>
+                        <div class="form_item">
+                            <label>公司地址：</label>
+                            <input type="text" onblur="checkAddress1OnBlur();" onkeyup="showoff('address1_desc');" id="address1" name="b2bCompany.address.address1" value="" class="ipt   ipt_address1">
+                        </div>
+                        <div id="address1_error" class="tips_box regist_tips_error">
+                        </div>
+                        <div id="address1_desc" class="tips_box username_ok"></div>
+                    </li>
+                    <li>
+                        <div class="form_item">
+                            <label>联系人姓名：</label>
+                            <input type="text" onblur="checklinkmanNameOnBlur();" onkeyup="    showoff('linkmanName_desc');" id="linkmanName" name="b2bCompany.linkmanName" value="" class="ipt   ipt_linkmanName">
+                        </div>
+                        <div id="linkmanName_error" class="tips_box regist_tips_error">
+                        </div>
+                        <div id="linkmanName_desc" class="tips_box username_ok"></div>
+                    </li>
+
+
+                    <li>
+                        <div class="form_item">
+                            <label>手机号：</label>
+                            <input type="text"  onfocus="    linkmanMobileOnFocus('linkmanMobile')"   id="linkmanMobile" name="b2bCompany.linkmanMobile" value="手机号码、固定电话必填一项" class="ipt gay_text ipt_linkmanMobile">
+                        </div>
+                        <div id="linkmanMobile_tip" class="tips_box regist_tips">
+                            <u></u>
+                            手机号码、固定电话必填一项
+                        </div>
+                        <div id="linkmanMobile_error" class="tips_box regist_tips_error">
+                        </div>
+                        <div id="linkmanMobile_desc" class="tips_box username_ok"></div>
+                    </li>
+                    <li>
+                        <div class="form_item">
+                            <label>固定电话：</label>
+                            <input type="text" onfocus="    landLineOnFocus('landLine')" id="landLine" name="b2bCompany.landLine" value="区号-电话号码-分机" class="ipt gay_text ipt_landLine">
+                        </div>
+                        <div id="landLine_tip" class="tips_box regist_tips">
+                            <u></u>
+                            格式如：区号-电话号码-分机(010-12345678-1234)
+                        </div>
+                        <div id="landLine_error" class="tips_box regist_tips_error">
+                        </div>
+                        <div id="landLine_desc" class="tips_box username_ok"> </div>
+                    </li>
+
+                    <li class="setting_btn clearfix">
+                        <button class="fl" onclick="javascript:registerSubmit();return false;" type="button" id="button">立即申请</button>
+                    </li>
+                </ul>
+            </div>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+
+    function linkmanMobileOnFocus(a) {
+        $("#" + a + "").removeClass("gay_text");//字体变化
+        if (jQuery("#" + a + "").val() == "手机号码、固定电话必填一项") {
+            jQuery("#" + a + "").val("");
+        }
+
+        hideOtherTips(a);
+        return
+
+    }
+    function landLineOnFocus(a) {
+        $("#" + a + "").removeClass("gay_text");//字体变化
+        if (jQuery("#" + a + "").val() == "区号-电话号码-分机") {
+            jQuery("#" + a + "").val("");
+        }
+
+        hideOtherTips(a);
+        return
+
+    }
+   
+    function registerSubmit() {
+        if (!doPhoneSubmit("password_mobile"))
+        {
+            return;
+        }
+        if (!checkInputParameters())
+        {
+            return;
+        }
+        //提交服务器
+        var RegisterViewModel = {
+            "UserName": phone,
+            "Password": password,
+            "ConfirmPassword": password2
+
+
+
+
+
+
+
+
+
+
+        }
+        jQuery.post("", RegisterViewModel, function (response) {
+
+            if (response.errorCode == 0) {
+                alert("注册成功，请等待管理员审核");
+            } else if (response.errorCode == 1) {
+                alert(response.content);
+            } else if (response.errorCode == 2) {
+                showPhoneError("不能为空");
+            } else if (response.errorCode == 4) {
+                showPass2Error("password_mobile", "两次密码输入不一致");
+            } else if (response.errorCode == 5) {
+                showPassError("password_mobile", "您的密码存在安全隐患,请更改 ");
+            } else if (response.errorCode == 13) {
+                alert("系统异常");
+            } else if (response.errorCode == 15) {
+                showPhoneError("格式错误，请输入正确的手机号");
+            } else if (response.errorCode == 16) {
+                showPhoneError("该手机号已存在，<a href='/Account/Login'>登录</a>");
+            }
+
+
+        });
+
+
+
+    }
+    function checkInputParameters() {
+        var m = jQuery("#company").val();
+        if (m == "" || m == "请按营业执照填写")
+        {
+            showCompanyError("请填写公司名称");
+            return false
+        }
+        if (m.length > 40) {
+            showCompanyError("请填写公司名称，不超过40个字");
+            return false
+        }
+        if (!checkTextValid(m)) {
+            showCompanyError("您填写的内容包含非法信息");
+            return false
+        }
+
+
+        var s = jQuery("#address1").val();
+        if (s.length > 120) {
+            showAddress1Error("请填写公司地址，不超过120个字"); return false
+        }
+        if (!checkTextValid(s)) {
+            showAddress1Error("您填写的内容包含非法信息"); return false
+        }
+        var l = jQuery("#linkmanName").val();
+        if (l == "") {
+            showLinkmanNameError("请填写联系人姓名");
+            return false
+        }
+        if (l.length > 10) {
+            showLinkmanNameError("请填写联系人姓名，不超过10个字"); return false
+        }
+        if (!checkTextValid(l)) {
+            showLinkmanNameError("您填写的内容包含非法信息"); return false
+        }
+        var t = jQuery("#linkmanMobile").val();
+        var n = jQuery("#landLine").val();
+        if (t == "手机号码、固定电话必填一项") {
+            t = "";
+            jQuery("#linkmanMobile").attr("value", "")
+        }
+        if (n == "区号-电话号码-分机") {
+            n = "";
+            jQuery("#landLine").attr("value", "")
+        }
+        if (t == "" && n == "") {
+            showLinkmanMobileError("手机或电话必填一项"); return false
+        }
+        if (t != "") {
+            var r = /^1\d{10,12}$/;
+            if (!t.match(r)) {
+                showLinkmanMobileError("请填写正确手机号码"); return false
+            }
+        }
+
+        if (n != "") {
+            var r = /^[0](\d{2,3})-(\d{7,8})(-(\d{1,6}))*$/;
+            if (!n.match(r)) {
+                showLandLineError("请填写正确电话号码");
+                return false
+            }
+        }
+
+
+
+        return true
+    }
+
+
+    function companyOnFocus(a) {
+        $("#" + a + "").removeClass("gay_text");//字体变化
+        if (jQuery("#" + a + "").val() == "请按营业执照填写") {
+            jQuery("#" + a + "").val("");
+        }
+
+        hideOtherTips(a);
+        return
+
+    }
+    function checklinkmanNameOnBlur() {
+
+        var e = jQuery("#linkmanName").val();
+
+        if (e == "") {
+            showErrorInfo("linkmanName_error", "联系人姓名不能为空");
+            return;
+        }
+        if (e.length > 120) {
+            showErrorInfo("linkmanName_error", "请填写联系人姓名，不超过120个字");
+            return;
+        } else {
+
+            if (!checkTextValid(e)) {
+                showErrorInfo("linkmanName_error", "您填写的内容包含非法信息")
+            }
+            else {
+                $("#linkmanName_desc").css("display", "block");
+                jQuery("#linkmanName").parents("li").removeClass("cur_error")
+            }
+        }
+
+    }
+    function checkAddress1OnBlur() {
+
+        var e = jQuery("#address1").val();
+
+        if (e == "") {
+            showErrorInfo("address1_error", "公司地址不能为空");
+            return;
+        }
+        if (e.length > 120) {
+            showErrorInfo("address1_error", "请填写公司地址，不超过120个字");
+            return;
+        } else {
+
+            if (!checkTextValid(e)) {
+                showErrorInfo("address1_error", "您填写的内容包含非法信息")
+            }
+            else {
+                $("#address1_desc").css("display", "block");
+                jQuery("#address1").parents("li").removeClass("cur_error")
+            }
+        }
+
+    }
+    function checkTextValid(h) {
+
+        if (h == null || h.length == 0)
+        { return false }
+        var e = /[\"\'-,.()-,.，。（）\\]/gi;
+        var g = h.replace(e, "");
+        g = g.replace(/\s/g, "");
+        var f = /[\"\'<>,.\/:&*^%$#!?\\]/;
+        if (g == null || g.length == 0)
+        { return false } else {
+            if (f.exec(h))
+            { return false }
+            else
+            { return true }
+        }
+    }
+
+    function showCompanyError(b) {
+        jQuery("#company_tip").hide();
+        showErrorInfo("company_error", b)
+    }
+    function showLinkmanMobileError(b) {
+        jQuery("#linkmanMobile_tip").hide();
+        showErrorInfo("linkmanMobile_error", b)
+    }
+    function showLandLineError(b) {
+        jQuery("#landLine_tip").hide();
+        showErrorInfo("landLine_error", b)
+    }
+
+    function checkCompanyOnBlur() {
+
+        var b = jQuery("#company").val();
+        if (b == "") {
+            showCompanyError("公司名称不能为空");
+            return;
+        }
+        $.ajax({
+            type: "POST",
+            url: "/Company/CheckName",
+            data: { id: b },
+            success: function (a) {
+                if (a.errorCode == 0) {
+                    jQuery("#company_tip").hide();
+                    jQuery("#company_error").hide();//liutengfei
+                    $("#company_desc").css("display", "block");
+                    jQuery("#company").parents("li").removeClass("cur_error")
+                }
+                else {
+                    if (a.errorCode == 1)
+                    { showCompanyError("公司名称已经存在") }
+                    else
+                    {
+                        if (a.errorCode == 2) { showCompanyError("请填写公司名称，不超过40个字") }
+                    }
+                }
+            }
+        })
+
+
+
+    }
+    $(function () {
+
+        //$(".form_item").delegate("input[name='pwd']", "click", function () {
+        //    $(this).hide().next("input[type='password']").show().focus();
+        //    $(this).parents("li").removeClass("cur_error").addClass("cur")
+        //});
+        $("input[name='pwd']").focus(function () {
+            $(this).hide().next("input[type='password']").show().focus();
+            $(this).parents("li").removeClass("cur_error").addClass("cur")
+        });
+        //$(".form_item").delegate("input[type='password']", "blur", function () {
+        //    var a = $(this).val();
+        //    if (!a) {
+        //        $(this).hide().prev("input[type='text']").show()
+        //    }
+        //    $(this).parents("li").removeClass("cur")
+        //});
+
+    })
+
+
+</script>
