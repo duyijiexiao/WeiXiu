@@ -164,8 +164,8 @@
                 , {
                     field: '操 作', title: '操 作', width: 110, align: 'center',
                     formatter: function (value, row, index) {
-                        var e = '<a href="#" onclick="editrow(' + row.Id + ')">拒绝</a>  &nbsp &nbsp&nbsp';
-                        var d = ' <a href="#" onclick="deleterow(' + row.Id + ')">打回</a>';
+                        var e = '<a href="#" onclick="editrow(\'' + row.Id + '\')">拒绝</a>  &nbsp &nbsp&nbsp';
+                        var d = ' <a href="#" onclick="deleterow(\'' + row.Id + '\')">打回</a>';
                         return e + d;
                     }
                 }]],
@@ -361,7 +361,7 @@
         $('#dd').dialog({
             title: "请填写拒绝理由：",
             buttons: [{
-                text: '保存',
+                text: '拒绝',
                 iconCls: 'icon-ok',
                 handler: function () {
                     $.ajax({
@@ -401,7 +401,7 @@
         $('#dd1').dialog({
             title: "填写打回理由：",
             buttons: [{
-                text: '保存',
+                text: '打回',
                 iconCls: 'icon-ok',
                 handler: function () {
                     $.ajax({
