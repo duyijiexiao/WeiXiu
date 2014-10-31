@@ -102,7 +102,6 @@
                     }
                     }
                     , { field: 'FanKui', title: '@Html.DisplayNameFor(model => model.FanKui)', width: 120 }
-                    @*, { field: 'FanKuiTuPian', title: '@Html.DisplayNameFor(model => model.FanKuiTuPian)', width: 100 }*@
                     , {
                         field: 'FanKuiShiJian', title: '@Html.DisplayNameFor(model => model.FanKuiShiJian)', width: 80
                     , formatter: function (value, rec) {
@@ -111,6 +110,7 @@
                         }
                     }
                     }
+                     , { field: 'State', title: '@Html.DisplayNameFor(model => model.State)', width: 100 }
                 ]],
                 pagination: true,
                 rownumbers: true
