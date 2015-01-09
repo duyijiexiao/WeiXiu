@@ -1,4 +1,44 @@
-﻿
+﻿  .two_dimensional_code .code_font {
+        width: 100%;
+        text-align: center;
+        color: rgb(153, 153, 153);
+        line-height: 1.5em;
+        float: left;
+        display: block;
+    }
+
+    .two_dimensional_code .jin {
+        background: url("../images/order/jin.jpg?1163947");
+        margin: 0px 0px 0px -10px;
+        left: 50%;
+        top: -6px;
+        width: 20px;
+        height: 6px;
+        display: block;
+        position: absolute;
+        z-index: 7;
+    }
+
+    .two_dimensional_code {
+        top: 95px;
+        width: 178px;
+        right: 0px;
+        float: left;
+        display: inline-block;
+        position: absolute;
+        z-index: 5;
+    }
+
+        .two_dimensional_code .code_bo {
+            padding: 10px 5px;
+            border: 1px solid rgb(204, 204, 204);
+            left: 0px;
+            top: -55px;
+            width: 198px;
+            position: relative;
+            z-index: 6;
+            background-color: rgb(255, 255, 255);
+        }
 ﻿body, p, form, input, button, dl, dt, dd, ul, ol, li, h1, h2, h3, h4 {
     list-style: none outside none;
     margin: 0;

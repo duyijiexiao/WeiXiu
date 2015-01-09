@@ -9,7 +9,7 @@ namespace Web
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery.min.js", "~/Scripts/jquery.cookie.js"));
+                        "~/Scripts/jquery.cookie.js"));
 
 
             bundles.Add(new ScriptBundle("~/bundles/my").Include(             

@@ -12,17 +12,36 @@ namespace Langben.DAL
     {
         public HuiYuan GetByPhone(SysEntities db, string phone, string pwd, string biaoshi)
         {
-            return db.HuiYuan.SingleOrDefault(s => s.PhoneNumber == phone && s.Password == pwd && s.BiaoShi == biaoshi && s.State == "开启");
+            return db.HuiYuan.SingleOrDefault(s => s.PhoneNumber == phone && s.Password == pwd && s.BiaoShi == biaoshi && s.State == "已审核");
 
+        }
+        public HuiYuan GetByPhoneVC(SysEntities db, string phone, string vc, string biaoshi)
+        {
+            return db.HuiYuan.SingleOrDefault(s => s.PhoneNumber == phone  && s.BiaoShi == biaoshi && s.State == "已审核" && s.VCode == vc);
+
+        }
+        public HuiYuan GetByPhone(SysEntities db, string phone,  string biaoshi)
+        {
+            return db.HuiYuan.SingleOrDefault(s => s.PhoneNumber == phone &&  s.BiaoShi == biaoshi);
+
+        }
+        public HuiYuan SetVC(SysEntities db, string phone,string vc, string biaoshi)
+        {
+            var data= db.HuiYuan.SingleOrDefault(s => s.PhoneNumber == phone && s.BiaoShi == biaoshi);
+            if (data!=null)
+            {
+                data.VCode = vc.Trim();
+                data.CodeTime = DateTime.Now;
+                data.CodeNum++;
+                db.SaveChanges();
+
+            }
+            return data;
         }
         public HuiYuan NewPassword(SysEntities db, string phone, string pwd, string biaoshi)
         {
-            var data = db.HuiYuan.SingleOrDefault(s => s.PhoneNumber == phone && s.Password == pwd && s.BiaoShi == biaoshi && s.State == "开启");
-            if (data == null)
-            {
-                return null;
-            }
-            return data;
+            return db.HuiYuan.SingleOrDefault(s => s.PhoneNumber == phone && s.Password == pwd && s.BiaoShi == biaoshi && s.State == "已审核");
+
         }
         public bool IsPhone(SysEntities db, string phone, string biaoshi)
         {
@@ -34,15 +53,17 @@ namespace Langben.DAL
             return true;
         }
 
+
+
         /// <summary>
         /// 根据id审核
         /// </summary>
         /// <param name="id"></param>
         /// <param name="State"></param>
         /// <returns></returns>
-        public int ShenHe(SysEntities db,string ids,string State)
+        public int ShenHe(SysEntities db, string ids, string State)
         {
-            string sql = string.Format("update huiyuan set State='{0}' where id in({1})",State,ids);
+            string sql = string.Format("update huiyuan set State='{0}' where id in({1})", State, ids);
             return db.Database.ExecuteSqlCommand(sql);
         }
     }

@@ -1,235 +1,181 @@
-﻿@model Langben.DAL.ShenQing
+﻿@model Langben.DAL.ChuLi
 @{
-   
-    Layout = null;
+    ViewBag.Title = "维修申请";
 }
+<div class="regist_wrap nobg_wrap">
+    <div class="wrap">
 
-
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>编辑维修申请</title>
-
-    <!--css start-->
-    <link href="http://image.yihaodianimg.com/member/global/css/global_site_base.css?1154501" rel="stylesheet" type="text/css" />
-    <link href="http://image.yihaodianimg.com/member/member/css/orderList2013.css?1154501" rel="stylesheet" type="text/css" />
-    <!--css end-->
-
-    <link href="http://image.yihaodianimg.com/member/member/js/My97DatePicker_v20131127/skin/WdatePicker.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="http://image.yihaodianimg.com/member/global/css/global_yhdLib.css?1154501">
-
-
-    <link href="https://passport.yhd.com/front-passport/passport/css/css_base.css?1148270" rel="stylesheet" type="text/css" />
-    <link href="https://passport.yhd.com/front-passport/passport/css/regist.css?1148270" rel="stylesheet" type="text/css" />
-    <style>
-        .cart3_head_step {
-            background: url("../../Images/cart3_step.png?1154729") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
-            float: right;
-            height: 48px;
-            width: 900px;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-        }
-
-        .cart3_head_top {
-            height: 48px;
-            position: relative;
-        }
-    </style>
-
-
-</head>
-<body>
-
-
-    <div id="global_top_bar" class="hd_global_top_bar">
-        <div class="wrap clearfix">
-            <div class="hd_topbar_left clearfix">
-                <span class="fl">Hi, </span>
-                <div id="global_unlogin" class="hd_unlogin_wrap">
-                    <span class="hd_unlogin">
-                        请
-                        <a id="global_top_bar_loginLink" class="blue_link" onclick="top.location.href='@Url.Action("Login", "Account")'"> 登录 </a>
-                        /
-                        <a class="blue_link" tk="YHD_TOP_register" onclick="top.location.href='@Url.Action("Register", "Account")'"> 注册</a>
-                    </span>
-                </div>
-
-                <a id="logout" class="logout blue_link none" href="javaScript:bothSiteLogoutJsonp();" style="background: none repeat scroll 0% 0% transparent;">退出</a>
-                <div id="headerSelectProvince" class=""></div>
-            </div>
-            <div class="hd_top_manu clearfix">
-            </div>
+        <div class="find_password_wrap">
+            <ul class="clearfix">
+                <li class="first cur">
+                    <i></i><u></u>
+                    <b>1</b>维修申请
+                </li>
+                <li class="">
+                    <i></i>
+                    <b>2</b>提交成功
+                </li>
+                <li class="">
+                    <i></i>
+                    <b>3</b>客户评语
+                </li>
+                <li class="last">
+                    <b>4</b>维护结束
+                </li>
+            </ul>
         </div>
-    </div>
+        <div class="regist_form b2b_regist_list">
+            <p class=" b2b_regist_tit">基本信息</p>
+            <ul class="clearfix">
+                <li>
+                    <div class="form_item">
+                        <label>单   位：</label>
+                        
+                        @Html.DropDownListFor(m=>m.XueXiao, Models.SysFieldModels.GetSysField(), "-- 请选择 --", new { style = "width: 293px; height: 33px; ", @class = "ipt" })
+                        @*<select id="XueXiao" style="width: 293px; height: 33px; " class="ipt">
+                            <option value="">-- 请选择 --</option>
+                            <option value="北京海淀区中关村第四小学">北京海淀区中关村第四小学</option>
+                        </select>*@
+                    </div>
+                    <div id="XueXiao_error" class="tips_box regist_tips_error">
+                        <u></u>
+                    </div>
+                </li>
+                <li>
+                    <div class="form_item">
+                        <label>报  修  人：</label>
+                        <input type="text" id="BaoXiuRen" onblur="checkshenqing('BaoXiuRen', '报修人不能为空');" value="@Model.BaoXiuRen" class="ipt ipt_phone" />
+                    </div>
+                    <div id="BaoXiuRen_error" class="tips_box regist_tips_error">
 
-    <div id="layout_main" class="layout_w1200_g22">
-    <div class="grid_4">
-        <div class="mod_personal_menu">
-            <h3 class="big_title">
-                <a href="/member/my.do">提交申请</a>
-            </h3>
-            <div class="personal_user_info">
-                <blockquote class="user_img">
-                    <a href="/member/userinfo/editinfo.do">
-                        <img src="http://image.yihaodianimg.com/member/member/images/peopleicon_01.gif" alt="用户头像">
-                        <span>
-                            <u>编辑资料</u>
-                        </span>
-                    </a>
-                </blockquote>
-                <blockquote class="user_info">
-                    <p>
-                        <strong>
-                            <a id="leftendUserName">宇生俱来的幸福</a>
-                        </strong>
-                    </p>
-                    <p>
-                        <span class="pV1">
-                            <a target="_blank" href="http://vip.yhd.com">会员等级：V1</a>
-                        </span>
-                    </p>
-                </blockquote>
-            </div>
-            <div class="trading_center">
-                <dl>
-                    <dt>
-                        <i class="icon_img"></i>
-                        <span class="tit_big">会员中心</span>
-                    </dt>
-                    <dd>
-                        @*<a class="selected" onclick="addTrackPositionToCookie('2','O_L_MYORDER')" onclick="top.location.href='@Url.Action("Login", "Account")'" >我的维修申请单</a>*@
-                        <a class="selected" onclick="top.location.href='@Url.Action("GetList", "Apply")'">我的维修申请单</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="form_item">
+                        <label>联系方式：</label>
+                        <input type="text" id="LianXiDianHua" onblur="checkshenqing('LianXiDianHua', '联系方式不能为空');" value="@Model.LianXiDianHua" class="ipt ipt_phone" />
+                    </div>
+                    <div id="LianXiDianHua_error" class="tips_box regist_tips_error">
 
-                    </dd>
-                    <dd>
-                        @*<a onclick="addTrackPositionToCookie('2','O_L_MYREGULARBUY')" onclick="top.location.href='@Url.Action("Login", "Account")'">申请维修</a>*@\
-                        <a onclick="top.location.href='@Url.Action("Index", "Apply")'">申请维修</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="form_item">
+                        <label>预约时间：</label>
+                        <input type="text" id="YuYue" value="@Model.YuYue" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm', minDate: '%y-%M-#{%d}' })" class="ipt ipt_phone" />
+                    </div>
+                    <div id="YuYue_error" class="tips_box regist_tips_error">
 
-                    </dd>
-                    <dd>
-                        @*<a onclick="addTrackPositionToCookie('2','O_L_MYREGULARBUY')" onclick="top.location.href='@Url.Action("Login", "Account")'">维修点评</a>*@
-                        <a onclick="top.location.href='@Url.Action("Index", "Apply")'">申请维修</a>
-                    </dd>
-                    <dd>
-                        @*<a onclick="addTrackPositionToCookie('2','O_L_MYREGULARBUY')" onclick="top.location.href='@Url.Action("Login", "Account")'">会员注册</a>*@
+                    </div>
+                </li>
+            </ul>
+            <p class=" b2b_regist_tit">描述信息:</p>
+            <ul class="clearfix">
+                <li>
+                    <div id="addimg" class="form_item" style="height:266px;width:580px; ">
 
-                        <a onclick="top.location.href='@Url.Action("Register", "Account")'">会员注册</a>
-                </dl>
-            </div>
-            <div class="services_personal_center">
-                <dl>
-                    <dt>
-                        <i class="icon_img"></i>
-                        <span class="tit_big">个人中心</span>
-                    </dt>
-
-                </dl>
-            </div>
-        </div>
-    </div>
-
-        <div id="gridContent" class="grid_18">
-            <div class="mod_personal_head">
-                <font class="tit">提交维修申请</font>
-                <div class="recpt_bor"></div>
-            </div>
-
-        
-                <div class="mod_my_order_list">
-                    <dl class="clearfix">
-                        <dd >
-                            <div class="list_border">
-                          
-
-                                <!--居中begin-->
-
-                                @using (Html.BeginForm())
+                        <textarea onblur="checkshenqing('MiaoShu', '描述不能为空');" style="height: 154px; width: 550px; font-family: Microsoft YaHei; " name="MiaoShu" id="MiaoShu">@Model.MiaoShu</textarea>
+                        <br style="clear:both; " />
+                        <div id="filePicker">
+                            点击上传图片，最多上传3张，每张最大5mb
+                        </div> <input id="TuPian" type="hidden" value="@Model.TuPian" />
+                        @if (!string.IsNullOrWhiteSpace(Model.TuPian))
+                        {
+                            foreach (var it in Model.TuPian.Split(','))
+                            {
+                                if (!string.IsNullOrWhiteSpace(it))
                                 {
-
-
-                                    <div class="mod_my_order_list">
-
-                                        <!--登陆-->
-                                        <div class="regist_form">
-
-                                            <ul class="clearfix">
-                                                <!--取得焦点的时候给li加class:cur,错误的时候给li加class：cur_error,正确的时候给li加class：cur_right -->
-                                                <li>
-                                                    <div class="form_item">
-                                                        <label> 学校：</label>
-                                                        @Html.DropDownListFor(m => m.XueXiao, Models.SysFieldModels.GetSysField())
-
-                                                    </div>
-
-                                                </li>
-                                                <li>
-                                                    <div class="form_item">
-                                                        <label> 报修人：</label>
-                                                        @Html.TextBoxFor(m => m.BaoXiuRen, new { @class = "form-control" })
-                                                    </div>
-
-                                                </li>
-
-                                                <li>
-                                                    <div class="form_item">
-                                                        <label> 联系电话：</label>
-                                                        @Html.TextBoxFor(m => m.LianXiDianHua, new { @class = "form-control" })
-                                                    </div>
-
-                                                </li>
-
-
-                                                <li>
-                                                    <div class="form_item" style="height:100px;">
-                                                        <label> 描述：</label>
-                                                        @Html.TextAreaFor(m => m.MiaoShu, new { style = "height:100px;" })
-                                                    </div>
-
-                                                </li>
-                                                <li>
-                                                    <div class="form_item" style="height:100px;">
-                                                        <label> 上传图片：</label>
-                                                        @Html.TextAreaFor(m => m.TuPian, new { style = "height:100px;" })
-                                                    </div>
-
-                                                </li>
-
-                                                <li class="regist_btn">
-                                                    <button id="email_btn" type="submit">提交</button>
-
-                                                </li>
-                                            </ul>
-                                        </div>
-
-                                        <!--登陆 -->
-
-                                    </div>
-
-
+                                    <img height="72" style=" float:left; " width="72" alt="" src="@it" />
                                 }
+                            }
+                        }
+                    </div>
 
-                                <!--居中end-->
 
-                            </div>
-                        </dd>
-
-                    </dl>
-                </div>
-
-           
+                    <div id="MiaoShu_error" class="tips_box regist_tips_error">
+                        <u></u>
+                    </div>
+                </li>
+                <li class="setting_btn clearfix">
+                    <button type="submit" id="login_button" onclick="javascript:shenqing();return false;">下一步</button>
+                </li>
+            </ul>
         </div>
-
-
-
-  
+    </div>
 </div>
 
-</body>
-</html>
+<script type="text/javascript">
+    $(function () {
+
+        //$("#XueXiao option[value='@Model.XueXiao']").attr("selected", "selected");
+    })
+    function checkshenqing(id, message) {
+        if ($("#" + id).val() == "") {
+
+            $("#" + id).focus();
+
+            showErrorInfo(id + "_error", message);
+            return false
+        } else {
+
+            $("#" + id + "_error").hide();
+            jQuery("#" + id).parents("li").removeClass("cur_error")
+        }
+
+        return true
+    }
+    var messageBaoXiuRen = '报修人不能为空',
+        messageLianXiDianHua = '联系方式不能为空',
+            messageMiaoShu = '描述不能为空';
+    function shenqing() {
+
+        if (!checkshenqing('BaoXiuRen', messageBaoXiuRen)) {
+            return;
+        }
+        if (!checkshenqing('LianXiDianHua', messageLianXiDianHua)) {
+            return;
+        } if (!checkshenqing('MiaoShu', messageMiaoShu)) {
+            return;
+        }
+
+        var ShenQing = {
+            XueXiao: $("#XueXiao").val(),
+            BaoXiuRen: $("#BaoXiuRen").val(),
+            LianXiDianHua: $("#LianXiDianHua").val(),
+
+            YuYue: $("#YuYue").val(),
+            MiaoShu: $("#MiaoShu").val(),
+            TuPian: $("#TuPian").val()
+        };
+
+        jQuery.post("", ShenQing, function (response) {
+            if (response) {
+                if (response.errorCode == 0) {
+                    window.location = "/Apply/OK";
+                }
+                else if (response.errorCode == 99) {
+                    alert(response.content);
+                    return
+                }
+                else if (response.errorCode == "2") {
+                    checkshenqing('BaoXiuRen', messageBaoXiuRen);
+                    return
+                }
+                else if (response.errorCode == "3") {
+                    checkshenqing('LianXiDianHua', messageLianXiDianHua);
+                    return
+                }
+                else if (response.errorCode == "4") {
+                    checkshenqing('MiaoShu', messageMiaoShu)
+                    ; return
+                }
+
+            }
+        })
+    }
+
+</script>
+<link href="http://wenjian.langben.com/Content/webuploader/css/webuploader.css" rel="stylesheet" />
+
+<script src="http://wenjian.langben.com/Content/webuploader/js/webuploader.nolog.min.js"></script>
+<script src="http://wenjian.langben.com/Scripts/UploadFile.js"></script>

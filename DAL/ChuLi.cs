@@ -20,10 +20,12 @@ namespace Langben.DAL
         public string LianXiDianHua { get; set; }
         public string MiaoShu { get; set; }
         public Nullable<System.DateTime> YuYue { get; set; }
+        public string TuPianSmall { get; set; }
         public string TuPian { get; set; }
         public Nullable<int> PaiXu { get; set; }
         public string Remark { get; set; }
         public string State { get; set; }
+        public string HuiYuanName { get; set; }
         public string HuiYuanId { get; set; }
         public string JuJueLiYou { get; set; }
         public Nullable<System.DateTime> JuJueShiJian { get; set; }
@@ -35,5 +37,11 @@ namespace Langben.DAL
         public Nullable<System.DateTime> FanKuiShiJian { get; set; }
         public string ShenQingId { get; set; }
         public string BiaoShi { get; set; }
+        public Nullable<int> DaFen { get; set; }
+        public string PingLun { get; set; }
+        public Nullable<System.DateTime> PingLunTime { get; set; }
+        public Nullable<System.DateTime> EditTime { get; set; }
+        public Nullable<System.DateTime> CreateTime { get; set; }
+        public string CreatePerson { get; set; }
     }
 }

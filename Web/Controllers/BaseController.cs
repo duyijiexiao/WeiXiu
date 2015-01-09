@@ -33,41 +33,7 @@ namespace  Models
 
             return;
         }
-        /// <summary>
-        /// 获取当前登陆人的名称
-        /// </summary>
-        /// <returns></returns>
-        //public string GetCurrentPerson()
-        //{
-        //    Account account = GetCurrentAccount();
-        //    if (account != null && !string.IsNullOrWhiteSpace(account.PersonName))
-        //    {
-        //        return account.PersonName;
-        //    }
-        //    return string.Empty;
-        //}
-        /// <summary>
-        /// 获取当前登陆人的账户信息
-        /// </summary>
-        /// <returns>账户信息</returns>
-        //public Account GetCurrentAccount()
-        //{
-        //    if (Session["account"] != null)
-        //    {
-        //        Account account = (Account)Session["account"];
-        //        return account;
-        //    }
-        //    return null;
-        //}
-        /// <summary>
-        /// 导出数据集到excle
-        /// </summary>
-        /// <param name="titles">第一行显示的标题名称</param>
-        /// <param name="fields">字段</param>
-        /// <param name="query">数据集</param>
-        /// <param name="path">excle模版的位置</param>
-        /// <param name="from">显示的标题默认行数为1</param>
-        /// <returns></returns>
+        
       
 
           /// <summary>

@@ -29,10 +29,11 @@
                 <li>
                     <div class="form_item">
                         <label>单   位：</label>
-                        <select id="XueXiao" style="width: 293px; height: 33px; " class="ipt">
+                        @*<select id="XueXiao" style="width: 293px; height: 33px; " class="ipt">
                             <option value="">-- 请选择 --</option>
-                            <option value="60">北京海淀区中关村第四小学</option>
-                        </select>
+                            <option value="北京海淀区中关村第四小学">北京海淀区中关村第四小学</option>
+                        </select>*@
+                        @Html.DropDownList("XueXiao", Models.SysFieldModels.GetSysField(), "-- 请选择 --", new { style = "width: 293px; height: 33px; ", @class = "ipt" })
                     </div>
                     <div id="XueXiao_error" class="tips_box regist_tips_error">
                         <u></u>
@@ -72,10 +73,10 @@
                     <div id="addimg" class="form_item" style="height:266px;width:580px; ">
 
                         <textarea onblur="checkshenqing('MiaoShu', '描述不能为空');" style="height: 154px; width: 550px; font-family: Microsoft YaHei; " name="MiaoShu" id="MiaoShu"></textarea>
-                        <br style="clear:both; " /> 
-                        <div   id="filePicker">
+                        <br style="clear:both; " />
+                        <div id="filePicker">
                             点击上传图片，最多上传3张，每张最大5mb
-                        </div> 
+                        </div> <input id="TuPian" type="hidden" value="" />
                     </div>
 
 
@@ -93,7 +94,18 @@
 
 <script type="text/javascript">
     $(function () {
-
+        var SchoolName = $.cookie("SchoolName");
+        if (SchoolName) {
+            $("#XueXiao option[value='" + SchoolName + "']").attr("selected", "selected");
+        }
+        var Name = $.cookie("Name");
+        if (Name) {
+            $("#BaoXiuRen").val(Name);
+        }
+        var PhoneNumber = $.cookie("PhoneNumber");
+        if (PhoneNumber) {
+            $("#LianXiDianHua").val(PhoneNumber);
+        }
     })
     function checkshenqing(id, message) {
         if ($("#" + id).val() == "") {
@@ -123,13 +135,15 @@
         } if (!checkshenqing('MiaoShu', messageMiaoShu)) {
             return;
         }
-       
+
         var ShenQing = {
             XueXiao: $("#XueXiao").val(),
             BaoXiuRen: $("#BaoXiuRen").val(),
             LianXiDianHua: $("#LianXiDianHua").val(),
+
+            YuYue: $("#YuYue").val(),
             MiaoShu: $("#MiaoShu").val(),
-            TuPian: "" 
+            TuPian: $("#TuPian").val()
         };
 
         jQuery.post("", ShenQing, function (response) {
@@ -159,7 +173,7 @@
     }
 
 </script>
-<link href="~/Content/webuploader/css/webuploader.css" rel="stylesheet" />
+<link href="http://wenjian.langben.com/Content/webuploader/css/webuploader.css" rel="stylesheet" />
 
-<script src="~/Content/webuploader/js/webuploader.nolog.min.js"></script>
-<script src="~/Scripts/UploadFile.js"></script>
+<script src="http://wenjian.langben.com/Content/webuploader/js/webuploader.nolog.min.js"></script>
+<script src="http://wenjian.langben.com/Scripts/UploadFile.js"></script>

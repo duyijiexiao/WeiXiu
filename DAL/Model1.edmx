@@ -15,10 +15,12 @@
           <Property Name="LianXiDianHua" Type="nvarchar" MaxLength="200" />
           <Property Name="MiaoShu" Type="nvarchar" MaxLength="4000" />
           <Property Name="YuYue" Type="datetime" />
+          <Property Name="TuPianSmall" Type="nvarchar" MaxLength="4000" />
           <Property Name="TuPian" Type="nvarchar" MaxLength="200" />
           <Property Name="PaiXu" Type="int" />
           <Property Name="Remark" Type="nvarchar" MaxLength="4000" />
           <Property Name="State" Type="nvarchar" MaxLength="200" />
+          <Property Name="HuiYuanName" Type="nvarchar" MaxLength="200" />
           <Property Name="HuiYuanId" Type="nvarchar" MaxLength="36" />
           <Property Name="JuJueLiYou" Type="nvarchar" MaxLength="4000" />
           <Property Name="JuJueShiJian" Type="datetime" />
@@ -30,6 +32,12 @@
           <Property Name="FanKuiShiJian" Type="datetime" />
           <Property Name="ShenQingId" Type="nvarchar" MaxLength="36" />
           <Property Name="BiaoShi" Type="nvarchar" MaxLength="200" />
+          <Property Name="DaFen" Type="int" />
+          <Property Name="PingLun" Type="nvarchar" MaxLength="4000" />
+          <Property Name="PingLunTime" Type="datetime" />
+          <Property Name="EditTime" Type="datetime" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="CreatePerson" Type="nvarchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="Company">
           <Key>
@@ -70,7 +78,6 @@
           <Property Name="CreatePerson" Type="nvarchar" MaxLength="200" />
           <Property Name="Remark" Type="nvarchar" MaxLength="4000" />
           <Property Name="ChuLiId" Type="nvarchar" MaxLength="36" />
-          <Property Name="ShenQingId" Type="nvarchar" MaxLength="36" />
           <Property Name="BiaoShi" Type="nvarchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="HuiYuan">
@@ -85,6 +92,8 @@
           <Property Name="PhoneNumber" Type="nvarchar" MaxLength="200" />
           <Property Name="VCode" Type="nvarchar" MaxLength="200" />
           <Property Name="MyEmail" Type="nvarchar" MaxLength="200" />
+          <Property Name="CodeNum" Type="int" />
+          <Property Name="CodeTime2" Type="datetime" />
           <Property Name="CodeTime" Type="datetime" />
           <Property Name="CreateTime" Type="datetime" />
           <Property Name="LogonIP" Type="nvarchar" MaxLength="200" />
@@ -131,16 +140,19 @@
           <Property Name="BaoXiuRen" Type="nvarchar" MaxLength="200" />
           <Property Name="LianXiDianHua" Type="nvarchar" MaxLength="200" />
           <Property Name="MiaoShu" Type="nvarchar" MaxLength="4000" />
-          <Property Name="TuPian" Type="nvarchar" MaxLength="200" />
+          <Property Name="TuPianSmall" Type="nvarchar" MaxLength="4000" />
+          <Property Name="TuPian" Type="nvarchar" MaxLength="4000" />
           <Property Name="DaFen" Type="int" />
           <Property Name="PingLun" Type="nvarchar" MaxLength="4000" />
           <Property Name="Remark" Type="nvarchar" MaxLength="4000" />
           <Property Name="State" Type="nvarchar" MaxLength="200" />
-          <Property Name="HuiYuanId" Type="nvarchar" MaxLength="36" />
           <Property Name="YuYue" Type="datetime" />
+          <Property Name="EditTime" Type="datetime" />
           <Property Name="CreateTime" Type="datetime" />
           <Property Name="CreatePerson" Type="nvarchar" MaxLength="200" />
           <Property Name="BiaoShi" Type="nvarchar" MaxLength="200" />
+          <Property Name="HuiYuanId" Type="nvarchar" MaxLength="36" />
+          <Property Name="HuiYuanName" Type="nvarchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="WeiXiuRenYuan">
           <Key>
@@ -172,30 +184,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_GENZONG_REFERENCE_SHENQING">
-          <End Role="ShenQing" Type="Self.ShenQing" Multiplicity="0..1" />
-          <End Role="GenZong" Type="Self.GenZong" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ShenQing">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="GenZong">
-              <PropertyRef Name="ShenQingId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SHENQING_REFERENCE_HUIYUAN">
-          <End Role="HuiYuan" Type="Self.HuiYuan" Multiplicity="0..1" />
-          <End Role="ShenQing" Type="Self.ShenQing" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HuiYuan">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ShenQing">
-              <PropertyRef Name="HuiYuanId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="SysModelStoreContainer">
           <EntitySet Name="ChuLi" EntityType="Self.ChuLi" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
@@ -209,14 +197,6 @@
           <AssociationSet Name="FK_DEPARTME_REFERENCE_DEPARTME" Association="Self.FK_DEPARTME_REFERENCE_DEPARTME">
             <End Role="Department" EntitySet="Department" />
             <End Role="Department1" EntitySet="Department" />
-          </AssociationSet>
-          <AssociationSet Name="FK_GENZONG_REFERENCE_SHENQING" Association="Self.FK_GENZONG_REFERENCE_SHENQING">
-            <End Role="ShenQing" EntitySet="ShenQing" />
-            <End Role="GenZong" EntitySet="GenZong" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SHENQING_REFERENCE_HUIYUAN" Association="Self.FK_SHENQING_REFERENCE_HUIYUAN">
-            <End Role="HuiYuan" EntitySet="HuiYuan" />
-            <End Role="ShenQing" EntitySet="ShenQing" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -237,14 +217,6 @@
             <End Role="Department" EntitySet="Department" />
             <End Role="Department1" EntitySet="Department" />
           </AssociationSet>
-          <AssociationSet Name="FK_GENZONG_REFERENCE_SHENQING" Association="SysModel.FK_GENZONG_REFERENCE_SHENQING">
-            <End Role="ShenQing" EntitySet="ShenQing" />
-            <End Role="GenZong" EntitySet="GenZong" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SHENQING_REFERENCE_HUIYUAN" Association="SysModel.FK_SHENQING_REFERENCE_HUIYUAN">
-            <End Role="HuiYuan" EntitySet="HuiYuan" />
-            <End Role="ShenQing" EntitySet="ShenQing" />
-          </AssociationSet>
         </EntityContainer>
         <EntityType Name="ChuLi">
           <Key>
@@ -256,10 +228,12 @@
           <Property Name="LianXiDianHua" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="MiaoShu" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="YuYue" Type="DateTime" Precision="3" />
+          <Property Name="TuPianSmall" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="TuPian" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="PaiXu" Type="Int32" />
           <Property Name="Remark" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="State" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="HuiYuanName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="HuiYuanId" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
           <Property Name="JuJueLiYou" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="JuJueShiJian" Type="DateTime" Precision="3" />
@@ -271,6 +245,12 @@
           <Property Name="FanKuiShiJian" Type="DateTime" Precision="3" />
           <Property Name="ShenQingId" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
           <Property Name="BiaoShi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="DaFen" Type="Int32" />
+          <Property Name="PingLun" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="PingLunTime" Type="DateTime" Precision="3" />
+          <Property Name="EditTime" Type="DateTime" Precision="3" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="CreatePerson" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Company">
           <Key>
@@ -313,9 +293,7 @@
           <Property Name="CreatePerson" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Remark" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="ChuLiId" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
-          <Property Name="ShenQingId" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
           <Property Name="BiaoShi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ShenQing" Relationship="SysModel.FK_GENZONG_REFERENCE_SHENQING" FromRole="GenZong" ToRole="ShenQing" />
         </EntityType>
         <EntityType Name="HuiYuan">
           <Key>
@@ -329,12 +307,13 @@
           <Property Name="PhoneNumber" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="VCode" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="MyEmail" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CodeNum" Type="Int32" />
+          <Property Name="CodeTime2" Type="DateTime" Precision="3" />
           <Property Name="CodeTime" Type="DateTime" Precision="3" />
           <Property Name="CreateTime" Type="DateTime" Precision="3" />
           <Property Name="LogonIP" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="State" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="BiaoShi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ShenQing" Relationship="SysModel.FK_SHENQING_REFERENCE_HUIYUAN" FromRole="HuiYuan" ToRole="ShenQing" />
         </EntityType>
         <EntityType Name="Member">
           <Key>
@@ -376,18 +355,19 @@
           <Property Name="BaoXiuRen" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="LianXiDianHua" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="MiaoShu" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
-          <Property Name="TuPian" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="TuPianSmall" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="TuPian" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="DaFen" Type="Int32" />
           <Property Name="PingLun" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="Remark" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="State" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="HuiYuanId" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
           <Property Name="YuYue" Type="DateTime" Precision="3" />
+          <Property Name="EditTime" Type="DateTime" Precision="3" />
           <Property Name="CreateTime" Type="DateTime" Precision="3" />
           <Property Name="CreatePerson" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="BiaoShi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="GenZong" Relationship="SysModel.FK_GENZONG_REFERENCE_SHENQING" FromRole="ShenQing" ToRole="GenZong" />
-          <NavigationProperty Name="HuiYuan" Relationship="SysModel.FK_SHENQING_REFERENCE_HUIYUAN" FromRole="ShenQing" ToRole="HuiYuan" />
+          <Property Name="HuiYuanId" Type="String" MaxLength="36" FixedLength="false" Unicode="true" />
+          <Property Name="HuiYuanName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="WeiXiuRenYuan">
           <Key>
@@ -419,30 +399,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_GENZONG_REFERENCE_SHENQING">
-          <End Type="SysModel.ShenQing" Role="ShenQing" Multiplicity="0..1" />
-          <End Type="SysModel.GenZong" Role="GenZong" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ShenQing">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="GenZong">
-              <PropertyRef Name="ShenQingId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SHENQING_REFERENCE_HUIYUAN">
-          <End Type="SysModel.HuiYuan" Role="HuiYuan" Multiplicity="0..1" />
-          <End Type="SysModel.ShenQing" Role="ShenQing" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HuiYuan">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="ShenQing">
-              <PropertyRef Name="HuiYuanId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -452,6 +408,12 @@
           <EntitySetMapping Name="ChuLi">
             <EntityTypeMapping TypeName="SysModel.ChuLi">
               <MappingFragment StoreEntitySet="ChuLi">
+                <ScalarProperty Name="CreatePerson" ColumnName="CreatePerson" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="EditTime" ColumnName="EditTime" />
+                <ScalarProperty Name="PingLunTime" ColumnName="PingLunTime" />
+                <ScalarProperty Name="PingLun" ColumnName="PingLun" />
+                <ScalarProperty Name="DaFen" ColumnName="DaFen" />
                 <ScalarProperty Name="BiaoShi" ColumnName="BiaoShi" />
                 <ScalarProperty Name="ShenQingId" ColumnName="ShenQingId" />
                 <ScalarProperty Name="FanKuiShiJian" ColumnName="FanKuiShiJian" />
@@ -463,10 +425,12 @@
                 <ScalarProperty Name="JuJueShiJian" ColumnName="JuJueShiJian" />
                 <ScalarProperty Name="JuJueLiYou" ColumnName="JuJueLiYou" />
                 <ScalarProperty Name="HuiYuanId" ColumnName="HuiYuanId" />
+                <ScalarProperty Name="HuiYuanName" ColumnName="HuiYuanName" />
                 <ScalarProperty Name="State" ColumnName="State" />
                 <ScalarProperty Name="Remark" ColumnName="Remark" />
                 <ScalarProperty Name="PaiXu" ColumnName="PaiXu" />
                 <ScalarProperty Name="TuPian" ColumnName="TuPian" />
+                <ScalarProperty Name="TuPianSmall" ColumnName="TuPianSmall" />
                 <ScalarProperty Name="YuYue" ColumnName="YuYue" />
                 <ScalarProperty Name="MiaoShu" ColumnName="MiaoShu" />
                 <ScalarProperty Name="LianXiDianHua" ColumnName="LianXiDianHua" />
@@ -510,7 +474,6 @@
             <EntityTypeMapping TypeName="SysModel.GenZong">
               <MappingFragment StoreEntitySet="GenZong">
                 <ScalarProperty Name="BiaoShi" ColumnName="BiaoShi" />
-                <ScalarProperty Name="ShenQingId" ColumnName="ShenQingId" />
                 <ScalarProperty Name="ChuLiId" ColumnName="ChuLiId" />
                 <ScalarProperty Name="Remark" ColumnName="Remark" />
                 <ScalarProperty Name="CreatePerson" ColumnName="CreatePerson" />
@@ -529,6 +492,8 @@
                 <ScalarProperty Name="LogonIP" ColumnName="LogonIP" />
                 <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
                 <ScalarProperty Name="CodeTime" ColumnName="CodeTime" />
+                <ScalarProperty Name="CodeTime2" ColumnName="CodeTime2" />
+                <ScalarProperty Name="CodeNum" ColumnName="CodeNum" />
                 <ScalarProperty Name="MyEmail" ColumnName="MyEmail" />
                 <ScalarProperty Name="VCode" ColumnName="VCode" />
                 <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
@@ -576,16 +541,19 @@
           <EntitySetMapping Name="ShenQing">
             <EntityTypeMapping TypeName="SysModel.ShenQing">
               <MappingFragment StoreEntitySet="ShenQing">
+                <ScalarProperty Name="HuiYuanName" ColumnName="HuiYuanName" />
+                <ScalarProperty Name="HuiYuanId" ColumnName="HuiYuanId" />
                 <ScalarProperty Name="BiaoShi" ColumnName="BiaoShi" />
                 <ScalarProperty Name="CreatePerson" ColumnName="CreatePerson" />
                 <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="EditTime" ColumnName="EditTime" />
                 <ScalarProperty Name="YuYue" ColumnName="YuYue" />
-                <ScalarProperty Name="HuiYuanId" ColumnName="HuiYuanId" />
                 <ScalarProperty Name="State" ColumnName="State" />
                 <ScalarProperty Name="Remark" ColumnName="Remark" />
                 <ScalarProperty Name="PingLun" ColumnName="PingLun" />
                 <ScalarProperty Name="DaFen" ColumnName="DaFen" />
                 <ScalarProperty Name="TuPian" ColumnName="TuPian" />
+                <ScalarProperty Name="TuPianSmall" ColumnName="TuPianSmall" />
                 <ScalarProperty Name="MiaoShu" ColumnName="MiaoShu" />
                 <ScalarProperty Name="LianXiDianHua" ColumnName="LianXiDianHua" />
                 <ScalarProperty Name="BaoXiuRen" ColumnName="BaoXiuRen" />

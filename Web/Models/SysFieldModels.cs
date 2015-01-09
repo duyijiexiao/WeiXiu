@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using Langben.BLL;
 using Langben.IBLL;
 using Langben.DAL;
+using Common;
 
 namespace Models
 {
@@ -20,12 +21,14 @@ namespace Models
         public static SelectList GetSysField()
         {
 
-
+            Account account = AccountModel.GetCurrentAccount();
+            string biaoshi = account.BiaoShi;
             ISchoolBLL baseDDL = new SchoolBLL();
-            return new SelectList(baseDDL.GetAll(), "Name", "Name");
-           
+            var ar = baseDDL.GetByBiaoShi(biaoshi);
+            return new SelectList(baseDDL.GetByBiaoShi(biaoshi), "Name", "Name");
+
 
         }
-     
+
     }
 }

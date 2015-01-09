@@ -35,7 +35,7 @@ namespace Models
         /// <returns>账户信息</returns>
         public static Account GetCurrentAccount()
         {
-            var account = Utils.ReadCookieAsObj("account");
+            var account = Utils.ReadCookieAsObj("myaccount");
              
                 return account;
             

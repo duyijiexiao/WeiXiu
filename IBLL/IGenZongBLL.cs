@@ -47,14 +47,7 @@ namespace Langben.IBLL
         [OperationContract]
         System.Collections.Generic.List<GenZong> GetAll();
         
-        /// <summary>
-        /// 根据ShenQingIdId，获取所有维修单跟踪数据
-        /// </summary>
-        /// <param name="id">外键的主键</param>
-        /// <returns></returns>
-        List<GenZong> GetByRefShenQingId(string id);
-
-        
+ 
         /// <summary>
         /// 根据主键，查看详细信息
         /// </summary>

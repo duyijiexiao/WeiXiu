@@ -1,8 +1,7 @@
-﻿function addFileUrl(name, url) {
-    var fileObj = $("#fileUrl").val();
-    $("#" + fileObj).val(url);
+﻿function addFileUrl(url) {
    
-    $('#addimg').append('<img height="65" style=" float:left; " width="93" alt="狼奔维修系统" src="' + url + '" />');
+    $('#addimg').append('<img height="72" style=" float:left; " width="72" alt="" src="' + url + '" />');
+    $("#TuPian").val(url +','+ $("#TuPian").val());
     nubmax++;
 }
 var nubmax = 0;
@@ -62,21 +61,7 @@ uploader.on('fileQueued', function (file) {
     // $list为容器jQuery实例
     $list.append($li);
 });
-// 文件上传过程中创建进度条实时显示。
-uploader.on('uploadProgress', function (file, percentage) {
-    var $li = $('#' + file.id),
-        $percent = $li.find('.progress span');
-
-    // 避免重复创建
-    if (!$percent.length) {
-        $percent = $('<p class="progress"><span></span></p>')
-                .appendTo($li)
-                .find('span');
-    }
-
-    $percent.css('width', percentage * 100 + '%');
-});
-
+ 
 // 文件上传成功，给item添加成功class, 用样式标记上传成功。
 uploader.on('uploadSuccess', function (file, responseText) {
     //$('#' + file.id).remove();
@@ -88,7 +73,8 @@ uploader.on('uploadSuccess', function (file, responseText) {
     if (ValidateIndex > 0) {
         $.messager.alert('提示', '登录超时');
     } else {
-        addFileUrl(responseText.jsonrpc, responseText.result);
+        
+        addFileUrl(responseText.result);
     }
     uploader.reset();
 });

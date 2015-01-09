@@ -14,11 +14,6 @@ namespace Langben.DAL
     
     public partial class HuiYuan
     {
-        public HuiYuan()
-        {
-            this.ShenQing = new HashSet<ShenQing>();
-        }
-    
         public string Id { get; set; }
         public string Name { get; set; }
         public string MyName { get; set; }
@@ -27,12 +22,12 @@ namespace Langben.DAL
         public string PhoneNumber { get; set; }
         public string VCode { get; set; }
         public string MyEmail { get; set; }
+        public Nullable<int> CodeNum { get; set; }
+        public Nullable<System.DateTime> CodeTime2 { get; set; }
         public Nullable<System.DateTime> CodeTime { get; set; }
         public Nullable<System.DateTime> CreateTime { get; set; }
         public string LogonIP { get; set; }
         public string State { get; set; }
         public string BiaoShi { get; set; }
-    
-        public virtual ICollection<ShenQing> ShenQing { get; set; }
     }
 }

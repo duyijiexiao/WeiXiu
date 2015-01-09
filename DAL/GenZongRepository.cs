@@ -147,18 +147,7 @@ namespace Langben.DAL
             }
         }
 
-        /// <summary>
-        /// 根据ShenQingId，获取所有维修单跟踪数据
-        /// </summary>
-        /// <param name="id">外键的主键</param>
-        /// <returns></returns>
-        public IQueryable<GenZong> GetByRefShenQingId(SysEntities db, string id)
-        {
-            return from c in db.GenZong
-                        where c.ShenQingId == id
-                        select c;
-                      
-        }
+     
 
         public void Dispose()
         {          

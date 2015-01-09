@@ -25,11 +25,23 @@ namespace Langben.BLL
                 return;
             }
             //此处实现异常的记录
+            try
+            {
+                StreamWriter sw = new StreamWriter("log.txt", true, Encoding.Default);   //该编码类型不会改变已有文件的编码类型
+                sw.WriteLine((ex.InnerException == null) ? string.Empty : ex.InnerException.Message + "|" + ex.StackTrace + "|" + DateTime.Now + "|" + ex.Message);
+                sw.Close();
+
+            }
+            catch (Exception)
+            {
+
+
+            }
 
             //SysException sysException = new SysException();
-            //sysException.CreateTime = DateTime.Now;
+            //sysException.CreateTime = ;
             //sysException.Remark = ex.StackTrace;
-            //sysException.Message = ex.Message;
+            //sysException.Message = ;
             //sysException.LeiXing = "异常";
             //sysException.Result = (ex.InnerException == null) ? string.Empty : ex.InnerException.Message;
             //sysException.Id = Result.GetNewId();

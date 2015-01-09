@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Langben.DAL.ShenQing>
+﻿@model IEnumerable<Langben.DAL.ChuLi>
 
 @{
     ViewBag.Title = "我的维修单";
@@ -8,7 +8,7 @@
     <div id="gridContent" class="grid_18">
         <div class="mod_personal_head">
             <font class="tit">我的维修单</font>
-            <select id="XueXiao" style="width: 203px; height: 30px; color: #999; font-size: 15px; margin-left:16px;  padding-left:3px" class="ipt">                
+            <select id="XueXiao" style="width: 203px; height: 30px; color: #999; font-size: 15px; margin-left:16px;  padding-left:3px" class="ipt">
                 <option value="60">前三个月维修单</option>
                 <option value="60">前六个月维修单</option>
                 <option value="60">全部维修单</option>
@@ -20,104 +20,166 @@
 
         <div class="mod_my_order_list">
             <dl class="clearfix">
-                @foreach (var item in Model)
+                @if (Model != null)
                 {
-                    <dt>
-                        <label class="list_info">
-                            <span class="year">@Html.DisplayFor(modelItem => Convert.ToDateTime(item.CreateTime).Year)</span>
-                            <span class="month">@Html.DisplayFor(modelItem => Convert.ToDateTime(item.CreateTime).Month)/@Html.DisplayFor(modelItem => Convert.ToDateTime(item.CreateTime).Day)</span>
-                            <br>
+                    foreach (var item in Model)
+                    {
+                        <dt>
+                            <label class="list_info">
+                                <span class="year">@Html.DisplayFor(modelItem => Convert.ToDateTime(item.CreateTime).Year)</span>
+                                <span class="month">@Html.DisplayFor(modelItem => Convert.ToDateTime(item.CreateTime).Month)/@Html.DisplayFor(modelItem => Convert.ToDateTime(item.CreateTime).Day)</span>
+                                <br>
 
-                            <span class="price_sen">待处理</span>
-                             
-                        </label>
-                        <a class="list_radio" href="javascript:;"></a>
-                        <u class="jiao"></u>
-                        <label class="icon_list_c clearfix"> </label>
-                    </dt>
-                    <dd class="xq">
-                        <div class="list_border">
-                            <ul class="border_li">
-                                <li class="li_right" style="height: 186px;">
-                                    <span class="border_link">
+                                <span class="price_sen">@item.State</span>
 
-                                        <table width="400" height="20" border="0">
-                                            <tr>
-                                                <td width="190">@Html.DisplayNameFor(model => model.XueXiao):@Html.DisplayFor(modelItem => item.XueXiao)</td>
-                                                <td width="190">@Html.DisplayNameFor(model => model.BaoXiuRen)：@Html.DisplayFor(modelItem => item.BaoXiuRen) </td>
-                                                <td width="205">@Html.DisplayNameFor(model => model.LianXiDianHua)：@Html.DisplayFor(modelItem => item.LianXiDianHua)</td>
-                                                <td width="140"><a onmouseout="javascript: $('#@item.Id').hide();" onmouseover="javascript: $('#@item.Id').show();">维修单跟踪</a></td>
+                            </label>
+                            <a class="list_radio" href="javascript:;"></a>
+                            <u class="jiao"></u>
+                            <label class="icon_list_c clearfix"> </label>
+                        </dt>
+                        <dd class="xq">
+                            <div class="list_border">
+                                <ul class="border_li">
+                                    <li class="li_right" style="height:auto;">
+                                        <span class="border_link">
 
-                                            </tr>
-                                        </table>
-                                        <div id="@item.Id" style="position: absolute; width: 400px; z-index: 1; border: 0px none; float: left; display: none;margin-left:300px;">
-                                            <table border="0" bgcolor="#ffffff" style="border: 1px solid black;">
-                                                <tbody>
-                                                    <tr>
-                                                        <td align="left" style="padding-top:6px; color:#000000;line-height:20px;padding-left:5px;">
-                                                            <label clang="ApplyDate">状态:</label>
-                                                            @Html.DisplayFor(modelItem => item.Remark)
+                                            <table width="610" height="20" border="0">
+                                                <tr>
+                                                    <td width="210">@Html.DisplayNameFor(model => model.XueXiao) ：@Html.DisplayFor(modelItem => item.XueXiao)</td>
+                                                    <td width="150">@Html.DisplayNameFor(model => model.BaoXiuRen) ：@Html.DisplayFor(modelItem => item.BaoXiuRen) </td>
+                                                    <td width="180">@Html.DisplayNameFor(model => model.LianXiDianHua) ：@Html.DisplayFor(modelItem => item.LianXiDianHua)</td>
+                                                    <td width="80"><a d="@item.Remark" class="genzhong" href="#">维修单跟踪</a></td>
 
-
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
+                                                </tr>
                                             </table>
-                                        </div>
-
-                                        <font></font>
-                                    </span>
-                                    <ul class="orderList order_item_wideScreen_list " style="">
-                                        <li>
-                                            <div class="puv">
-                                                <a class="puvA" onclick="addTrackPositionToCookie('13905415','O_L_PROPIC','12473477');" target="_blank" href="http://item-home.yhd.com/item/snapshotShow.do?productId=12473477&soItemId=570109600&flag=2">
-                                                    <img src="http://d7.yihaodianimg.com/N03/M08/A8/44/CgQCtFIdrMyAWmDvAAVS3mSGKo418300_60x60.jpg">
-                                                </a>
-                                            </div>
-                                            
-                                        </li>
-                                    </ul>
-
-                                </li>
-                                <li class="li_p" style="height: 186px;">
-                                    <p class="list_operating">
-
-                                        <a class="input_rep_btn orderListAgain" onclick="top.location.href='@Url.Action("Edit", "Apply", new { id = item.Id })'">编辑</a>
-                                        <a class="input_rep_btn orderListAgain" href="Comment/@item.Id" >发表评论</a>
-                                         
-                                       
-                                        <span class="order_num">
-
-
-                                            <em>维修单号：</em>
-                                            @Html.DisplayFor(modelItem => item.Id)
 
                                         </span>
-                                    </p>
-                                    <a class="li_p_del" href="javascript:void(0)" style="display: none;">
-                                        <img src="http://image.yihaodianimg.com/member/member/images/order/del_icon.png">
-                                    </a>
+                                        <ul class="orderList order_item_wideScreen_list " style="">
+                                            @if (!string.IsNullOrWhiteSpace(item.TuPian))
+                                            {
+                                                var datasSmall = item.TuPianSmall.Split(',');
+                                                var datas = item.TuPian.Split(',');
+                                                for (int i = 0; i < datas.Length; i++)
+                                                {
+                                                    if (!string.IsNullOrWhiteSpace(datas[i]))
+                                                    {
+
+                                                        <li>
+
+                                                            <a class="puvA" target="_blank" href="@datas[i]">
+                                                                <img src="@datasSmall[i]">
+                                                            </a>
+
+                                                        </li>
+                                                    }
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <li>
+
+                                                    <a class="puvA" onclick="addTrackPositionToCookie('13905415','O_L_PROPIC','12473477');" target="_blank" href="#">
+                                                        <img src="http://wenjian.langben.com/images/meiyou.jpg" />
+                                                    </a>
+
+                                                </li>
+                                            }
+
+
+                                        </ul>
+                                        <hr size="1" />
+
+                                        <span style="width: 550px; padding: 15px 0px 10px 20px; " class="border_link">
+                                            @item.MiaoShu
+                                        </span>
+                                    </li>
+                                    <li class="li_p" style="height: 186px;">
+
+                                        <p class="list_operating">
+                                            @if (item.State == "已提交" || item.State == "已打回")
+                                            {
+                                                <a class="input_rep_btn orderListAgain" onclick="top.location.href='@Url.Action("Edit", "Apply", new { id = item.Id })'">编辑</a>
+                                            }
+                                            @if (item.State == "待评论")
+                                            {
+                                                <a class="input_rep_btn orderListAgain" href="Comment/@item.Id">发表评论</a>
+                                            }
+
+                                            <span class="order_num">
+
+
+                                                <em>预约时间：</em><br />
+                                                @string.Format("{0:yyyy-MM-dd HH:mm}", item.YuYue)
+
+                                            </span>
+                                        </p>
+                                       
+
+
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </dd>
 
 
 
-                                </li>
-
-                            </ul>
-                        </div>
-                    </dd>
-
-
-
-
+                    }
                 }
+                else
+                {
+                       <span class="code_font">没有内容
+                    </span>  
+                }
+
             </dl>
+
+            <div style="   display: none;" class="two_dimensional_code">
+                <div class="code_bo clearfix">
+                    <i class="jin"></i>
+                    <span class="code_font">
+                    </span>
+
+                </div>
+            </div>
 
         </div>
     </div>
 </div>
+<link href="http://wenjian.langben.com/Content/fancyapps-fancyBox/source/jquery.fancybox.css" rel="stylesheet" />
+<script src="http://wenjian.langben.com/Content/fancyapps-fancyBox/source/jquery.fancybox.pack.js"></script>
 
+<script>
+
+    $(function () {
+
+        $(".puvA").fancybox();
+        var a = $(".mod_my_order_list");
+        a.delegate(".genzhong", "mouseenter", function () {
+            var data = $(this).attr('d');
+            $(".code_font").empty();
+            $(".code_font").append(data);
+            $(".two_dimensional_code").css({ display: "block", left: ($(this).offset().left - 68) + "px", top: ($(this).offset().top + 80) + "px" })
+        });
+        a.delegate(".genzhong", "mouseleave", function () {
+
+            $(".two_dimensional_code").css({ display: "none", left: ($(this).offset().left + 50) + "px", top: ($(this).offset().top + 80) + "px" })
+        })
+
+    })
+
+</script>
 <style>
-
-   
-
+    .layout_w1200_g22 .grid_18 .mod_my_order_list .border_li .li_right hr {
+        border-width: 1px medium medium;
+        border-style: dotted none none;
+        border-color: rgb(223, 223, 223) currentColor currentColor;
+        margin: -2px 0px 0px 20px;
+        width: 631px;
+        height: 0px;
+        overflow: hidden;
+        clear: both;
+        zoom: 1;
+        content: "";
+    }
 </style>

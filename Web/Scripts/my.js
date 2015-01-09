@@ -22,19 +22,7 @@ function updatePwdPage() {
                 return
             }
 
-            if (d.errorCode == "2") {
-                $("#validPhoneCode_wrong").show();
-                jQuery("#validPhoneCode_wrong").parents("li").addClass("cur_error"); return
-            }
-            if (d.errorCode == "3") {
-                $("#validPhoneCode_wrong").show();
-                jQuery("#validPhoneCode_wrong").parents("li").addClass("cur_error"); return
-            }
-            if (d.errorCode == "4") {
-                $("#validPhoneCode_wrong").show();
-                jQuery("#validPhoneCode_wrong").parents("li").addClass("cur_error");
-                return
-            }
+         
         }
     })
 }
@@ -53,7 +41,8 @@ function updatePwdSubmit() {
                     window.location = "/" + +$("#BiaoShi").val() + "/Passport/Success";
                 }
                 else if (i.errorCode == 1) {
-
+                    alert('新密码设置失败');
+                    return
 
                 }
 
@@ -80,31 +69,42 @@ function confirmUser() {
             }
             if (d.errorCode == "1") {
                 refresh_valid_code1();
-                $("#vcd").focus(); $("#vcd_desc").show();
-                jQuery("#vcd_desc").parents("li").addClass("cur_error"); return
+                $("#vcd").focus();
+                $("#vcd_desc").show();
+                jQuery("#vcd_desc").parents("li").addClass("cur_error");
+                return
             }
             if (d.errorCode == "2") {
                 refresh_valid_code1();
-                $("#phone_desc").text("您输入的账号未找到记录");
-                $("#phone_desc").show();
-                $("#phone").focus(); return
+                showPhoneError("您输入正确的手机号");
+                return
             }
-            if (d.errorCode == "3") {
-                refresh_valid_code1();
-                $("#phone_desc").text("您的账户异常，预计1个工作日内处理完毕");
-                $("#phone_desc").show();
-                $("#phone").focus(); return
-            }
+            
             if (d.errorCode == "4") {
                 refresh_valid_code1();
-                $("#phone_desc").text("未绑定手机，请致电客服找回密码");
-                $("#phone_desc").show(); $("#login_account").focus(); return
+                showPhoneError("您输入的账号未找到记录");
+               
+
+                return
             }
-            if (d.errorCode == "12") {
+
+            if (d.errorCode == "5") {
                 refresh_valid_code1();
-                $("#phone_desc").text("抱歉，您的账号已经被注销，请换一个账号试试");
-                $("#phone_desc").show();
-                $("#phone").focus();
+                showPhoneError("您的账户还未审核，预计1个工作日内处理完毕");
+                return
+            }
+            if (d.errorCode == "6") {
+                refresh_valid_code1();
+                $("#vcd").focus();
+                $("#vcd_desc").text("验证码过期");
+                $("#vcd_desc").show();
+                jQuery("#vcd_desc").parents("li").addClass("cur_error");
+                return
+            }
+            if (d.errorCode == "15") {
+                refresh_valid_code1();
+                showPhoneError("抱歉，您的账号已经使用找回密码超过5次，请联系管理员");
+             
                 return
             }
         }
@@ -466,8 +466,8 @@ function registerByPhoneSubmit() {
         else if (i.errorCode == 23) {
             showPhoneError(shoujihaocuanzai);
         }
-        else if (response.errorCode == 99) {
-            alert(response.content);
+        else if (i.errorCode == 99) {
+            alert(i.content);
         }
 
     });

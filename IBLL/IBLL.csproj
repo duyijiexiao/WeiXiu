@@ -40,7 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Framework\IChuLiBLL.cs" />
     <Compile Include="Framework\IHuiYuanBLL.cs" />
+    <Compile Include="Framework\ISchoolBLL.cs" />
     <Compile Include="Framework\ISysFieldHander.cs" />
     <Compile Include="ICompanyBLL.cs" />
     <Compile Include="IDepartmentBLL.cs" />

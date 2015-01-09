@@ -15,17 +15,9 @@ namespace Web.Controllers
     public class ApplyController : BaseController
     {
 
-        Langben.IBLL.IShenQingBLL m_BLL;
 
         ValidationErrors validationErrors = new ValidationErrors();
 
-        public ApplyController()
-            : this(new ShenQingBLL()) { }
-
-        public ApplyController(ShenQingBLL bll)
-        {
-            m_BLL = bll;
-        }
 
         public ActionResult Finished()
         {
@@ -55,25 +47,22 @@ namespace Web.Controllers
             {
                 response.errorCode = 3;
                 return Json(response);
-            } 
+            }
             if (string.IsNullOrWhiteSpace(entity.MiaoShu))
             {
                 response.errorCode = 4;
                 return Json(response);
             }
             #endregion
-      
-            Account account = GetCurrentAccount();
 
+            Account account = GetCurrentAccount();
             entity.HuiYuanId = account.Id;
-            entity.CreateTime = DateTime.Now;
             entity.BiaoShi = account.BiaoShi;
             entity.CreatePerson = account.PersonName;
-            entity.State = "已提交";
-            entity.Id = Result.GetNewId(); 
 
             string returnValue = string.Empty;
-            if (!m_BLL.Create(ref validationErrors, entity))
+            IChuLiBLL m_BLL = new ChuLiBLL();
+            if (!m_BLL.CreateAndCopy(ref validationErrors, entity))
             {
 
                 if (validationErrors != null && validationErrors.Count > 0)
@@ -91,8 +80,6 @@ namespace Web.Controllers
 
             response.errorCode = 0;
             return Json(response);
-
-
         }
 
         public ActionResult OK()
@@ -104,30 +91,36 @@ namespace Web.Controllers
 
         public ActionResult Comment(string id)
         {
-            ShenQing item = m_BLL.GetById(id);
+            IChuLiBLL m_BLL = new ChuLiBLL();
+            var item = m_BLL.GetById(id);
             return View(item);
 
         }
         [HttpPost]
 
-        public ActionResult Comment(string id, ShenQing entity)
+        public ActionResult Comment(string id, ChuLi entity)
         {
             SuggestionRes response = new SuggestionRes();
 
             #region 各种校验
-
-
+            if (!Validator.IsNumber(entity.DaFen.GetString()))
+            {
+                response.errorCode = 2;
+                return Json(response);
+            }
+            if (string.IsNullOrWhiteSpace(entity.PingLun))
+            {
+                response.errorCode = 4;
+                return Json(response);
+            }
 
             #endregion
 
             string currentPerson = GetCurrentPerson();
-            //entity.CreateTime = DateTime.Now;
 
-            //entity.CreatePerson = currentPerson;
-            entity.State = "已评论";
-            //entity.Id = Result.GetNewId().Substring(0, 12).ToString();
             string returnValue = string.Empty;
-            if (!m_BLL.Edit(ref validationErrors, entity))
+            IChuLiBLL m_BLL = new ChuLiBLL();
+            if (!m_BLL.Comment(ref validationErrors, entity))
             {
 
                 if (validationErrors != null && validationErrors.Count > 0)
@@ -150,13 +143,10 @@ namespace Web.Controllers
         }
         public ActionResult List()
         {
-
             Account account = GetCurrentAccount();
-
-            ViewBag.PersonName = account.PersonName;
-
-            IShenQingBLL baseDDL = new ShenQingBLL();
-            List<ShenQing> list = baseDDL.GetAll();
+            string biaoshi = account.BiaoShi;
+            IChuLiBLL m_BLL = new ChuLiBLL();
+            var list = m_BLL.GetList(biaoshi);
             return View(list);
 
         }
@@ -168,7 +158,8 @@ namespace Web.Controllers
 
         public ActionResult Edit(string id)
         {
-            ShenQing item = m_BLL.GetById(id);
+            IChuLiBLL m_BLL = new ChuLiBLL();
+            ChuLi item = m_BLL.GetById(id);
             return View(item);
         }
         /// <summary>
@@ -181,42 +172,54 @@ namespace Web.Controllers
 
         public ActionResult Edit(string id, ShenQing entity)
         {
+            entity.Id = id;
+            SuggestionRes response = new SuggestionRes();
 
+            #region 各种校验
 
-            if (entity != null && ModelState.IsValid)
-            {   //数据校验
-                entity.CreateTime = DateTime.Now;
-
-                //string currentPerson = GetCurrentPerson();
-                //entity.UpdateTime = DateTime.Now;
-                //entity.UpdatePerson = currentPerson;
-
-
-                string returnValue = string.Empty;
-                if (m_BLL.Edit(ref validationErrors, entity))
-                {
-                    // LogClassModels.WriteServiceLog(Suggestion.UpdateSucceed + "，维修申请信息的Id为" + id, "维修申请"
-                    // );//写入日志                           
-                    //  return Json(Suggestion.UpdateSucceed); //提示更新成功 
-
-                    return RedirectToAction("List", "Apply");
-                }
-                else
-                {
-                    if (validationErrors != null && validationErrors.Count > 0)
-                    {
-                        validationErrors.All(a =>
-                        {
-                            returnValue += a.ErrorMessage;
-                            return true;
-                        });
-                    }
-                    //LogClassModels.WriteServiceLog(Suggestion.UpdateFail + "，维修申请信息的Id为" + id + "," + returnValue, "维修申请"
-                    //    );//写入日志                           
-                    return Json(Suggestion.UpdateFail + returnValue); //提示更新失败
-                }
+            if (string.IsNullOrWhiteSpace(entity.BaoXiuRen))
+            {
+                response.errorCode = 2;
+                return Json(response);
             }
-            return Json(Suggestion.UpdateFail + "请核对输入的数据的格式"); //提示输入的数据的格式不对               
+            if (string.IsNullOrWhiteSpace(entity.LianXiDianHua))
+            {
+                response.errorCode = 3;
+                return Json(response);
+            }
+            if (string.IsNullOrWhiteSpace(entity.MiaoShu))
+            {
+                response.errorCode = 4;
+                return Json(response);
+            }
+            #endregion
+
+            Account account = GetCurrentAccount();
+            entity.HuiYuanId = account.Id;
+            entity.BiaoShi = account.BiaoShi;
+            entity.CreatePerson = account.PersonName;
+
+            string returnValue = string.Empty;
+            IChuLiBLL m_BLL = new ChuLiBLL();
+            if (!m_BLL.EditAndCopy(ref validationErrors, entity))
+            {
+
+                if (validationErrors != null && validationErrors.Count > 0)
+                {
+                    validationErrors.All(a =>
+                    {
+                        returnValue += a.ErrorMessage;
+                        return true;
+                    });
+                }
+                response.errorCode = 99;
+                response.content = returnValue;
+                return Json(response);
+            }
+
+            response.errorCode = 0;
+            return Json(response);
+
 
         }
 
@@ -231,7 +234,9 @@ namespace Web.Controllers
 
             if (account != null)
             {
-                Utils.DeleteCookie("account");
+                Utils.DeleteCookie("myaccount");
+
+
                 return RedirectToAction("Index", "Account", new { id = account.BiaoShi });
 
             }

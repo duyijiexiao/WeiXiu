@@ -92,7 +92,11 @@ namespace Web.Controllers
                     account.PersonName = item.Name;
                     account.Id = item.Id;
                     account.BiaoShi = model.BiaoShi;
-                    Utils.WriteCookie("account", account, 7);
+                    Utils.WriteCookie("myaccount", account, 7);
+                    Utils.WriteCookie("SchoolName", item.SchoolName, 7);
+                    Utils.WriteCookie("Name", item.Name, 7);
+                    Utils.WriteCookie("PhoneNumber", item.PhoneNumber, 7);
+                    
                     Utils.WriteCookie("BiaoShi", model.BiaoShi, 7);
                     response.errorCode = 0;
                 }

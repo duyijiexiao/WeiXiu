@@ -21,9 +21,6 @@ namespace Langben.DAL
         public string CreatePerson { get; set; }
         public string Remark { get; set; }
         public string ChuLiId { get; set; }
-        public string ShenQingId { get; set; }
         public string BiaoShi { get; set; }
-    
-        public virtual ShenQing ShenQing { get; set; }
     }
 }

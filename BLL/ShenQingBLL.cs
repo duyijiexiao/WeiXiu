@@ -62,15 +62,7 @@ namespace Langben.BLL
                     queryData = queryData.Skip((page - 1) * rows).Take(rows);
                 }
                 
-                    foreach (var item in queryData)
-                    {
-                        if (item.HuiYuanId != null && item.HuiYuan != null)
-                        { 
-                                item.HuiYuanIdOld = item.HuiYuan.Name.GetString();//                            
-                        }                  
-
-                    }
- 
+                    
             }
             return queryData.ToList();
         }

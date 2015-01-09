@@ -64,10 +64,7 @@ namespace Langben.BLL
                 
                     foreach (var item in queryData)
                     {
-                        if (item.ShenQingId != null && item.ShenQing != null)
-                        { 
-                                item.ShenQingIdOld = item.ShenQing.XueXiao.GetString();//                            
-                        }                  
+                                      
 
                     }
  
@@ -287,16 +284,7 @@ namespace Langben.BLL
             return repository.GetById(db, id);           
         }
 
-
-        /// <summary>
-        /// 根据ShenQingIdId，获取所有维修单跟踪数据
-        /// </summary>
-        /// <param name="id">外键的主键</param>
-        /// <returns></returns>
-        public List<GenZong> GetByRefShenQingId(string id)
-        {
-            return repository.GetByRefShenQingId(db, id).ToList();                      
-        }
+ 
 
         public void Dispose()
         {

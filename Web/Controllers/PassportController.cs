@@ -1,6 +1,7 @@
 ﻿using Common;
 using Langben.BLL;
 using Langben.DAL;
+using Langben.IBLL;
 using Models;
 using System;
 using System.Collections.Generic;
@@ -38,12 +39,36 @@ namespace Web.Controllers
             SuggestionRes response = new SuggestionRes();
 
             #region 各种校验
+            if (string.IsNullOrWhiteSpace(validCode))
+            {
+                response.errorCode = 1;
+                return Json(response);
+            }
 
+            if (string.IsNullOrWhiteSpace(phone) || (!Validator.IsPhone(phone)))
+            {
+                response.errorCode = 2;
+                return Json(response);
+            }
 
+            if (string.IsNullOrWhiteSpace(validCode))
+            {
+                response.errorCode = 3;
+                return Json(response);
+            }
+            if (Session["__VCode"] == null || (Session["__VCode"].ToString() != validCode))
+            {
+
+                response.errorCode = 6;
+                return Json(response);
+
+            }
 
             #endregion
-            response.errorCode = 0;
+            IHuiYuanBLL m_BLL = new HuiYuanBLL();
+            response.errorCode = m_BLL.GetByPhone(phone, id);
             //如果成功了，将手机号放入cookies中 
+            Utils.WriteCookie("PhoneFind", phone, 1);
 
 
             return Json(response);
@@ -62,11 +87,26 @@ namespace Web.Controllers
             SuggestionRes response = new SuggestionRes();
 
             #region 各种校验
-            //校验验证码是否正确
-            //如果正确
+
+
 
             #endregion
-            response.errorCode = 0;
+            //校验验证码是否正确
+            //如果正确
+            var vcode = Utils.ReadCookie("vcode");
+            //从cookies中获取手机号码 
+            var phone = Utils.ReadCookie("PhoneFind");
+            IHuiYuanBLL m_BLL = new HuiYuanBLL();
+            var data = m_BLL.GetByPhoneVC(phone, vcode, id);
+            if (data != null)
+            {
+                response.errorCode = 0;
+
+            }
+            else
+            {
+                response.errorCode = 1;
+            }
 
             return Json(response);
         }
@@ -77,17 +117,39 @@ namespace Web.Controllers
 
             #region 各种校验
             //从cookies中获取手机号码 
+            var phone = Utils.ReadCookie("PhoneFind");
+            if (string.IsNullOrWhiteSpace(phone))
+            {
+                response.errorCode = 2;
+                return Json(response);
+            }
             //验证手机号的状态是否是启用，并且标识（id）也正确
             //验证码的时间不能超过半小时
-            //使用cookies记录验证码，过期时间为1小时
-            Utils.WriteCookie("vcode", id, 0.1);
-            #endregion
 
-            //向手机发送验证码
+            #endregion
             //随机生成六位数字，并更新到数据库，还有当前时间
             string vnum = Utils.GetByRndNum(6);
 
-            response.errorCode = 0;
+
+            IHuiYuanBLL m_BLL = new HuiYuanBLL();
+            response.errorCode = m_BLL.SetVC(phone, vnum, id);
+            if (response.errorCode == 0)
+            {
+                //向手机发送验证码
+                ServiceReference1.MessageServiceSoapClient client = new ServiceReference1.MessageServiceSoapClient();
+                ServiceReference1.Mess mess = new ServiceReference1.Mess();
+                mess.Message1 = "【维修】"+vnum;
+                mess.Phone = phone;
+                mess.Token = "weixiu123?";
+                var data = client.MessageAdd(mess);
+                if (data!=1)
+                {
+                   
+                }
+                //使用cookies记录验证码，过期时间为1小时
+                Utils.WriteCookie("vcode", vnum, 0.1);
+            }
+
             return Json(response);
         }
         public ActionResult NewPassword(string id)
@@ -124,8 +186,16 @@ namespace Web.Controllers
             //将用户信息写入cookies，这样在下一个页面就可以自动登录了
 
 
-            string phone = "";
-
+            string phone = Utils.ReadCookie("PhoneFind");
+            if (string.IsNullOrWhiteSpace(phone))
+            {
+                response.errorCode = 1;
+                return Json(response);
+            }
+            else
+            {
+                Utils.DeleteCookie("PhoneFind");
+            }
             Langben.IBLL.IHuiYuanBLL m_BLL = new HuiYuanBLL();
             ValidationErrors validationErrors = new ValidationErrors();
 
@@ -138,14 +208,17 @@ namespace Web.Controllers
                 account.PersonName = item.Name;
                 account.Id = item.Id;
                 account.BiaoShi = id;
-                Utils.WriteCookie("account", account, 7);
+
+                Utils.WriteCookie("myaccount", account, 7);
                 Utils.WriteCookie("BiaoShi", id, 7);
                 response.errorCode = 0;
 
             }
-            Utils.WriteCookie("BiaoShi", id, 7);
+            else
+            {
+                response.errorCode = 1;
+            }
 
-            response.errorCode = 0;
             return Json(response);
         }
 

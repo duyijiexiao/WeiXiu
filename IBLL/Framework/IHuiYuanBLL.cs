@@ -21,6 +21,8 @@ namespace Langben.IBLL
     /// <returns></returns>
      [OperationContract]
      int ShenHe(string ids,string State);
+     [OperationContract]
+     HuiYuan GetByPhoneVC(string phone, string pwd, string biaoshi);
      /// <summary>
      /// 根据电话号码，查看详细信息
      /// </summary>
@@ -28,6 +30,8 @@ namespace Langben.IBLL
      /// <returns></returns>
      [OperationContract]
      HuiYuan GetByPhone(string phone, string pwd, string biaoshi);
+     [OperationContract]
+     int GetByPhone(string phone, string biaoshi);
      /// <summary>
      /// 找回密码
      /// </summary>
@@ -40,6 +44,9 @@ namespace Langben.IBLL
 
      [OperationContract]
      bool IsPhone(string phone, string biaoshi);
+     [OperationContract]
+     int SetVC(string phone,string vc, string biaoshi);
+
     }
 }
 

@@ -42,11 +42,12 @@
                         <u></u>
                         请填写正确的手机号码，以便找回密码。
                     </div>
-                    <div id="phone_error" class="tips_box regist_tips_error">
-                    </div>
+                    
                     <div id="phone_desc" class="tips_box username_ok"></div>
 
-
+                    <div id="phone_error" class="tips_box regist_tips_error">
+                        请填写正确的手机号码，以便找回密码。
+                    </div>
 
                 </li>
                 <li class="verify_code">
@@ -55,14 +56,16 @@
                         <input type="text" maxlength="4" value="" class="ipt gay_text ipt_code" id="vcd" onkeydown="showoff('vcd_desc');">
                         <!--验证码正确-->
                         <span class="code_right"></span>
-                        <!--验证码错误-->
-                        <span class="code_wrong" id="vcd_desc"></span>
+                      
                     </div>
                     <span class="verify_code_box">
 
                         <img id="valid_code_pic" />
                     </span>
                     <a class="change_code" href="javascript:refresh_valid_code1();">换一张</a>
+                    <!--验证码错误-->
+                    <span class="code_wrong" id="vcd_desc">请输入正确的验证码</span>
+
                 </li>
                 <li class="regist_btn">
                     <button type="submit" id="login_button" onclick="javascript:confirmUser();return false;">下一步</button>

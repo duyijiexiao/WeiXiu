@@ -89,8 +89,9 @@
         } else if (!checkshenqing('PingLun', messagePingLun)) {
             return;
         }
+        
         var ShenQing = {
-            DaFen: $("#DaFen").val(),
+            DaFen: $('#DaFen').raty('score'),
             PingLun: $("#PingLun").val()
         };
 

@@ -47,6 +47,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -161,8 +162,6 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Codes\QyCustomMessageContext.cs" />
-    <Compile Include="Codes\QyCustomMessageHandler.cs" />
     <Compile Include="Codes\UploadFiles.cs" />
     <Compile Include="Codes\Validator.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -173,32 +172,62 @@
     <Compile Include="Controllers\ApplyController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\ExceptionController.cs" />
     <Compile Include="Controllers\FileUpController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PassportController.cs" />
-    <Compile Include="Controllers\QYController.cs" />
     <Compile Include="Controllers\VcController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\BaseException.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\SuggestionRes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\SysFieldModels.cs" />
+    <Compile Include="Service References\ServiceReference1\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\fonts\raty.svg" />
+    <Content Include="Content\fancyapps-fancyBox\demo\1_b.jpg" />
+    <Content Include="Content\fancyapps-fancyBox\demo\1_s.jpg" />
+    <Content Include="Content\fancyapps-fancyBox\demo\2_b.jpg" />
+    <Content Include="Content\fancyapps-fancyBox\demo\2_s.jpg" />
+    <Content Include="Content\fancyapps-fancyBox\demo\3_b.jpg" />
+    <Content Include="Content\fancyapps-fancyBox\demo\3_s.jpg" />
+    <Content Include="Content\fancyapps-fancyBox\demo\4_b.jpg" />
+    <Content Include="Content\fancyapps-fancyBox\demo\4_s.jpg" />
+    <Content Include="Content\fancyapps-fancyBox\demo\5_b.jpg" />
+    <Content Include="Content\fancyapps-fancyBox\demo\5_s.jpg" />
+    <Content Include="Content\fancyapps-fancyBox\demo\ajax.txt" />
+    <Content Include="Content\fancyapps-fancyBox\demo\iframe.html" />
+    <Content Include="Content\fancyapps-fancyBox\demo\index.html" />
+    <Content Include="Content\fancyapps-fancyBox\source\blank.gif" />
+    <Content Include="Content\fancyapps-fancyBox\source\fancybox_loading%402x.gif" />
+    <Content Include="Content\fancyapps-fancyBox\source\fancybox_loading.gif" />
+    <Content Include="Content\fancyapps-fancyBox\source\fancybox_overlay.png" />
+    <Content Include="Content\fancyapps-fancyBox\source\fancybox_sprite%402x.png" />
+    <Content Include="Content\fancyapps-fancyBox\source\fancybox_sprite.png" />
+    <Content Include="Content\fancyapps-fancyBox\source\helpers\fancybox_buttons.png" />
+    <Content Include="Content\fancyapps-fancyBox\source\helpers\jquery.fancybox-buttons.css" />
+    <Content Include="Content\fancyapps-fancyBox\source\helpers\jquery.fancybox-buttons.js" />
+    <Content Include="Content\fancyapps-fancyBox\source\helpers\jquery.fancybox-media.js" />
+    <Content Include="Content\fancyapps-fancyBox\source\helpers\jquery.fancybox-thumbs.css" />
+    <Content Include="Content\fancyapps-fancyBox\source\helpers\jquery.fancybox-thumbs.js" />
+    <Content Include="Content\fancyapps-fancyBox\source\jquery.fancybox.css" />
+    <Content Include="Content\fancyapps-fancyBox\source\jquery.fancybox.js" />
+    <Content Include="Content\fancyapps-fancyBox\source\jquery.fancybox.pack.js" />
     <Content Include="Content\images\cancel-off.png" />
     <Content Include="Content\images\cancel-on.png" />
     <Content Include="Content\images\star-half.png" />
-    <Content Include="Content\images\star-off-big.png" />
     <Content Include="Content\images\star-off.png" />
-    <Content Include="Content\images\star-on-big.png" />
     <Content Include="Content\images\star-on.png" />
     <Content Include="Content\jquery.raty.css" />
     <Content Include="Content\My97DatePicker\calendar.js" />
-    <Content Include="Content\My97DatePicker\demo.htm" />
     <Content Include="Content\My97DatePicker\lang\en.js" />
     <Content Include="Content\My97DatePicker\lang\zh-cn.js" />
     <Content Include="Content\My97DatePicker\lang\zh-tw.js" />
@@ -206,9 +235,6 @@
     <Content Include="Content\My97DatePicker\skin\default\datepicker.css" />
     <Content Include="Content\My97DatePicker\skin\default\img.gif" />
     <Content Include="Content\My97DatePicker\skin\WdatePicker.css" />
-    <Content Include="Content\My97DatePicker\skin\whyGreen\bg.jpg" />
-    <Content Include="Content\My97DatePicker\skin\whyGreen\datepicker.css" />
-    <Content Include="Content\My97DatePicker\skin\whyGreen\img.gif" />
     <Content Include="Content\My97DatePicker\WdatePicker.js" />
     <Content Include="Content\webuploader\css\webuploader.css" />
     <Content Include="Content\webuploader\images\bg.png" />
@@ -221,14 +247,13 @@
     <Content Include="Content\webuploader\js\Uploader.swf" />
     <Content Include="Content\webuploader\js\webuploader.min.js" />
     <Content Include="Content\webuploader\js\webuploader.nolog.min.js" />
-    <Content Include="css\base - 复制.css" />
-    <Content Include="css\base2 - 复制.css" />
     <Content Include="css\base2.css" />
     <Content Include="css\base.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Images\cart3_step.png" />
     <Content Include="Images\index\ap_categoryboxbg.gif" />
+    <Content Include="Images\meiyou.jpg" />
+    <Content Include="Images\order\jin.jpg" />
     <Content Include="Images\login.png" />
     <Content Include="Images\loginlogo.png" />
     <Content Include="Images\login_pic.jpg" />
@@ -238,16 +263,27 @@
     <Content Include="Images\regist.png" />
     <Content Include="Images\regist_bg.jpg" />
     <Content Include="Images\regist_topshadow.png" />
-    <Content Include="Content\fonts\raty.eot" />
-    <Content Include="Content\fonts\raty.ttf" />
-    <Content Include="Content\fonts\raty.woff" />
+    <Content Include="Content\fancyapps-fancyBox\.gitattributes" />
+    <Content Include="Content\fancyapps-fancyBox\CHANGELOG.md" />
+    <Content Include="Content\fancyapps-fancyBox\README.md" />
+    <Content Include="Content\fancyapps-fancyBox\sprite.psd" />
     <None Include="Properties\PublishProfiles\weixiu.pubxml" />
-    <None Include="Scripts\my.js" />
+    <Content Include="log.txt" />
     <Content Include="Scripts\jquery.cookie.js" />
     <Content Include="Scripts\jquery.min.js" />
     <Content Include="Content\jquery.raty.js" />
     <Content Include="Scripts\UploadFile.js" />
-    <Content Include="Web.config" />
+    <Content Include="Scripts\my.js" />
+    <None Include="Service References\ServiceReference1\MessageService.disco" />
+    <None Include="Service References\ServiceReference1\configuration91.svcinfo" />
+    <None Include="Service References\ServiceReference1\configuration.svcinfo" />
+    <None Include="Service References\ServiceReference1\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -272,7 +308,12 @@
     <Content Include="Views\Company\Index.cshtml" />
     <Content Include="Views\Apply\OK.cshtml" />
     <Content Include="Views\Apply\Finished.cshtml" />
-    <None Include="Views\Shared\_LayoutWai.cshtml" />
+    <None Include="Service References\ServiceReference1\MessageService.wsdl" />
+    <Content Include="Service References\ServiceReference1\Web.ServiceReference1.MessageAddResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Views\Exception\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutWai.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -307,6 +348,12 @@
       <Project>{814092cd-9cd0-4fb7-91e8-d147f476f1fb}</Project>
       <Name>Senparc.Weixin</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ServiceReference1\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

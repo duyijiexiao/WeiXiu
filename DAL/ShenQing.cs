@@ -14,28 +14,23 @@ namespace Langben.DAL
     
     public partial class ShenQing
     {
-        public ShenQing()
-        {
-            this.GenZong = new HashSet<GenZong>();
-        }
-    
         public string Id { get; set; }
         public string XueXiao { get; set; }
         public string BaoXiuRen { get; set; }
         public string LianXiDianHua { get; set; }
         public string MiaoShu { get; set; }
+        public string TuPianSmall { get; set; }
         public string TuPian { get; set; }
         public Nullable<int> DaFen { get; set; }
         public string PingLun { get; set; }
         public string Remark { get; set; }
         public string State { get; set; }
-        public string HuiYuanId { get; set; }
         public Nullable<System.DateTime> YuYue { get; set; }
+        public Nullable<System.DateTime> EditTime { get; set; }
         public Nullable<System.DateTime> CreateTime { get; set; }
         public string CreatePerson { get; set; }
         public string BiaoShi { get; set; }
-    
-        public virtual ICollection<GenZong> GenZong { get; set; }
-        public virtual HuiYuan HuiYuan { get; set; }
+        public string HuiYuanId { get; set; }
+        public string HuiYuanName { get; set; }
     }
 }
