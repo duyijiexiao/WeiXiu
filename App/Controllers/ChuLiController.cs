@@ -10,6 +10,11 @@ using Common;
 using Langben.DAL;
 using Langben.BLL;
 using Langben.App.Models;
+using Senparc.Weixin.QY.CommonAPIs;
+using Senparc.Weixin.QY.AdvancedAPIs;
+using Senparc.Weixin;
+using Senparc.Weixin.QY;
+using Senparc.Weixin.QY.Entities;
 
 namespace Langben.App.Controllers
 {
@@ -18,236 +23,27 @@ namespace Langben.App.Controllers
     /// </summary>
     public class ChuLiController : BaseController
     {
-        public ActionResult UpdataFankui()
-        {
-            var fdcount = 0;
-            try
-            {
-                var jjliyou = Request.Form["fank"];
-                var id = Request.Form["Id"];
-                var ids = id.Split(',');
-                for (int i = 0; i < ids.Length; i++)
-                {
-                    ChuLi entity = m_BLL.GetById(ids[i]);
-                    if (entity == null || entity.Id == null || entity.Id == "")
-                    {
-                        //return Content("失败");
-                        fdcount++;
-                        continue;
-                    }
-                    entity.FanKui = jjliyou;
-                    entity.FanKuiShiJian = DateTime.Now;
-                    entity.State = "已维修/待评论";
-                    if (entity != null && ModelState.IsValid)
-                    {   //数据校验
-                        if (m_BLL.Edit(ref validationErrors, entity))
-                        {
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                return Content("失败");
-            }
-            if (fdcount < 1)
-                return Content("成功");
-            else
-                return Content("有" + fdcount + "条失败！");
-        }
-        public ActionResult UpdataAnPai()
-        {
-            var fdcount = 0;
-            try
-            {
-                var apai = Request.Form["Anpai"];
-                var apiname = Request.Form["AnpaiName"];
-                var id = Request.Form["Id"];
-                var ids = id.Split(',');
-                for (int i = 0; i < ids.Length; i++)
-                {
-                    ChuLi entity = m_BLL.GetById(ids[i]);
-                    if (entity == null || entity.Id == null || entity.Id == "")
-                    {
-                        //return Content("失败");
-                        fdcount++;
-                        continue;
-                    }
-                    entity.Anpai = apai;
-                    entity.AnpaiName = apiname;
-                    entity.AnPaiShiJian = DateTime.Now;
-                    entity.State = "已安排/待维修";
-                    if (entity != null && ModelState.IsValid)
-                    {   //数据校验
-                        if (m_BLL.Edit(ref validationErrors, entity))
-                        {
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                return Content("失败");
-            }
-            if (fdcount < 1)
-                return Content("成功");
-            else
-                return Content("有" + fdcount + "条失败！");
-        }
-        public ActionResult UpdataJJ()
-        {
-            var jjliyou = Request.Form["jjliyou"];
-            var id = Request.Form["Id"];
-            ChuLi entity = m_BLL.GetById(id);
-            if (entity == null || entity.Id == null || entity.Id == "")
-            {
-                return Content("失败");
-            }
-            entity.JuJueLiYou = jjliyou;
-            entity.JuJueShiJian = DateTime.Now;
-            entity.State = "已拒绝";
-            if (entity != null && ModelState.IsValid)
-            {   //数据校验
-                if (m_BLL.Edit(ref validationErrors, entity))
-                {
-                }
-            }
-            return Content("成功");
-        }
 
-        public ActionResult UpdataDH()
-        {
-            var dhliyou = Request.Form["dhliyou"];
-            var id = Request.Form["Id"];
-            ChuLi entity = m_BLL.GetById(id);
-            if (entity == null || entity.Id == null || entity.Id == "")
-            {
-                return Content("失败");
-            }
-            entity.JuJueLiYou = dhliyou;
-            entity.JuJueShiJian = DateTime.Now;
-            entity.State = "已打回/待修改";
-            if (entity != null && ModelState.IsValid)
-            {   //数据校验
-                if (m_BLL.Edit(ref validationErrors, entity))
-                {
-                }
-            }
-            return Content("成功");
-        }
-        /// <summary>
-        /// 列表
-        /// </summary>
-        /// <returns></returns>
-        [SupportFilter]
-        public ActionResult Index()
-        {
-
-            return View();
-        }
-        /// <summary>
-        /// 列表
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult IndexSef()
-        {
-
-            return View();
-        }
-
-
-        /// <summary>
-        /// 统计列表
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult TongjiIndex()
-        {
-
-            return View();
-        }
-        /// <summary>
-        /// 处理反馈Index
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult FKIndex()
-        {
-            return View();
-        }
-        /// <summary>
-        /// 处理反馈Create
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult FKCreate()
-        {
-            return View();
-        }
-        /// <summary>
-        /// 处理反馈Details
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult FKDetails()
-        {
-            return View();
-        }
-        /// <summary>
-        /// 处理反馈Edit
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult FKEdit(string id)
-        {
-            ChuLi item = m_BLL.GetById(id);
-            ViewBag.OldPic = item.TuPian;
-            ViewBag.OldPic1 = item.FanKuiTuPian;
-            return View(item);
-        }
-        /// <summary>
-        /// 提交编辑信息
-        /// </summary>
-        /// <param name="id">主键</param>
-        /// <param name="collection">客户端传回的集合</param>
-        /// <returns></returns>
         [HttpPost]
-        [SupportFilter]
-        public ActionResult FKEdit(string id, ChuLi entity)
+        public ActionResult UpdataAnPai(ChuLi entity)
         {
             if (entity != null && ModelState.IsValid)
-            {   //数据校验
-
-                string currentPerson = GetCurrentPerson();
-                //entity.UpdateTime = DateTime.Now;
-                //entity.UpdatePerson = currentPerson;
-
-                string returnValue = string.Empty;
-                if (m_BLL.Edit(ref validationErrors, entity))
+            {
+                if (string.IsNullOrWhiteSpace(entity.Anpai))
                 {
-                    GenZong gzg = new GenZong();
-                    gzg.BiaoShi = entity.BiaoShi;
-                    gzg.ChuLiId = entity.Id;
-                    gzg.CreatePerson = "";
-                    gzg.CreateTime = DateTime.Now;
-                    gzg.Id = Result.GetNewId();
-                    gzg.JiLu = "";
-                    if (string.IsNullOrEmpty(entity.FanKui))
-                        gzg.LeiXing = "维修处理";
-                    else
-                        gzg.LeiXing = "维修处理反馈";
-                    gzg.Remark = "";
-                    gzg.ShenQing = null;
-                    gzg.ShenQingId = entity.ShenQingId;
-                    gzg.ShenQingIdOld = "";
-                    GenZongController ddd = new GenZongController();
-                    ddd.Create(gzg);
-                    LogClassModels.WriteServiceLog(Suggestion.UpdateSucceed + "，维修处理信息的Id为" + id, "维修处理"
+                    return Content("请选择维修人员");
+                }
+                string returnValue = string.Empty;
+
+                if (m_BLL.EditAndShenQing(ref validationErrors, entity))
+                {
+                   
+                 
+
+
+                    LogClassModels.WriteServiceLog(Suggestion.UpdateSucceed + "，信息的Id为" + entity.Id, "安排"
                         );//写入日志                           
-                    //return Json(Suggestion.UpdateSucceed); //提示更新成功 
-                    if (Request.Url.AbsoluteUri.ToString().IndexOf("FKEdit") > 0)
-                    {
-                        return Json(Suggestion.InsertSucceed); //return Redirect("/Chuli/FKIndex");//
-                    }
-                    else
-                    {
-                        return Json(Suggestion.InsertSucceed);
-                    }
+                    return Content("成功");//提示更新成功 
                 }
                 else
                 {
@@ -259,77 +55,98 @@ namespace Langben.App.Controllers
                             return true;
                         });
                     }
-                    LogClassModels.WriteServiceLog(Suggestion.UpdateFail + "，维修处理信息的Id为" + id + "," + returnValue, "维修处理"
+                    LogClassModels.WriteServiceLog(Suggestion.UpdateFail + "，信息的Id为" + entity.Id + "," + returnValue, "安排"
                         );//写入日志                           
-                    return Json(Suggestion.UpdateFail + returnValue); //提示更新失败
+                    return Content(Suggestion.UpdateFail + returnValue); //提示更新失败
                 }
+
             }
-            return Json(Suggestion.UpdateFail + "请核对输入的数据的格式"); //提示输入的数据的格式不对               
+
+            return Content(Suggestion.InsertFail + "，请核对输入的数据的格式"); //提示输入的数据的格式不对 
+
+
+        }
+        [HttpPost]
+        public ActionResult UpdataJJ(ChuLi entity)
+        {
+            if (entity != null && ModelState.IsValid)
+            {
+                string returnValue = string.Empty;
+
+                if (m_BLL.EditState(ref validationErrors, entity, "已拒绝"))
+                {
+                    LogClassModels.WriteServiceLog(Suggestion.UpdateSucceed + "，信息的Id为" + entity.Id, "拒绝"
+                        );//写入日志                           
+                    return Content("成功");//提示更新成功 
+                }
+                else
+                {
+                    if (validationErrors != null && validationErrors.Count > 0)
+                    {
+                        validationErrors.All(a =>
+                        {
+                            returnValue += a.ErrorMessage;
+                            return true;
+                        });
+                    }
+                    LogClassModels.WriteServiceLog(Suggestion.UpdateFail + "，信息的Id为" + entity.Id + "," + returnValue, "拒绝"
+                        );//写入日志                           
+                    return Content(Suggestion.UpdateFail + returnValue); //提示更新失败
+                }
+
+            }
+
+            return Content(Suggestion.InsertFail + "，请核对输入的数据的格式"); //提示输入的数据的格式不对 
+
+
+        }
+        [HttpPost]
+        public ActionResult UpdataDH(ChuLi entity)
+        {
+            if (entity != null && ModelState.IsValid)
+            {
+                string returnValue = string.Empty;
+
+                if (m_BLL.EditState(ref validationErrors, entity, "已打回"))
+                {
+                    LogClassModels.WriteServiceLog(Suggestion.UpdateSucceed + "，信息的Id为" + entity.Id, "打回"
+                        );//写入日志                           
+                    return Content("成功");//提示更新成功 
+                }
+                else
+                {
+                    if (validationErrors != null && validationErrors.Count > 0)
+                    {
+                        validationErrors.All(a =>
+                        {
+                            returnValue += a.ErrorMessage;
+                            return true;
+                        });
+                    }
+                    LogClassModels.WriteServiceLog(Suggestion.UpdateFail + "，信息的Id为" + entity.Id + "," + returnValue, "打回"
+                        );//写入日志                           
+                    return Content(Suggestion.UpdateFail + returnValue); //提示更新失败
+                }
+
+            }
+
+            return Content(Suggestion.InsertFail + "，请核对输入的数据的格式"); //提示输入的数据的格式不对 
+
 
         }
         /// <summary>
-        /// 异步加载数据
+        /// 列表
         /// </summary>
-        /// <param name="page">页码</param>
-        /// <param name="rows">每页显示的行数</param>
-        /// <param name="order">排序字段</param>
-        /// <param name="sort">升序asc（默认）还是降序desc</param>
-        /// <param name="search">查询条件</param>
         /// <returns></returns>
-        [HttpPost]
-        public JsonResult GetTjData(string id, int page, int rows, string order, string sort, string search)
+      
+        public ActionResult Index()
         {
 
-            int total = 0;
-            List<ChuLi> queryData = m_BLL.GetByParam(id, page, rows, order, sort, search, ref total);
-            return Json(new datagrid
-            {
-                total = total,
-                rows = queryData.Select(s => new
-                {
-                    Id = s.Id
-                    ,
-                    XueXiao = s.XueXiao
-                    ,
-                    BaoXiuRen = s.BaoXiuRen
-                    ,
-                    LianXiDianHua = s.LianXiDianHua
-                    ,
-                    MiaoShu = s.MiaoShu
-                    ,
-                    TuPian = s.TuPian
-                    ,
-                    PaiXu = s.PaiXu
-                    ,
-                    Remark = s.Remark
-                    ,
-                    State = s.State
-                    ,
-                    HuiYuanId = s.HuiYuanId
-                    ,
-                    JuJueLiYou = s.JuJueLiYou
-                    ,
-                    JuJueShiJian = s.JuJueShiJian
-                    ,
-                    Anpai = s.Anpai
-                    ,
-                    AnPaiShiJian = s.AnPaiShiJian
-                    ,
-                    FanKui = s.FanKui
-                    ,
-                    FanKuiTuPian = s.FanKuiTuPian
-                    ,
-                    FanKuiShiJian = s.FanKuiShiJian
-                    ,
-                    ShenQingId = s.ShenQingId
-                    ,
-                    BiaoShi = s.BiaoShi
-
-                }
-
-                    )
-            });
+            return View();
         }
+
+
+
         /// <summary>
         /// 异步加载数据
         /// </summary>
@@ -344,6 +161,7 @@ namespace Langben.App.Controllers
         {
 
             int total = 0;
+            Account account = GetCurrentAccount(); string biaoshi = account.BiaoShi; search += "^BiaoShi&" + biaoshi;
             List<ChuLi> queryData = m_BLL.GetByParam(id, page, rows, order, sort, search, ref total);
             return Json(new datagrid
             {
@@ -362,11 +180,14 @@ namespace Langben.App.Controllers
                     ,
                     TuPian = s.TuPian
                     ,
+                    TuPianSmall = s.TuPianSmall
+                    ,
                     PaiXu = s.PaiXu
                     ,
                     Remark = s.Remark
                     ,
-                    State = s.State
+                    State = s.State,
+                    YuYue = s.YuYue
                     ,
                     HuiYuanId = s.HuiYuanId
                     ,
@@ -374,7 +195,7 @@ namespace Langben.App.Controllers
                     ,
                     JuJueShiJian = s.JuJueShiJian
                     ,
-                    Anpai = s.Anpai
+                    AnpaiName = s.AnpaiName
                     ,
                     AnPaiShiJian = s.AnPaiShiJian
                     ,
@@ -386,245 +207,14 @@ namespace Langben.App.Controllers
                     ,
                     ShenQingId = s.ShenQingId
                     ,
-                    ShenQingShiJian = ShenQingController.GetSqTime(s.ShenQingId)
+                    ShenQingShiJian = s.CreateTime
                     ,
                     BiaoShi = s.BiaoShi
-                }).OrderByDescending(m => m.ShenQingShiJian).ToList()
+
+                })
             });
         }
-        /// <summary>
-        ///  导出Excle /*在6.0版本中 新增*/
-        /// </summary>
-        /// <param name="param">Flexigrid传过到后台的参数</param>
-        /// <returns></returns>      
-        [HttpPost]
-        public ActionResult Export(string id, string title, string field, string sortName, string sortOrder, string search)
-        {
-            string[] titles = title.Split(',');//如果确定显示的名称，可以直接定义
-            string[] fields = field.Split(',');
-            List<ChuLi> queryData = m_BLL.GetByParam(id, sortOrder, sortName, search);
 
-            return Content(WriteExcle(titles, fields, queryData.ToArray()));
-        }
-        /// <summary>
-        /// 查看详细
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        [SupportFilter]
-        public ActionResult Details(string id)
-        {
-            ChuLi item = m_BLL.GetById(id);
-            ViewBag.OldPic = item.TuPian;
-            ViewBag.OldPic1 = item.FanKuiTuPian;
-            return View(item);
-
-        }
-
-        /// <summary>
-        /// 首次创建
-        /// </summary>
-        /// <returns></returns>
-        [SupportFilter]
-        public ActionResult Create(string id)
-        {
-
-            return View();
-        }
-        /// <summary>
-        /// 创建
-        /// </summary>
-        /// <param name="entity"></param>
-        /// <returns></returns>
-        [HttpPost]
-        [SupportFilter]
-        public ActionResult Create(ChuLi entity)
-        {
-            if (entity != null && ModelState.IsValid)
-            {
-                string currentPerson = GetCurrentPerson();
-                //entity.CreateTime = DateTime.Now;
-                //entity.CreatePerson = currentPerson;
-
-                entity.Id = Result.GetNewId();
-                string returnValue = string.Empty;
-                if (m_BLL.Create(ref validationErrors, entity))
-                {
-                    GenZong gzg = new GenZong();
-                    gzg.BiaoShi = entity.BiaoShi;
-                    gzg.ChuLiId = entity.Id;
-                    gzg.CreatePerson = "";
-                    gzg.CreateTime = DateTime.Now;
-                    gzg.Id = Result.GetNewId();
-                    gzg.JiLu = "";
-                    if (string.IsNullOrEmpty(entity.FanKui))
-                        gzg.LeiXing = "维修处理";
-                    else
-                        gzg.LeiXing = "维修处理反馈";
-                    gzg.Remark = "";
-                    gzg.ShenQing = null;
-                    gzg.ShenQingId = entity.ShenQingId;
-                    gzg.ShenQingIdOld = "";
-                    GenZongController ddd = new GenZongController();
-                    ddd.Create(gzg);
-                    LogClassModels.WriteServiceLog(Suggestion.InsertSucceed + "，维修处理的信息的Id为" + entity.Id, "维修处理"
-                        );//写入日志 
-                    //return Json(Suggestion.InsertSucceed);
-                    if (Request.Url.AbsoluteUri.ToString().IndexOf("FKCreate") > 0)
-                    {
-
-                        return Json(Suggestion.InsertSucceed);//return Redirect("/Chuli/FKIndex");//
-                    }
-                    else
-                    {
-                        return Json(Suggestion.InsertSucceed); //return Redirect("/Chuli/Index");//
-                    }
-                }
-                else
-                {
-                    if (validationErrors != null && validationErrors.Count > 0)
-                    {
-                        validationErrors.All(a =>
-                        {
-                            returnValue += a.ErrorMessage;
-                            return true;
-                        });
-                    }
-                    LogClassModels.WriteServiceLog(Suggestion.InsertFail + "，维修处理的信息，" + returnValue, "维修处理"
-                        );//写入日志                      
-                    return Json(Suggestion.InsertFail + returnValue); //提示插入失败
-                }
-            }
-
-            return Json(Suggestion.InsertFail + "，请核对输入的数据的格式"); //提示输入的数据的格式不对 
-        }
-        /// <summary>
-        /// 首次编辑
-        /// </summary>
-        /// <param name="id">主键</param>
-        /// <returns></returns> 
-        [SupportFilter]
-        public ActionResult Edit(string id)
-        {
-            ChuLi item = m_BLL.GetById(id);
-            ViewBag.OldPic = item.TuPian;
-            return View(item);
-        }
-        /// <summary>
-        /// 提交编辑信息
-        /// </summary>
-        /// <param name="id">主键</param>
-        /// <param name="collection">客户端传回的集合</param>
-        /// <returns></returns>
-        [HttpPost]
-        [SupportFilter]
-        public ActionResult Edit(string id, ChuLi entity)
-        {
-            if (entity != null && ModelState.IsValid)
-            {   //数据校验
-
-                string currentPerson = GetCurrentPerson();
-                //entity.UpdateTime = DateTime.Now;
-                //entity.UpdatePerson = currentPerson;
-
-                string returnValue = string.Empty;
-                if (m_BLL.Edit(ref validationErrors, entity))
-                {
-                    GenZong gzg = new GenZong();
-                    gzg.BiaoShi = entity.BiaoShi;
-                    gzg.ChuLiId = entity.Id;
-                    gzg.CreatePerson = "";
-                    gzg.CreateTime = DateTime.Now;
-                    gzg.Id = Result.GetNewId();
-                    gzg.JiLu = "";
-                    if (string.IsNullOrEmpty(entity.FanKui))
-                        gzg.LeiXing = "维修处理";
-                    else
-                        gzg.LeiXing = "维修处理反馈";
-                    gzg.Remark = "";
-                    gzg.ShenQing = null;
-                    gzg.ShenQingId = entity.ShenQingId;
-                    gzg.ShenQingIdOld = "";
-                    GenZongController ddd = new GenZongController();
-                    ddd.Create(gzg);
-                    LogClassModels.WriteServiceLog(Suggestion.UpdateSucceed + "，维修处理信息的Id为" + id, "维修处理"
-                        );//写入日志                           
-                    //return Json(Suggestion.UpdateSucceed); //提示更新成功 
-                    if (Request.Url.AbsoluteUri.ToString().IndexOf("FKEdit") > 0)
-                    {
-                        return Json(Suggestion.InsertSucceed); //return Redirect("/Chuli/FKIndex");//
-                    }
-                    else
-                    {
-                        return Json(Suggestion.InsertSucceed);
-                    }
-                }
-                else
-                {
-                    if (validationErrors != null && validationErrors.Count > 0)
-                    {
-                        validationErrors.All(a =>
-                        {
-                            returnValue += a.ErrorMessage;
-                            return true;
-                        });
-                    }
-                    LogClassModels.WriteServiceLog(Suggestion.UpdateFail + "，维修处理信息的Id为" + id + "," + returnValue, "维修处理"
-                        );//写入日志                           
-                    return Json(Suggestion.UpdateFail + returnValue); //提示更新失败
-                }
-            }
-            return Json(Suggestion.UpdateFail + "请核对输入的数据的格式"); //提示输入的数据的格式不对               
-
-        }
-        /// <summary>
-        /// 删除
-        /// </summary>
-        /// <param name="collection"></param>
-        /// <returns></returns>   
-        [HttpPost]
-        public ActionResult Delete(FormCollection collection)
-        {
-            string returnValue = string.Empty;
-            string[] deleteId = collection["query"].GetString().Split(',');
-            if (deleteId != null && deleteId.Length > 0)
-            {
-                if (m_BLL.DeleteCollection(ref validationErrors, deleteId))
-                {
-                    GenZong gzg = new GenZong();
-                    gzg.BiaoShi = "";
-                    gzg.ChuLiId = "";
-                    gzg.CreatePerson = "";
-                    gzg.CreateTime = DateTime.Now;
-                    gzg.Id = Result.GetNewId();
-                    gzg.JiLu = "";
-                    gzg.LeiXing = "维修处理删除";
-                    gzg.Remark = deleteId.ToString();
-                    gzg.ShenQing = null;
-                    gzg.ShenQingId = "";
-                    gzg.ShenQingIdOld = "";
-                    GenZongController ddd = new GenZongController();
-                    ddd.Create(gzg);
-                    LogClassModels.WriteServiceLog(Suggestion.DeleteSucceed + "，信息的Id为" + string.Join(",", deleteId), "消息"
-                        );//删除成功，写入日志
-                    return Json("OK");
-                }
-                else
-                {
-                    if (validationErrors != null && validationErrors.Count > 0)
-                    {
-                        validationErrors.All(a =>
-                        {
-                            returnValue += a.ErrorMessage;
-                            return true;
-                        });
-                    }
-                    LogClassModels.WriteServiceLog(Suggestion.DeleteFail + "，信息的Id为" + string.Join(",", deleteId) + "," + returnValue, "消息"
-                        );//删除失败，写入日志
-                }
-            }
-            return Json(returnValue);
-        }
 
         IBLL.IChuLiBLL m_BLL;
 

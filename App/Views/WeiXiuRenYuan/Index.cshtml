@@ -21,30 +21,7 @@
                     <input type='text' id='MyName'/>
                </div>
             </div> 
-            <div class="input_search">
-            <div class="input_search-label">
-                    @Html.LabelFor(model => model.PhoneNumber):
-             </div>
-                <div class="input_search-field">
-                    <input type='text' id='PhoneNumber'/>
-               </div>
-            </div> 
-            <div class='input_search'>
-              <div class='input_search-label'>
-                    @Html.LabelFor(model => model.CreateTime):
-                </div>
-                <div class='input_search-field-time'>
-                    <input type="text" id="CreateTimeStart_Time" onclick="WdatePicker({maxDate:'#F{$dp.$D(\'CreateTimeEnd_Time\');}'})"  />
-                    <span>到</span>
-                    <input type="text" id="CreateTimeEnd_Time" onclick="WdatePicker({minDate:'#F{$dp.$D(\'CreateTimeStart_Time\');}'})" />
-               </div>
-            </div>        
-            <div class="editor-label">
-                @Html.LabelFor(model => model.State)：
-            </div>
-            <div class="editor-field">
-             @Html.RadioButtonListFor(model => model.State,Models.SysFieldModels.GetSysField("WeiXiuRenYuan","State"),false) 
-            </div>
+          
     <div class='input_search' style="padding-top:10px;">
         <a href="#" onclick="flexiQuery()" class="easyui-linkbutton" data-options="iconCls:'icon-search'">
             查 询
@@ -71,13 +48,7 @@
 
                 toolbar: [
                  
-                     {
-                        text: '详细',
-                        iconCls: 'icon-search',
-                        handler: function () {
-                            return getView();
-                        }
-                    }, {
+                      {
                         text: '创建',
                         iconCls: 'icon-add',
                         handler: function () {
@@ -95,41 +66,14 @@
                         handler: function () {
                             return flexiModify();
                         }
-                    }, {
-                        text: '导出',
-                        iconCls: 'icon-excel',
-                        handler: function () {
-                            return flexiExport();
-                        }
                     } ],
                 columns: [[
                    
                     
 					{ field: 'Name', title: '@Html.DisplayNameFor(model => model.Name)', width: 70 }
 					,{ field: 'MyName', title:  '@Html.DisplayNameFor(model => model.MyName)', width: 70 }
-					,{ field: 'SchoolName', title:  '@Html.DisplayNameFor(model => model.SchoolName)', width: 70 }
-					,{ field: 'Password', title:  '@Html.DisplayNameFor(model => model.Password)', width: 70 }
-					,{ field: 'PhoneNumber', title:  '@Html.DisplayNameFor(model => model.PhoneNumber)', width: 70 }
-					,{ field: 'VCode', title:  '@Html.DisplayNameFor(model => model.VCode)', width: 70 }
-					,{ field: 'MyEmail', title:  '@Html.DisplayNameFor(model => model.MyEmail)', width: 70 }
-					,{ field: 'CodeTime', title:  '@Html.DisplayNameFor(model => model.CodeTime)', width: 70
-                    , formatter: function (value, rec) {
-                        if (value) {
-                            return dateConvert(value);
-                        } 
-                    } 
-}
-					,{ field: 'CreateTime', title:  '@Html.DisplayNameFor(model => model.CreateTime)', width: 70
-                    , formatter: function (value, rec) {
-                        if (value) {
-                            return dateConvert(value);
-                        } 
-                    } 
-}
-					,{ field: 'LogonIP', title:  '@Html.DisplayNameFor(model => model.LogonIP)', width: 70 }
-					,{ field: 'State', title:  '@Html.DisplayNameFor(model => model.State)', width: 70 }
-					,{ field: 'BiaoShi', title:  '@Html.DisplayNameFor(model => model.BiaoShi)', width: 70 }
-                ]],
+					 ,{ field: 'PhoneNumber', title:  '@Html.DisplayNameFor(model => model.PhoneNumber)', width: 70 }
+					    ]],
                 pagination: true,
                 rownumbers: true
 

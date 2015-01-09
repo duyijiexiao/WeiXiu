@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="264590c0-a778-4e04-a9ec-18e219c07d6c" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://guanli.langben.com/SysRoles.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="SysRoles3.xsd" MetadataType="Schema" ID="492c91e3-e821-43b1-bee5-523bb9b22914" SourceId="1" SourceUrl="http://guanli.langben.com/SysRoles.svc?xsd=xsd1" />
+    <MetadataFile FileName="SysRoles31.xsd" MetadataType="Schema" ID="dfc75d23-99fa-4226-969c-80f6d3e49f67" SourceId="1" SourceUrl="http://guanli.langben.com/SysRoles.svc?xsd=xsd2" />
+    <MetadataFile FileName="SysRoles32.xsd" MetadataType="Schema" ID="9ca20172-12a6-484c-9eca-51be88ad0ea5" SourceId="1" SourceUrl="http://guanli.langben.com/SysRoles.svc?xsd=xsd0" />
+    <MetadataFile FileName="SysRoles1.wsdl" MetadataType="Wsdl" ID="d40e9513-4e83-41c9-81c3-fbb1396482ac" SourceId="1" SourceUrl="http://guanli.langben.com/SysRoles.svc?wsdl" />
+    <MetadataFile FileName="SysRoles1.disco" MetadataType="Disco" ID="d418ce39-dd3c-470f-b25b-3d9b75df27d6" SourceId="1" SourceUrl="http://guanli.langben.com/SysRoles.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

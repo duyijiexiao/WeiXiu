@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{9
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBLL", "IBLL\IBLL.csproj", "{9B7FCA89-A8A4-4FA8-B67B-0BF0FE9C53CD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Senparc.Weixin", "F:\gits\WeiXinMPSDK\Senparc.Weixin\Senparc.Weixin\Senparc.Weixin.csproj", "{814092CD-9CD0-4FB7-91E8-D147F476F1FB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Senparc.Weixin.QY", "F:\gits\WeiXinMPSDK\Senparc.Weixin.QY\Senparc.Weixin.QY\Senparc.Weixin.QY.csproj", "{2CA35598-F1A1-4DC9-AA20-A4346BFCB954}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{9B7FCA89-A8A4-4FA8-B67B-0BF0FE9C53CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B7FCA89-A8A4-4FA8-B67B-0BF0FE9C53CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B7FCA89-A8A4-4FA8-B67B-0BF0FE9C53CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{814092CD-9CD0-4FB7-91E8-D147F476F1FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{814092CD-9CD0-4FB7-91E8-D147F476F1FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{814092CD-9CD0-4FB7-91E8-D147F476F1FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{814092CD-9CD0-4FB7-91E8-D147F476F1FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CA35598-F1A1-4DC9-AA20-A4346BFCB954}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CA35598-F1A1-4DC9-AA20-A4346BFCB954}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CA35598-F1A1-4DC9-AA20-A4346BFCB954}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CA35598-F1A1-4DC9-AA20-A4346BFCB954}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

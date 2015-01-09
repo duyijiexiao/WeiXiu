@@ -30,20 +30,7 @@
                 @Html.EditorFor(model => model.MyName)
                 @Html.ValidationMessageFor(model => model.MyName)
             </div>     
-            <div class="editor-label">
-                @Html.LabelFor(model => model.SchoolName)：
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.SchoolName)
-                @Html.ValidationMessageFor(model => model.SchoolName)
-            </div>     
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Password)：
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.Password)
-                @Html.ValidationMessageFor(model => model.Password)
-            </div>     
+            
             <div class="editor-label">
                 @Html.LabelFor(model => model.PhoneNumber)：
             </div>
@@ -51,47 +38,7 @@
                 @Html.EditorFor(model => model.PhoneNumber)
                 @Html.ValidationMessageFor(model => model.PhoneNumber)
             </div>     
-            <div class="editor-label">
-                @Html.LabelFor(model => model.VCode)：
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.VCode)
-                @Html.ValidationMessageFor(model => model.VCode)
-            </div>     
-            <div class="editor-label">
-                @Html.LabelFor(model => model.MyEmail)：
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.MyEmail)
-                @Html.ValidationMessageFor(model => model.MyEmail)
-            </div>     
-            <div class="editor-label">
-                @Html.LabelFor(model => model.CodeTime)：
-            </div>
-            <div class="editor-field">
-                @Html.TextBox("CodeTime", ((Model != null && Model.CodeTime != null) ? Model.CodeTime.ToString().AsDateTime().ToString("yyyy-MM-dd") : ""), new { style = "width: 244px;", @class="easyui-datebox" })
-                @Html.ValidationMessageFor(model => model.CodeTime)
-            </div>@Html.HiddenFor(model => model.CreateTime )      
-            <div class="editor-label">
-                @Html.LabelFor(model => model.LogonIP)：
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.LogonIP)
-                @Html.ValidationMessageFor(model => model.LogonIP)
-            </div>        
-            <div class="editor-label">
-                @Html.LabelFor(model => model.State)：
-            </div>
-            <div class="editor-field">
-             @Html.RadioButtonListFor(model => model.State,Models.SysFieldModels.GetSysField("WeiXiuRenYuan","State"),false) 
-            </div>     
-            <div class="editor-label">
-                @Html.LabelFor(model => model.BiaoShi)：
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.BiaoShi)
-                @Html.ValidationMessageFor(model => model.BiaoShi)
-            </div>
+            
         </div>
     </fieldset>
 

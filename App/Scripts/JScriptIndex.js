@@ -1,4 +1,5 @@
-﻿function returnParent(value) {//获取子窗体返回值
+﻿
+function returnParent(value) {//获取子窗体返回值
     var parent = window.dialogArguments; //获取父页面
     //parent.location.reload(); //刷新父页面
     if (parent != null && parent != "undefined") {

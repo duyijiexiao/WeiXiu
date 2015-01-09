@@ -88,20 +88,20 @@
                 }
             }],
             columns: [[
+ { field: 'PhoneNumber', title: '@Html.DisplayNameFor(model => model.PhoneNumber)', width: 197 }
+                
 
-
-                { field: 'Name', title: '@Html.DisplayNameFor(model => model.Name)', width: 97 }
-                , { field: 'MyName', title: '@Html.DisplayNameFor(model => model.MyName)', width: 97 }
-                , { field: 'PhoneNumber', title: '@Html.DisplayNameFor(model => model.PhoneNumber)', width: 97 }
+               , { field: 'Name', title: '@Html.DisplayNameFor(model => model.Name)', width: 197 }
+               //  , { field: 'MyName', title: '@Html.DisplayNameFor(model => model.MyName)', width: 97 }
                 , {
-                    field: 'CreateTime', title: '@Html.DisplayNameFor(model => model.CreateTime)', width: 97
+                    field: 'CreateTime', title: '@Html.DisplayNameFor(model => model.CreateTime)', width: 197
                 , formatter: function (value, rec) {
                     if (value) {
                         return dateConvert(value);
                     }
                 }
                 }
-                , { field: 'LogonIP', title: '@Html.DisplayNameFor(model => model.LogonIP)', width: 97 }
+                , { field: 'LogonIP', title: '@Html.DisplayNameFor(model => model.LogonIP)', width: 197 }
                 , { field: 'State', title: '@Html.DisplayNameFor(model => model.State)', width: 97 }
             ]],
             pagination: true,
@@ -122,6 +122,10 @@
     function ShenHe() {
         var rows = $('#flexigridData').datagrid('getSelections');
         $.messager.confirm('操作提示', "您确定审核通过该用户吗？", function (r) {
+         
+            if (r) {
+
+           
         var arr = [];
         for (var i = 0; i < rows.length; i++) {
             if (rows[i].State == "未审核") {
@@ -140,7 +144,9 @@
         } else {
             $.messager.alert('操作提示', '审核成功!', 'info');
         }
-        });
+            }
+            });
+       
         return false;
     }
     //“查询”按钮，弹出查询框

@@ -1,4 +1,5 @@
-﻿function returnParent(value) {//获取子窗体返回值
+﻿
+function returnParent(value) {//获取子窗体返回值
     var parent = window.dialogArguments; //获取父页面
     //parent.location.reload(); //刷新父页面
     if (parent != null && parent != "undefined") {
@@ -290,7 +291,11 @@ function dateConvert(value) {
     var d = eval('new ' + value.replace(reg, ''));
     return new Date(d).format('yyyy-MM-dd')
 }
- 
+function dateConvert2(value) {
+    var reg = new RegExp('/', 'g');
+    var d = eval('new ' + value.replace(reg, ''));
+    return new Date(d).format('yyyy-MM-dd hh:mm')
+}
 $(function () {
     //时间格式化
     Date.prototype.format = function (format) {

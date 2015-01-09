@@ -40,12 +40,9 @@ namespace  Models
         /// <returns>账户信息</returns>
         public Account GetCurrentAccount()
         {
-            if (Session!=null&&Session["account"] != null)
-            {
-                Account account = (Account)Session["account"];
-                return account;
-            }
-            return null;
+            var account = AccountModel.GetCurrentAccount();
+
+            return account;
         }
         /// <summary>
         /// 导出数据集到excle

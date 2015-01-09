@@ -91,28 +91,7 @@ namespace Langben.App.Controllers
         }
 
 
-        [HttpPost]
-        public static List<SelectListItem> GetAnpaiUserData()
-        {
-            WeiXiuRenYuanBLL bll = new WeiXiuRenYuanBLL();
-            IBLL.IWeiXiuRenYuanBLL m_BLL = bll;
-            List<WeiXiuRenYuan> queryData = m_BLL.GetAll();
-            List<SelectListItem> selectListItems = new List<SelectListItem>();
-
-            //遍历Department的集合
-            foreach (WeiXiuRenYuan department in queryData)
-            {
-                SelectListItem selectListItem = new SelectListItem
-              {
-                  Text = department.Name,
-                  Value = department.Name,
-                  Selected = false
-              };
-                selectListItems.Add(selectListItem);
-            }
-            return selectListItems;
-
-        }
+        
 
 
         /// <summary>
