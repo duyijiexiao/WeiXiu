@@ -197,6 +197,8 @@ namespace Langben.App.Controllers
                     ,
                     AnpaiName = s.AnpaiName
                     ,
+                    AnpaiName = s.AnpaiName
+                    ,
                     AnPaiShiJian = s.AnPaiShiJian
                     ,
                     FanKui = s.FanKui

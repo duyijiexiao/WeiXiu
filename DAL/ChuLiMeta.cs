@@ -82,6 +82,12 @@ namespace Langben.DAL
 			[StringLength(200, ErrorMessage = "长度不可超过200")]
 			public object Anpai { get; set; }
 
+
+            [ScaffoldColumn(true)]
+            [Display(Name = "安排人员", Order = 13)]
+            [StringLength(200, ErrorMessage = "长度不可超过200")]
+            public object AnpaiName { get; set; }
+
 			[ScaffoldColumn(true)]
 			[Display(Name = "安排时间", Order = 14)]
 			[DataType(System.ComponentModel.DataAnnotations.DataType.DateTime,ErrorMessage="时间格式不正确")]
